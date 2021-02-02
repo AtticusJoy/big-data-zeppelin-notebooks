@@ -1,0 +1,489 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n### Setup\n\nremove files and get new spark context",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.128",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eSetup\u003c/h3\u003e\n\u003cp\u003eremove files and get new spark context\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_2007784378",
+      "id": "20210128-042035_456830115",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Get new Spark Context",
+      "text": "%pyspark\n\nsc \u003d spark.sparkContext",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.128",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cfont color\u003d\"red\"\u003ePrevious livy session is expired, new livy session is created. Paragraphs that depend on this paragraph need to be re-executed!\u003c/font\u003e"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1611806634399_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1611806634399_0003/\"\u003ehttp://master:8088/proxy/application_1611806634399_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_610659037",
+      "id": "20210128-042056_1692353318",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Adding folder for hdfs data",
+      "text": "%sh\nhdfs dfs -ls /\nhdfs dfs -mkdir /mine\nhdfs dfs -ls /\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:47.852",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 04:43:57,159 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 7 items\n-rw-r--r--   2 root supergroup        747 2021-01-28 04:17 /grades.csv\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:04 /log\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:43 /mine\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:04 /spark-jars\ndrwxrwx---   - root supergroup          0 2021-01-28 04:04 /tmp\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:12 /user\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:08 /usr\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 04:43:59,357 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nmkdir: `/mine\u0027: File exists\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 04:44:01,246 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 7 items\n-rw-r--r--   2 root supergroup        747 2021-01-28 04:17 /grades.csv\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:04 /log\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:43 /mine\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:04 /spark-jars\ndrwxrwx---   - root supergroup          0 2021-01-28 04:04 /tmp\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:12 /user\ndrwxr-xr-x   - root supergroup          0 2021-01-28 04:08 /usr\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_196938697",
+      "id": "20210128-043943_2057210230",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Loading grades into hdfs",
+      "text": "%sh\nhdfs dfs -rm -skipTrash /mine/grades.csv\nhdfs dfs -put /data/grades.csv /mine\nhdfs dfs -ls /mine",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.128",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 04:54:02,377 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nDeleted /mine/grades.csv\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 04:54:04,353 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 04:54:06,701 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 1 items\n-rw-r--r--   2 root supergroup        747 2021-01-28 04:54 /mine/grades.csv\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_-910809038",
+      "id": "20210128-044413_1744761970",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### hdfs dfs commands work!\nthe slf4j warnings are super annoying though. ***perhaps I can change this in the image***\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.128",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003ehdfs dfs commands work!\u003c/h3\u003e\n\u003cp\u003ethe slf4j warnings are super annoying though. \u003cstrong\u003e\u003cem\u003eperhaps I can change this in the image\u003c/em\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_-230135643",
+      "id": "20210128-044731_243674548",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Add and Analyze the grades DataFrame",
+      "text": "%pyspark\n\ngradesDF \u003d spark.read.option(\"header\", \"true\").option(\"InferSchema\", \"true\").csv(\"/mine/grades.csv\")\ngradesDF.printSchema()\ngradesDF.show(5)\ngradesDF.count()\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.128",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Last name: string (nullable \u003d true)\n |-- First name: string (nullable \u003d true)\n |-- SSN: string (nullable \u003d true)\n |-- Test1: integer (nullable \u003d true)\n |-- Test2: integer (nullable \u003d true)\n |-- Test3: integer (nullable \u003d true)\n |-- Test4: integer (nullable \u003d true)\n |-- Final: integer (nullable \u003d true)\n |-- Grade: string (nullable \u003d true)\n\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|Last name|First name|        SSN|Test1|Test2|Test3|Test4|Final|Grade|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|  Alfalfa|  Aloysius|123-45-6789|   40|   90|  100|   83|   49|   D-|\n|   Alfred|University|123-12-1234|   41|   97|   96|   97|   48|   D+|\n|    Gerty|    Gramma|567-89-0123|   41|   80|   60|   40|   44|    C|\n|  Android|  Electric|087-65-4321|   42|   23|   36|   45|   47|   B-|\n|  Bumpkin|      Fred|456-78-9012|   43|   78|   88|   77|   45|   A-|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\nonly showing top 5 rows\n\n16"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1611806634399_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1611806634399_0003/\"\u003ehttp://master:8088/proxy/application_1611806634399_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_-393081631",
+      "id": "20210128-045422_837921609",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Load /data/ssn-address.tsv into to HDFS (hint: tsv is tabbed separated file",
+      "text": "%sh\nhdfs dfs -rm -skipTrash /mine/ssn-address.tsv\nhdfs dfs -put /data/ssn-address.tsv /mine\nhdfs dfs -ls /mine",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.128",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 05:07:41,865 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/ssn-address.tsv\u0027: No such file or directory\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 05:07:43,890 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-01-28 05:07:46,010 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 2 items\n-rw-r--r--   2 root supergroup        747 2021-01-28 04:54 /mine/grades.csv\n-rw-r--r--   2 root supergroup        480 2021-01-28 05:07 /mine/ssn-address.tsv\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224128_-1276940703",
+      "id": "20210128-050351_1829368962",
+      "dateCreated": "2021-02-01 21:33:44.128",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Add and Analyze the ssn-address DataFrame",
+      "text": "%pyspark\ngroup_name \u003d \"Abby\u0027s Test Jobs\"\nsc.setJobGroup(group_name, \"Read and show ssn-address df\")\nssn_addressDF \u003d spark.read.format(\"csv\").option(\"delimiter\", \"\\t\").load(\"/mine/ssn-address.tsv\")\nssn_addressDF.printSchema()\nssn_addressDF.show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.134",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- _c0: string (nullable \u003d true)\n |-- _c1: string (nullable \u003d true)\n |-- _c2: string (nullable \u003d true)\n |-- _c3: string (nullable \u003d true)\n |-- _c4: string (nullable \u003d true)\n\n+-----------+-----------+---------------+--------------------+--------------------+\n|        _c0|        _c1|            _c2|                 _c3|                 _c4|\n+-----------+-----------+---------------+--------------------+--------------------+\n|    Alfalfa|   Aloysius|    123-45-6789|      7098 East Road|   Hopkins, MN 55343|\n|Backus  Jim|143-12-1234|603 Wagon Drive|Miamisburg, OH 45342|                null|\n|      Dandy|        Jim|    087-75-4321|           4 Ann St.|Hackensack, NJ 07601|\n|     George|        Boy|    345-67-3901|      13 Foxrun Ave.| Annandale, VA 22003|\n|     Alfred| University|    123-12-1234|  98 Wellington Ave.|    Lowell, MA 01851|\n|   Elephant|        Ima|    456-71-9012|                null|                null|\n|  Heffalump|     Harvey|    632-79-9439|      5 Beech Street|Canyon Country, C...|\n|      Gerty|     Gramma|    567-89-0123|                null|                null|\n|     Rubble|      Betty|    234-56-7890|       9715 Penn St.| Royal Oak, MI 48067|\n+-----------+-----------+---------------+--------------------+--------------------+"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1611806634399_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1611806634399_0003/\"\u003ehttp://master:8088/proxy/application_1611806634399_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224133_924855249",
+      "id": "20210128-050302_1912533767",
+      "dateCreated": "2021-02-01 21:33:44.133",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## NEXT\n\nproceed to figure out how to fix column names, dirty data, and rename headers and load cleanly into HDFS (another csv or Hive)\nthen run join on ssn and metrics on names and reports on who we don\u0027t have addresses for to mail the report cards to\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.134",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eNEXT\u003c/h2\u003e\n\u003cp\u003eproceed to figure out how to fix column names, dirty data, and rename headers and load cleanly into HDFS (another csv or Hive)\u003cbr/\u003ethen run join on ssn and metrics on names and reports on who we don\u0026rsquo;t have addresses for to mail the report cards to\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224134_1009379628",
+      "id": "20210128-051950_574265380",
+      "dateCreated": "2021-02-01 21:33:44.134",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Deleting Livy session\nIn order to delete old livy session, you have to look up and then curl to delete. \n***The jq program is not installed on the image. \nMaybe I can make that change later.***",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.134",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eDeleting Livy session\u003c/h3\u003e\n\u003cp\u003eIn order to delete old livy session, you have to look up and then curl to delete.\u003cbr/\u003e\u003cstrong\u003e\u003cem\u003eThe jq program is not installed on the image.\u003cbr/\u003eMaybe I can make that change later.\u003c/em\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224134_-922369712",
+      "id": "20210128-044010_1283318798",
+      "dateCreated": "2021-02-01 21:33:44.134",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Delete old LIVY session",
+      "text": "%sh\n\n#curl -s 192.168.1.173:8998/sessions | python3 -mjson.tool\n\n#sessionId \u003d $(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\n#curl -s 192.168.1.173:8998/sessions/0 -X DELETE\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:34:26.648",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\n    \"from\": 0,\n    \"total\": 0,\n    \"sessions\": []\n}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224134_219213012",
+      "id": "20210128-042228_71010364",
+      "dateCreated": "2021-02-01 21:33:44.134",
+      "dateStarted": "2021-02-01 21:34:14.113",
+      "dateFinished": "2021-02-01 21:34:14.388",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:33:44.134",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612215224134_-807785575",
+      "id": "20210128-043045_1955880742",
+      "dateCreated": "2021-02-01 21:33:44.134",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "abby",
+  "id": "2FXUDKMA7",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "sh:shared_process": [],
+    "jdbc:shared_process": [],
+    "spark:shared_process": [],
+    "livy:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

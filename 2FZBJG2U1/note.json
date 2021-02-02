@@ -1,0 +1,2377 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# About This Lab\n**Objective:** Become familiar with simple RDD operations. Load a simple text file into \nResilient Distributed Dataset (RDD) and display the contents. Then create two new RDDs\nand use transformations to union them and remove duplicates.\n**Exercise files** \n    Exercise directory: /home/training/training_materials/devsh/exercises/rdds\n    Data (local): /home/training/training_materials/devsh/data/frostroad.txt\n                  /home/training/training_materials/devsh/data/makes1.txt  makes2.txt\n**Successful outcome:**\n**Before you begin:**\n**Related lessons:** RDD Overview\n\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.059",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eAbout This Lab\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eObjective:\u003c/strong\u003e Become familiar with simple RDD operations. Load a simple text file into\n\u003cbr  /\u003eResilient Distributed Dataset (RDD) and display the contents. Then create two new RDDs\n\u003cbr  /\u003eand use transformations to union them and remove duplicates.\n\u003cbr  /\u003e\u003cstrong\u003eExercise files\u003c/strong\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eExercise directory: /home/training/training_materials/devsh/exercises/rdds\nData (local): /home/training/training_materials/devsh/data/frostroad.txt\n              /home/training/training_materials/devsh/data/makes1.txt  makes2.txt\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eSuccessful outcome:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cstrong\u003eBefore you begin:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cstrong\u003eRelated lessons:\u003c/strong\u003e RDD Overview\u003c/p\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169059_-2003141161",
+      "id": "20171105-200834_1116095891",
+      "dateCreated": "2021-02-01 21:16:09.059",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Setup\n---\n\nThe following cells allow this notebook to run without errors from top to bottom any number of times",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.060",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSetup\u003c/h1\u003e\n\u003chr /\u003e\n\u003cp\u003eThe following cells allow this notebook to run without errors from top to bottom any number of times\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169059_1133619670",
+      "id": "20181114-164229_902436001",
+      "dateCreated": "2021-02-01 21:16:09.059",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Delete HDFS files to prevent files exist errors",
+      "text": "%sh\n\nhdfs dfs -rm -r -f -skipTrash /devsh_loudacre/frostroad.txt\nhdfs dfs -rm -r -f -skipTrash /devsh_loudacre/makes*.txt",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.060",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169060_658730678",
+      "id": "20200113-225014_1330911389",
+      "dateCreated": "2021-02-01 21:16:09.060",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Environment variable required to use SetJobGroup",
+      "text": "%sh\n\nPYSPARK_PIN_THREAD\u003dtrue",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.060",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169060_1826774281",
+      "id": "20200830-145651_990177858",
+      "dateCreated": "2021-02-01 21:16:09.060",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Retrieve the Spark Context",
+      "text": "%pyspark\n\nsc\u003d spark.sparkContext",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.060",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169060_1426640",
+      "id": "20200830-145805_1013187790",
+      "dateCreated": "2021-02-01 21:16:09.060",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Lab\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.060",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eLab\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169060_1922537610",
+      "id": "20181114-164844_1661453681",
+      "dateCreated": "2021-02-01 21:16:09.060",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Review the API Documentation for RDD Operations\n\nReview the API docs for the RDD class (which is in the Python module pyspark, and the Scala package org.apache.spark.rdd). \nTake note of the various available operations.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.060",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eReview the API Documentation for RDD Operations\u003c/h3\u003e\n\u003cp\u003eReview the API docs for the RDD class (which is in the Python module pyspark, and the Scala package org.apache.spark.rdd).\n\u003cbr  /\u003eTake note of the various available operations.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169060_506339221",
+      "id": "20200113-224229_628565915",
+      "dateCreated": "2021-02-01 21:16:09.060",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Read and Display Data from a Text File\n\nReview the simple text file you will be using.\nThe file is located at /home/training/training_materials/devsh/data/frostroad.txt.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eRead and Display Data from a Text File\u003c/h3\u003e\n\u003cp\u003eReview the simple text file you will be using.\n\u003cbr  /\u003eThe file is located at /home/training/training_materials/devsh/data/frostroad.txt.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_2023688524",
+      "id": "20200113-224321_2135751926",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "1 - Read /home/training/training_materials/devsh/data/frostroad.txt",
+      "text": "%sh\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_918153141",
+      "id": "20200113-224501_1013111284",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "2 - Upload the text file to HDFS directory /devsh_loudacre",
+      "text": "%sh\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_-276884545",
+      "id": "20200113-224925_2003023834",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "3 - Define an RDD based on the frostroad.txt text file",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_-1532219740",
+      "id": "20200113-225910_142286046",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSpark has not yet read the file. \nIt will not do so until you perform an action on the RDD.\nTry counting the number of elements in the RDD using the count action:",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eSpark has not yet read the file.\n\u003cbr  /\u003eIt will not do so until you perform an action on the RDD.\n\u003cbr  /\u003eTry counting the number of elements in the RDD using the count action:\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_230106310",
+      "id": "20200113-230441_1168973087",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "4 - Count the lines in your RDD",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_1311998353",
+      "id": "20200113-230437_57310419",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nThe count operation causes the RDD to be materialized (created and populated).\nThe number of lines (23) should be displayed, for example:\n```pyspark\nOut[2]: 23(Python) \n```\nor\n```spark\nres1: Long \u003d 23(Scala)\n```\nCall the collect operation to return all data in the RDD to the Spark driver. \nTake note of the type of the return value; in Python will be a list of strings, and in Scala it will be an array of strings.\n\n**Note:** collect returns the entire set of data. This is convenient for very small RDDs like this one, but be careful using collect for more typical large sets of data.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe count operation causes the RDD to be materialized (created and populated).\n\u003cbr  /\u003eThe number of lines (23) should be displayed, for example:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"pyspark\"\u003eOut[2]: 23(Python) \n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eor\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"spark\"\u003eres1: Long \u003d 23(Scala)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eCall the collect operation to return all data in the RDD to the Spark driver.\n\u003cbr  /\u003eTake note of the type of the return value; in Python will be a list of strings, and in Scala it will be an array of strings.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eNote:\u003c/strong\u003e collect returns the entire set of data. This is convenient for very small RDDs like this one, but be careful using collect for more typical large sets of data.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_819480424",
+      "id": "20200113-230739_691307132",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "5 - Collect your RDD",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_-376308040",
+      "id": "20200113-230735_278776244",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "6 - Display the contents of the collected data by looping through the collection",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_-2074892886",
+      "id": "20200113-231332_2020637729",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Transform Data in an RDD\n\nIn this exercise, you will load two text files containing the names of various cell phone makes, and append one to the other. \nReview the two text files you will be using by viewing (without editing) the file in a separate window. \nThe files are makes1.txt and makes2.txt in the /home/training/training_materials/devsh/data directory.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eTransform Data in an RDD\u003c/h3\u003e\n\u003cp\u003eIn this exercise, you will load two text files containing the names of various cell phone makes, and append one to the other.\n\u003cbr  /\u003eReview the two text files you will be using by viewing (without editing) the file in a separate window.\n\u003cbr  /\u003eThe files are makes1.txt and makes2.txt in the /home/training/training_materials/devsh/data directory.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_-1352516616",
+      "id": "20200113-231500_1328075001",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "7 - Upload the two text file to HDFS directory /devsh_loudacre",
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.061",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_1676372222",
+      "id": "20200113-231458_1609746509",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "8 - Create an RDD called makes1RDD based on the /devsh_loudacre/makes1.txt file",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169061_-42813010",
+      "id": "20200113-232112_1295518722",
+      "dateCreated": "2021-02-01 21:16:09.061",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "9 - Display the contents of the makes1RDD data using collect and then looping through returned collection",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_-1894643877",
+      "id": "20200113-232111_276596298",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "10 - Repeat the previous steps to create and display an RDD called makes2RDD based on the second file, /devsh_loudacre/makes2.txt",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_778981926",
+      "id": "20200113-232706_792978821",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "11 - Create a new RDD by appending the second RDD to the first using the union transformation",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_1886954452",
+      "id": "20200113-232958_1153053244",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "12 - Collect and display the contents of the new allMakesRDD RDD",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_-594593543",
+      "id": "20200113-233207_1689738900",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the distinct transformation to remove duplicates from allMakesRDD.\nCollect and display the contents to confirm that duplicate elements were removed.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the distinct transformation to remove duplicates from allMakesRDD.\n\u003cbr  /\u003eCollect and display the contents to confirm that duplicate elements were removed.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_-1330849583",
+      "id": "20200113-233456_1826475012",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "13 - Use the distinct transformation to remove duplicates from allMakesRDD",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_783156774",
+      "id": "20200113-233451_1173735633",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Optional: \nTry performing different transformations on the RDDs you created above, such as intersection, subtract, or zip.\nSee the RDD API documentation for details.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eOptional:\u003c/h3\u003e\n\u003cp\u003eTry performing different transformations on the RDDs you created above, such as intersection, subtract, or zip.\n\u003cbr  /\u003eSee the RDD API documentation for details.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_2024450419",
+      "id": "20200113-233716_587539793",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_-683124939",
+      "id": "20210123-132028_2142098562",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Result\n**You have now:** \n\n* loaded a simple text file into a Resilient Distributed Dataset (RDD) and displayed its contents;\n* created two new RDDs and \n* used transformations to union them and remove duplicates.\n\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.063",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eResult\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eYou have now:\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eloaded a simple text file into a Resilient Distributed Dataset (RDD) and displayed its contents;\u003c/li\u003e\n\u003cli\u003ecreated two new RDDs and\u003c/li\u003e\n\u003cli\u003eused transformations to union them and remove duplicates.\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_-2045855133",
+      "id": "20181119-142716_792318228",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Solution\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSolution\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169063_-1042123671",
+      "id": "20171113-155535_1769142099",
+      "dateCreated": "2021-02-01 21:16:09.063",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Review the API Documentation for RDD Operations\n\nReview the API docs for the RDD class (which is in the Python module pyspark, and the Scala package org.apache.spark.rdd). \nTake note of the various available operations.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eReview the API Documentation for RDD Operations\u003c/h3\u003e\n\u003cp\u003eReview the API docs for the RDD class (which is in the Python module pyspark, and the Scala package org.apache.spark.rdd).\n\u003cbr  /\u003eTake note of the various available operations.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_1651390314",
+      "id": "20210121-154951_163702855",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### RDD\nResilient Distributed Dataset (RDD) is a fundamental data structure of Spark. It is an immutable distributed \ncollection of objects. The HDFS data blocks are immutable. The HDFS data blocks are distributed across the \ncluster. In Spark a RDD is divided into logical partitions, each partition may be computed on different nodes \nof the cluster. A Spark logical partition is physically a HDFS data block.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eRDD\u003c/h4\u003e\n\u003cp\u003eResilient Distributed Dataset (RDD) is a fundamental data structure of Spark. It is an immutable distributed\n\u003cbr  /\u003ecollection of objects. The HDFS data blocks are immutable. The HDFS data blocks are distributed across the\n\u003cbr  /\u003ecluster. In Spark a RDD is divided into logical partitions, each partition may be computed on different nodes\n\u003cbr  /\u003eof the cluster. A Spark logical partition is physically a HDFS data block.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_-1437208882",
+      "id": "20210123-131250_1289201985",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Read and Display Data from a Text File",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eRead and Display Data from a Text File\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_-10120854",
+      "id": "20210123-125534_651787489",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "1 - Read /home/training/training_materials/devsh/data/frostroad.txt",
+      "text": "%sh\n\ncat /home/training/training_materials/devsh/data/frostroad.txt",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Two roads diverged in a yellow wood,\nAnd sorry I could not travel both\nAnd be one traveler, long I stood\nAnd looked down one as far as I could\nTo where it bent in the undergrowth;\n\nThen took the other, as just as fair,\nAnd having perhaps the better claim,\nBecause it was grassy and wanted wear;\nThough as for that the passing there\nHad worn them really about the same,\n\nAnd both that morning equally lay\nIn leaves no step had trodden black.\nOh, I kept the first for another day!\nYet knowing how way leads on to way,\nI doubted if I should ever come back.\n\nI shall be telling this with a sigh\nSomewhere ages and ages hence:\nTwo roads diverged in a wood, and I--\nI took the one less traveled by,\nAnd that has made all the difference."
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_-509223230",
+      "id": "20200113-224727_1264359813",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nReview the simple text file you will be using. The file is located at \n`/home/training/training_materials/devsh/data/frostroad.txt`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eReview the simple text file you will be using. The file is located at\n\u003cbr  /\u003e\u003ccode\u003e/home/training/training_materials/devsh/data/frostroad.txt\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_-1732090608",
+      "id": "20210121-155224_1487935282",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "2 - Upload the text file to HDFS directory /devsh_loudacre",
+      "text": "%sh\nhdfs dfs -rm -r -skipTrash /devsh_loudacre/frostroad.txt\nhdfs dfs -put /home/training/training_materials/devsh/data/frostroad.txt /devsh_loudacre",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "rm: `/devsh_loudacre/frostroad.txt\u0027: No such file or directory\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_290307428",
+      "id": "20200113-225002_1928604162",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nLoad the `frostroad.txt` file into hdfs.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eLoad the \u003ccode\u003efrostroad.txt\u003c/code\u003e file into hdfs.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_819421148",
+      "id": "20210121-160418_139257689",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "3 - Define an RDD based on the frostroad.txt text file",
+      "text": "%pyspark\n\nmyRDD \u003d sc.textFile(\"/devsh_loudacre/frostroad.txt\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_316191357",
+      "id": "20200113-225945_408602366",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nDefine a RDD, `myRDD`, and load the text file `frostroad.txt`\nUse the spark context `textFile` function to load unstructured data, such as web logs.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eDefine a RDD, \u003ccode\u003emyRDD\u003c/code\u003e, and load the text file \u003ccode\u003efrostroad.txt\u003c/code\u003e\n\u003cbr  /\u003eUse the spark context \u003ccode\u003etextFile\u003c/code\u003e function to load unstructured data, such as web logs.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_259984454",
+      "id": "20210121-160450_434885179",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "4 - Count the lines in your RDD",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with RDDs\",\"Count the lines in your RDD\")\nmyRDD.count()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "23"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_776537278",
+      "id": "20200113-230550_584302657",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSpark has not yet read the file. It will not do so until you perform an action on the RDD.\nTry counting the number of elements in the RDD using the count action:\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.064",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eSpark has not yet read the file. It will not do so until you perform an action on the RDD.\n\u003cbr  /\u003eTry counting the number of elements in the RDD using the count action:\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169064_-127607635",
+      "id": "20210121-155030_1717285378",
+      "dateCreated": "2021-02-01 21:16:09.064",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSpark uses lazy execution, transformations do not manipulate data, only actions \nresult in data manipulation. The term materialize is used when data is created and populated.\n\nThe count operation causes the RDD to be materialized.\nThe number of lines (23) should be displayed, for example:\n```pyspark\nOut[2]: 23(Python) \n```\nor\n```spark\nres1: Long \u003d 23(Scala)\n```\nCall the collect operation to return all data in the RDD to the Spark driver. \nTake note of the type of the return value; in Python will be a list of strings, and in Scala it will be an array of strings.\n\n**Note:** collect returns the entire set of data. This is convenient for very small RDDs like this one, but be careful using collect for more typical large sets of data.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.065",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eSpark uses lazy execution, transformations do not manipulate data, only actions\n\u003cbr  /\u003eresult in data manipulation. The term materialize is used when data is created and populated.\u003c/p\u003e\n\u003cp\u003eThe count operation causes the RDD to be materialized.\n\u003cbr  /\u003eThe number of lines (23) should be displayed, for example:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"pyspark\"\u003eOut[2]: 23(Python) \n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eor\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"spark\"\u003eres1: Long \u003d 23(Scala)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eCall the collect operation to return all data in the RDD to the Spark driver.\n\u003cbr  /\u003eTake note of the type of the return value; in Python will be a list of strings, and in Scala it will be an array of strings.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eNote:\u003c/strong\u003e collect returns the entire set of data. This is convenient for very small RDDs like this one, but be careful using collect for more typical large sets of data.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169065_824648158",
+      "id": "20210121-155324_467124236",
+      "dateCreated": "2021-02-01 21:16:09.065",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "5 - Collect your RDD",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with RDDs\",\"Collect your RDD\")\nlines \u003d myRDD.collect()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.065",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169065_-639797793",
+      "id": "20200113-231206_1684140761",
+      "dateCreated": "2021-02-01 21:16:09.065",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nReturn all of the data by using the `collect` function. Take note of the type of the return value;\nin Python it will be a list of strings, and in Scala it will be an array of strings.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eReturn all of the data by using the \u003ccode\u003ecollect\u003c/code\u003e function. Take note of the type of the return value;\n\u003cbr  /\u003ein Python it will be a list of strings, and in Scala it will be an array of strings.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169065_1426130126",
+      "id": "20210121-160633_1720813316",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "6 - Display the contents of the collected data by looping through the collection",
+      "text": "%pyspark\n\nfor line in lines: print(line)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Two roads diverged in a yellow wood,\nAnd sorry I could not travel both\nAnd be one traveler, long I stood\nAnd looked down one as far as I could\nTo where it bent in the undergrowth;\n\nThen took the other, as just as fair,\nAnd having perhaps the better claim,\nBecause it was grassy and wanted wear;\nThough as for that the passing there\nHad worn them really about the same,\n\nAnd both that morning equally lay\nIn leaves no step had trodden black.\nOh, I kept the first for another day!\nYet knowing how way leads on to way,\nI doubted if I should ever come back.\n\nI shall be telling this with a sigh\nSomewhere ages and ages hence:\nTwo roads diverged in a wood, and I--\nI took the one less traveled by,\nAnd that has made all the difference."
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_208703065",
+      "id": "20200113-231347_761889459",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Transform Data in a RDD\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eTransform Data in a RDD\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_786658050",
+      "id": "20210123-130351_1801379061",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "7 - Upload the two text file to HDFS directory /devsh_loudacre",
+      "text": "%sh\nhdfs dfs -rm -r -skipTrash /devsh_loudacre/makes1.txt /devsh/loudacre/makes2.txt\nhdfs dfs -put /home/training/training_materials/devsh/data/makes*.txt /devsh_loudacre\n\nhdfs dfs -head /devsh_loudacre/makes1.txt\necho \" \"\necho \" \"\nhdfs dfs -head /devsh_loudacre/makes2.txt",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Drm: `/devsh/loudacre/emakleest2e.dt x/td\u0027e:v sNho_ lsouucdha cfriel/em aokre sd1i.rtexctt\nory\nput: `/devsh_loudacre/makes2.txt\u0027: File exists\nSorrento\nTitanic\nSorrento\nTitanic\nMeeToo\nMeeToo\nMeeToo\nTitanic\nMeeToo\nMeeToo\nTitanic\nSorrento\nSorrento \n \nSECOND FILE\nTitanic\nMeeToo\nMeeToo\niFruit\niFruit\nTitanic\nMeeToo\niFruit\nTitanic\nRonin\nTitanic\nTitanic\nTitanic"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_-335182326",
+      "id": "20200113-231737_1676606596",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nIn this exercise, you will load two text files containing the names of various cell phone makes, and append one to the other. \nReview the two text files you will be using. The files are makes1.txt and makes2.txt in the \n`/home/training/training_materials/devsh/data directory`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eIn this exercise, you will load two text files containing the names of various cell phone makes, and append one to the other.\n\u003cbr  /\u003eReview the two text files you will be using. The files are makes1.txt and makes2.txt in the\n\u003cbr  /\u003e\u003ccode\u003e/home/training/training_materials/devsh/data directory\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_-308783671",
+      "id": "20210121-155430_2040341259",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "8 - Create an RDD called makes1RDD based on the /devsh_loudacre/makes1.txt file",
+      "text": "%pyspark\n\nmakes1RDD \u003d sc.textFile(\"/devsh_loudacre/makes1.txt\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_-1775510212",
+      "id": "20200113-232201_1879966356",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nCreate an RDD, `makes1RDD`, and load the makes1.txt file.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate an RDD, \u003ccode\u003emakes1RDD\u003c/code\u003e, and load the makes1.txt file.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_1815396919",
+      "id": "20210121-160807_1322215638",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "9 - Display the contents of the makes1RDD data using collect and then looping through returned collection",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with RDDs\",\"Display the contents of the makes1RDD\")\nfor make in makes1RDD.collect(): print(make)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Sorrento\nTitanic\nSorrento\nTitanic\nMeeToo\nMeeToo\nMeeToo\nTitanic\nMeeToo\nMeeToo\nTitanic\nSorrento\nSorrento"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_-1620253044",
+      "id": "20200113-232514_292697455",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nRDD are collections of unstructured records, unlike a DataFrame, you must loop through the collection\nto display the records.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.067",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eRDD are collections of unstructured records, unlike a DataFrame, you must loop through the collection\n\u003cbr  /\u003eto display the records.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_-680894232",
+      "id": "20210123-130840_840805836",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "10 - Repeat the previous steps to create and display an RDD called makes2RDD based on the second file, /devsh_loudacre/makes2.txt",
+      "text": "%pyspark\n\nmakes2RDD \u003d sc.textFile(\"/devsh_loudacre/makes2.txt\")\nsc.setJobGroup(\"Working with RDDs\",\"Display the contents of the makes2RDD\")\nfor make in makes2RDD.collect(): print(make)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.068",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Titanic\nMeeToo\nMeeToo\niFruit\niFruit\nTitanic\nMeeToo\niFruit\nTitanic\nRonin\nTitanic\nTitanic\nTitanic"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169067_-992353999",
+      "id": "20200113-232724_1729214708",
+      "dateCreated": "2021-02-01 21:16:09.067",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the Python foreach loop to print out all records from makes2RDD.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the Python foreach loop to print out all records from makes2RDD.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_1625310535",
+      "id": "20210121-160940_1102442443",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "11 - Create a new RDD by appending the second RDD to the first using the union transformation",
+      "text": "%pyspark\n\nallMakesRDD \u003d makes1RDD.union(makes2RDD)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-149105391",
+      "id": "20200113-233026_550163966",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the `union` function to append the first RDD to the second RDD. \n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the \u003ccode\u003eunion\u003c/code\u003e function to append the first RDD to the second RDD.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-1861379360",
+      "id": "20210121-161039_940350799",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "12 - Collect and display the contents of the new allMakesRDD RDD",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with RDDs\",\"Display the contents of the allMakesRDD\")\nfor make in allMakesRDD.collect(): print(make)\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Sorrento\nTitanic\nSorrento\nTitanic\nMeeToo\nMeeToo\nMeeToo\nTitanic\nMeeToo\nMeeToo\nTitanic\nSorrento\nSorrento\nTitanic\nMeeToo\nMeeToo\niFruit\niFruit\nTitanic\nMeeToo\niFruit\nTitanic\nRonin\nTitanic\nTitanic\nTitanic"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_1293545647",
+      "id": "20200113-233223_65376122",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "13 - Use the distinct transformation to remove duplicates from allMakesRDD",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with RDDs\",\"Display the unique makes\")\nfor make in allMakesRDD.distinct().collect(): print(make)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Sorrento\nMeeToo\nTitanic\nRonin\niFruit"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-1536426047",
+      "id": "20200113-233603_408861853",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the distinct transformation to remove duplicates from allMakesRDD.\nUse the `distinct` function to remove duplicates. Use the `collect` function to\ncollect and display the contents. This will confirm that duplicate elements were removed.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the distinct transformation to remove duplicates from allMakesRDD.\n\u003cbr  /\u003eUse the \u003ccode\u003edistinct\u003c/code\u003e function to remove duplicates. Use the \u003ccode\u003ecollect\u003c/code\u003e function to\n\u003cbr  /\u003ecollect and display the contents. This will confirm that duplicate elements were removed.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-1675130168",
+      "id": "20210121-160135_1732209921",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Tear Down\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eTear Down\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-340135823",
+      "id": "20200830-150902_66980237",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Delete the Livy session",
+      "text": "%sh\n\nsessionId\u003d$(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\ncurl -s localhost:8998/sessions/$sessionId -X DELETE",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\"msg\":\"Session \u0027null\u0027 not found.\"}"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-1807835736",
+      "id": "20200830-150921_2047498407",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Additional resources",
+      "text": "%md\nWe hope you\u0027ve enjoyed this lab. Below are additional resources that you should find useful:\n\n1. [Cloudera Tutorials](http://cloudera.com/tutorials.html) are your natural next step where you can explore Spark in more depth.\n2. [Cloudera Community](https://community.cloudera.com) is a great resource for questions and answers on Spark, Data Analytics/Science, and many more Big Data topics.\n3. [Apache Spark Documentation](https://spark.apache.org/documentation.html) - official Spark documentation.\n4. [Apache Zeppelin Project Home Page](https://zeppelin.apache.org) - official Zeppelin web site.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 10.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eWe hope you\u0027ve enjoyed this lab. Below are additional resources that you should find useful:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href\u003d\"http://cloudera.com/tutorials.html\"\u003eCloudera Tutorials\u003c/a\u003e are your natural next step where you can explore Spark in more depth.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://community.cloudera.com\"\u003eCloudera Community\u003c/a\u003e is a great resource for questions and answers on Spark, Data Analytics/Science, and many more Big Data topics.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://spark.apache.org/documentation.html\"\u003eApache Spark Documentation\u003c/a\u003e - official Spark documentation.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://zeppelin.apache.org\"\u003eApache Zeppelin Project Home Page\u003c/a\u003e - official Zeppelin web site.\u003c/li\u003e\n\u003c/ol\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_1278681002",
+      "id": "20181116-135131_93712280",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003ccenter\u003e\n\u003ca href\u003d\"https://www.cloudera.com/about/training/courses.html\"\u003e\n  \u003cimg src\u003d\"https://www.cloudera.com/content/dam/www/marketing/media-kit/logo-assets/cloudera_logo_darkorange.png\" alt\u003d\"Cloudera University\" style\u003d\"width:280px;height:40px;border:0;\" align\u003d\"middle\"\u003e\n\u003c/a\u003e\n\u003c/center\u003e\n\u003c/br\u003e\n\u003c/br\u003e",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.072",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 2.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003ccenter\u003e\n\u003ca href\u003d\"https://www.cloudera.com/about/training/courses.html\"\u003e\n  \u003cimg src\u003d\"https://www.cloudera.com/content/dam/www/marketing/media-kit/logo-assets/cloudera_logo_darkorange.png\" alt\u003d\"Cloudera University\" style\u003d\"width:280px;height:40px;border:0;\" align\u003d\"middle\"\u003e\n\u003c/a\u003e\n\u003c/center\u003e\n\u003c/br\u003e\n\u003c/br\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_-1161272561",
+      "id": "20200110-154537_1406191376",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-01 21:16:09.073",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612214169072_1066780405",
+      "id": "20200110-162013_302547143",
+      "dateCreated": "2021-02-01 21:16:09.072",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "/DevSH/Labs/Pyspark/WorkingWithRDDs",
+  "id": "2FZBJG2U1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "sh:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
