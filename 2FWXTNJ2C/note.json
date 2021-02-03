@@ -1,0 +1,3836 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# About This Lab\n**Objective:** Analyze data using DataFrame queries, practice using column expressions in queries.\nUse DataFrames by grouping and aggregating data, and by joining two DataFrames. Query \nmultiple sets of data to find out how many of each mobile device model is used in active accounts.\n**File locations:** \n    Exercise directory: /home/training/training_materials/devsh/exercises/analyze\n    Data (local): /home/training/training_materials/devsh/data/accountdevice\n                  /home/training/training_materials/devsh/data/base_stations.parquet\n    Data (HDFS): /devsh_loudacre/devices.json\n**Successful outcome:**\n**Before you begin:**\n**Related lessons:** Analyzing Data with DataFrame Queries\n\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.436",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eAbout This Lab\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eObjective:\u003c/strong\u003e Analyze data using DataFrame queries, practice using column expressions in queries.\n\u003cbr  /\u003eUse DataFrames by grouping and aggregating data, and by joining two DataFrames. Query\n\u003cbr  /\u003emultiple sets of data to find out how many of each mobile device model is used in active accounts.\n\u003cbr  /\u003e\u003cstrong\u003eFile locations:\u003c/strong\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eExercise directory: /home/training/training_materials/devsh/exercises/analyze\nData (local): /home/training/training_materials/devsh/data/accountdevice\n              /home/training/training_materials/devsh/data/base_stations.parquet\nData (HDFS): /devsh_loudacre/devices.json\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eSuccessful outcome:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cstrong\u003eBefore you begin:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cstrong\u003eRelated lessons:\u003c/strong\u003e Analyzing Data with DataFrame Queries\u003c/p\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531435_-1144988151",
+      "id": "20171105-200834_1116095891",
+      "dateCreated": "2021-02-02 18:28:51.435",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Setup\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.436",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSetup\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531436_-474705018",
+      "id": "20181114-164229_902436001",
+      "dateCreated": "2021-02-02 18:28:51.436",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Delete HDFS files to prevent file exists errors",
+      "text": "%sh\n\n# The following allow this notebook to run without errors\n\nhdfs dfs -rm -r -f -skipTrash /devsh_loudacre/base_stations.parquet\nhdfs dfs -rm -r -f -skipTrash /devsh_loudacre/accountdevice\n!(hdfs dfs -test -f /devsh_loudacre/devices.json) \u0026\u0026 hdfs dfs -put data/devices.json /devsh_loudacre || echo \"\" # This prevents returning an error",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.436",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531436_-1190442365",
+      "id": "20200112-182718_327301360",
+      "dateCreated": "2021-02-02 18:28:51.436",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Environment variable required to use SetJobGroup",
+      "text": "%sh\n\nPYSPARK_PIN_THREAD\u003dtrue",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.436",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531436_-196588661",
+      "id": "20200830-132009_1410029588",
+      "dateCreated": "2021-02-02 18:28:51.436",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Retrieve the Spark Context",
+      "text": "%pyspark\n\nsc \u003d spark.sparkContext",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.436",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531436_-1344689162",
+      "id": "20200830-132206_964008522",
+      "dateCreated": "2021-02-02 18:28:51.436",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Lab\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eLab\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531436_1940123352",
+      "id": "20181114-164844_1661453681",
+      "dateCreated": "2021-02-02 18:28:51.436",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "",
+      "text": "%md\n### Review Apache Spark Documentation\nReview the API docs for the Column class (which is in the Python module pyspark.sql and the Scala package org.apache.spark.sql). Take note of the various options available.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "fontSize": 9.0,
+        "title": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eReview Apache Spark Documentation\u003c/h3\u003e\n\u003cp\u003eReview the API docs for the Column class (which is in the Python module pyspark.sql and the Scala package org.apache.spark.sql). Take note of the various options available.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_-728718419",
+      "id": "20171105-200519_752831754",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Query DataFrames Using Column Expressions",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eQuery DataFrames Using Column Expressions\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_-477505326",
+      "id": "20210122-190511_397010330",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "1 - Create a new DataFrame called accountsDF based on the Hive devsh.accounts table",
+      "text": "%pyspark\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_-827514721",
+      "id": "20171105-200623_656362182",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "2 - Try a simple query with select, using both column reference syntaxes",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "3": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_626192274",
+      "id": "20200112-141613_1583455176",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "3 - Create a column object to work with, based on the first_name column in the accountsDF DataFrame",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_1223572577",
+      "id": "20171105-201709_849284875",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNote that the object type is Column.\nNew Column objects are created when you perform operations on existing columns. \nCreate a new Column object based on a column expression that identifies users whose first name is Lucy using the equality operator on the fnCol object you created above.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.437",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNote that the object type is Column.\n\u003cbr  /\u003eNew Column objects are created when you perform operations on existing columns.\n\u003cbr  /\u003eCreate a new Column object based on a column expression that identifies users whose first name is Lucy using the equality operator on the fnCol object you created above.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_512797133",
+      "id": "20171105-201449_1118165660",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "4 - Create a Column object based on a column expression",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.438",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531437_-1060928400",
+      "id": "20200112-142301_2075872697",
+      "dateCreated": "2021-02-02 18:28:51.437",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the lucyCol column expression in a select statement.\nBecause lucyCol is based on a boolean expression, the column values will be true or false depending on the value of the first_name column. \nConfirm that users named Lucy are identified with the value true.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.438",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the lucyCol column expression in a select statement.\n\u003cbr  /\u003eBecause lucyCol is based on a boolean expression, the column values will be true or false depending on the value of the first_name column.\n\u003cbr  /\u003eConfirm that users named Lucy are identified with the value true.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531438_-1395703431",
+      "id": "20200112-143020_171776722",
+      "dateCreated": "2021-02-02 18:28:51.438",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "5 - Use the lucyCol column expression in a select statement",
+      "text": "%pyspark\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.438",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531438_-1495009833",
+      "id": "20200112-143038_1552091137",
+      "dateCreated": "2021-02-02 18:28:51.438",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nThe where operation requires a boolean-based column expression. \nUse the lucyCol column expression in a where transformation and view the data in the resulting DataFrame. \nConfirm that only users named Lucy are in the data.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.438",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe where operation requires a boolean-based column expression.\n\u003cbr  /\u003eUse the lucyCol column expression in a where transformation and view the data in the resulting DataFrame.\n\u003cbr  /\u003eConfirm that only users named Lucy are in the data.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531438_2054644459",
+      "id": "20200112-145709_1691721982",
+      "dateCreated": "2021-02-02 18:28:51.438",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "6 - Use the lucyCol column expression in a where transformation ",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.439",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531438_-1430451366",
+      "id": "20200112-145751_2045012434",
+      "dateCreated": "2021-02-02 18:28:51.438",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nColumn expressions do not need to be assigned to a variable.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.439",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eColumn expressions do not need to be assigned to a variable.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531439_-134310031",
+      "id": "20200112-150456_1848116582",
+      "dateCreated": "2021-02-02 18:28:51.439",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "7 - Try the same query without using the lucyCol variable",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.439",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531439_-683629883",
+      "id": "20200112-150525_949779830",
+      "dateCreated": "2021-02-02 18:28:51.439",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nColumn expressions are not limited to where operations like those above. \nThey can be used in any transformation for which a simple column could be used, such as a select.\nTry selecting the city and state columns, and the first three characters of the phone_number column (in the U.S., the first three digits of a phone number are known as the area code).\nUse the substr operator on the phone_number column to extract the area code.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.439",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eColumn expressions are not limited to where operations like those above.\n\u003cbr  /\u003eThey can be used in any transformation for which a simple column could be used, such as a select.\n\u003cbr  /\u003eTry selecting the city and state columns, and the first three characters of the phone_number column (in the U.S., the first three digits of a phone number are known as the area code).\n\u003cbr  /\u003eUse the substr operator on the phone_number column to extract the area code.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531439_-172413507",
+      "id": "20200112-150851_1465971801",
+      "dateCreated": "2021-02-02 18:28:51.439",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "8 - Select the city and state columns and the first three characters of the phone number column",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531439_2101155973",
+      "id": "20200112-151053_2116683653",
+      "dateCreated": "2021-02-02 18:28:51.439",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNotice that in the last step, the values returned by the query were correct, but the column name was substring(phone_number, 1, 3), which is long and hard to work with. ",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNotice that in the last step, the values returned by the query were correct, but the column name was substring(phone_number, 1, 3), which is long and hard to work with.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531440_94336807",
+      "id": "20200112-151526_1064767945",
+      "dateCreated": "2021-02-02 18:28:51.440",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "9 - Repeat the same query, using the alias operator to rename that column as area_code",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531440_1017055503",
+      "id": "20200112-151611_1794288754",
+      "dateCreated": "2021-02-02 18:28:51.440",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nPerform a query that results in a DataFrame with just first_name and last_name columns, and only includes users whose first and last names both begin with the same two letters.\n(For example, the user Roberta Roget would be included, because both her first and last names begin with “Ro”.)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003ePerform a query that results in a DataFrame with just first_name and last_name columns, and only includes users whose first and last names both begin with the same two letters.\n\u003cbr  /\u003e(For example, the user Roberta Roget would be included, because both her first and last names begin with “Ro”.)\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531440_1827939079",
+      "id": "20200112-151929_1221629183",
+      "dateCreated": "2021-02-02 18:28:51.440",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "10 - Perform a query with just first_name and last_name columns, and only includes users whose first and last names both begin with the same two letters",
+      "text": "%pyspark\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531440_-775922623",
+      "id": "20200112-152044_1891437338",
+      "dateCreated": "2021-02-02 18:28:51.440",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Group and Count Data by Name\n\nQuery the accountsDF DataFrame using groupBy with count to find out the total number people sharing each last name. \n(Note that the count aggregation transformation returns a DataFrame, unlike the count DataFrame action, which returns a single value to the driver.)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eGroup and Count Data by Name\u003c/h3\u003e\n\u003cp\u003eQuery the accountsDF DataFrame using groupBy with count to find out the total number people sharing each last name.\n\u003cbr  /\u003e(Note that the count aggregation transformation returns a DataFrame, unlike the count DataFrame action, which returns a single value to the driver.)\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531440_403102041",
+      "id": "20200112-152713_393120046",
+      "dateCreated": "2021-02-02 18:28:51.440",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "11 - Query the accountsDF DataFrame using groupBy with count",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.440",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531440_-1132677259",
+      "id": "20200112-152806_1340776577",
+      "dateCreated": "2021-02-02 18:28:51.440",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nYou can also group by multiple columns.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eYou can also group by multiple columns.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531443_998591884",
+      "id": "20200112-153217_974581894",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "12 - Query accountsDF again, this time counting the number of people who share the same last and first name",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_1687367476",
+      "id": "20200112-153259_1823976934",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Join Account Data with Cellular Towers by Zip Code\n\nIn this section, you will join the accounts data that you have been using with data about cell tower base station locations, which is in the base_stations.parquet file. \nStart by reviewing the schema and a few records of the data using the parquet-tools command.\n\n\n```shell\n$ parquet-tools schema data/base_stations.parquet\n$ parquet-tools head data/base_stations.parquet\n```",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eJoin Account Data with Cellular Towers by Zip Code\u003c/h3\u003e\n\u003cp\u003eIn this section, you will join the accounts data that you have been using with data about cell tower base station locations, which is in the base_stations.parquet file.\n\u003cbr  /\u003eStart by reviewing the schema and a few records of the data using the parquet-tools command.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"shell\"\u003e$ parquet-tools schema data/base_stations.parquet\n$ parquet-tools head data/base_stations.parquet\n\u003c/code\u003e\u003c/pre\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_1039474745",
+      "id": "20200112-153814_1924777085",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "13 - Review the schema and a few records of the data using the parquet-tools command",
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_-366024010",
+      "id": "20200112-153926_2041877918",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "14 - Upload the base_stations.parquet file to /devsh_loudacre",
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_-1530938748",
+      "id": "20200112-155029_173640731",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nCreate a new DataFrame called baseDF using the base stations data.\nReview the baseDF schema and data to ensure it matches the data in the Parquet file.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame called baseDF using the base stations data.\n\u003cbr  /\u003eReview the baseDF schema and data to ensure it matches the data in the Parquet file.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_-419992884",
+      "id": "20200112-155545_1557712468",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "15 - Create a new DataFrame called baseDF using the base stations data",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_-1281296781",
+      "id": "20200112-155648_2079735864",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSome account holders live in zip codes that have a base station.\nJoin baseDF and accountsDF to find those users.\nFor each of those users, include their account ID, first name, last name, and the ID and location data (latitude and longitude) for the base station in their zip code.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eSome account holders live in zip codes that have a base station.\n\u003cbr  /\u003eJoin baseDF and accountsDF to find those users.\n\u003cbr  /\u003eFor each of those users, include their account ID, first name, last name, and the ID and location data (latitude and longitude) for the base station in their zip code.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_-2066644640",
+      "id": "20200112-160205_74480421",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "16 - Join baseDF and accountsDF to find users that live close to a base station",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.444",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_1967450397",
+      "id": "20200112-160341_929651332",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Count Active Devices\n\nThe accountdevice CSV dataset contains a list of all the devices used by all accounts. \nEach row in the data set includes a row ID, an account ID, an ID for the type of device, the date the device was activated for the account, and the specific device ID.\nThe CSV data file is in the /home/training/training_materials/devsh/data/accountdevice directory. \nReview the data in the data set, then upload the directory and its contents to the HDFS directory /devsh_loudacre/accountdevice.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCount Active Devices\u003c/h3\u003e\n\u003cp\u003eThe accountdevice CSV dataset contains a list of all the devices used by all accounts.\n\u003cbr  /\u003eEach row in the data set includes a row ID, an account ID, an ID for the type of device, the date the device was activated for the account, and the specific device ID.\n\u003cbr  /\u003eThe CSV data file is in the /home/training/training_materials/devsh/data/accountdevice directory.\n\u003cbr  /\u003eReview the data in the data set, then upload the directory and its contents to the HDFS directory /devsh_loudacre/accountdevice.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531444_-792127087",
+      "id": "20200112-161100_980854870",
+      "dateCreated": "2021-02-02 18:28:51.444",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "17 - Upload the accountdevice directory in /devsh_loudacre/",
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-1663072463",
+      "id": "20200112-161628_1343845372",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "18 - Create a DataFrame from the account device data",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-929978116",
+      "id": "20200112-162551_2018321312",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the account device data and the DataFrames you created previously in this exercise to find the total number of each device model across all active accounts— that is, accounts that have not been closed. \nThe new DataFrame should be sorted from most to least common model. \nSave the data as Parquet files in a directory called /devsh_loudacre/top_devices with the following columns:\n```code\n| Column Name    | Description                                                                                    |    Example      |\n| -------------- |------------------------------------------------------------------------------------------------| ----------------|\n| device_id      | The ID number of each known device (including those that might not be in use by any account)   |              18 |\n| make           | The manufacturer name for the device                                                           |           Ronin |\n| model          | The model name for the device                                                                  |  Novelty Note 2 |\n| active_num     | The total number of the model used by active accounts                                          |            2092 |\n```\n\nHints:\n\n* Active accounts are those with a null value for acct_close_dt (account close date) in the accounts table.\n* The account_id column in the device accounts data corresponds to the acct_num column in accounts table.\n* The device_id column in the device accounts data corresponds to the devnum column in the list of known devices in the /devsh_loudacre/devices.json file.\n* When you count devices, use withColumnRenamed to rename the count column to active_num. (The count column name is ambiguous because it is both a function and a column.)\n* The query to complete this exercise is somewhat complicated and includes a sequence of many transformations. You may wish to assign variables to the intermediate DataFrames resulting from the transformations that make up the query to make the code easier to work with and debug.\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the account device data and the DataFrames you created previously in this exercise to find the total number of each device model across all active accounts— that is, accounts that have not been closed.\n\u003cbr  /\u003eThe new DataFrame should be sorted from most to least common model.\n\u003cbr  /\u003eSave the data as Parquet files in a directory called /devsh_loudacre/top_devices with the following columns:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"code\"\u003e| Column Name    | Description                                                                                    |    Example      |\n| -------------- |------------------------------------------------------------------------------------------------| ----------------|\n| device_id      | The ID number of each known device (including those that might not be in use by any account)   |              18 |\n| make           | The manufacturer name for the device                                                           |           Ronin |\n| model          | The model name for the device                                                                  |  Novelty Note 2 |\n| active_num     | The total number of the model used by active accounts                                          |            2092 |\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eHints:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eActive accounts are those with a null value for acct_close_dt (account close date) in the accounts table.\u003c/li\u003e\n\u003cli\u003eThe account_id column in the device accounts data corresponds to the acct_num column in accounts table.\u003c/li\u003e\n\u003cli\u003eThe device_id column in the device accounts data corresponds to the devnum column in the list of known devices in the /devsh_loudacre/devices.json file.\u003c/li\u003e\n\u003cli\u003eWhen you count devices, use withColumnRenamed to rename the count column to active_num. (The count column name is ambiguous because it is both a function and a column.)\u003c/li\u003e\n\u003cli\u003eThe query to complete this exercise is somewhat complicated and includes a sequence of many transformations. You may wish to assign variables to the intermediate DataFrames resulting from the transformations that make up the query to make the code easier to work with and debug.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-939121564",
+      "id": "20200112-162831_117312701",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "19 - Find the total number of each device across all active accounts",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-1994064012",
+      "id": "20200112-164930_1004463609",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Result\n**You have now:** worked with dataframes to perform data analysis\n\n---\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eResult\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eYou have now:\u003c/strong\u003e worked with dataframes to perform data analysis\u003c/p\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_427149971",
+      "id": "20181119-142716_792318228",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Solution\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSolution\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-1246057208",
+      "id": "20171113-155535_1769142099",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Review Apache Spark Documentation\n\nReview the API docs for the Column class (which is in the Python module pyspark.sql and the \nScala package org.apache.spark.sql). Take note of the various options available.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eReview Apache Spark Documentation\u003c/h3\u003e\n\u003cp\u003eReview the API docs for the Column class (which is in the Python module pyspark.sql and the\n\u003cbr  /\u003eScala package org.apache.spark.sql). Take note of the various options available.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-1099455721",
+      "id": "20210121-144400_75664864",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Query DataFrames Using Column Expressions",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.445",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eQuery DataFrames Using Column Expressions\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531445_-2095591430",
+      "id": "20210122-190705_692419501",
+      "dateCreated": "2021-02-02 18:28:51.445",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "1 - Create a new DataFrame called accountsDF based on the Hive devsh.accounts table",
+      "text": "%pyspark\n\naccountsDF \u003d spark.read.table(\"devsh.accounts\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.446",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "acct_num": "string",
+                      "acct_create_dt": "string",
+                      "acct_close_dt": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "address": "string",
+                      "city": "string",
+                      "state": "string",
+                      "zipcode": "string",
+                      "phone_number": "string",
+                      "created": "string",
+                      "modified": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531446_-1762508229",
+      "id": "20200112-140838_1768087801",
+      "dateCreated": "2021-02-02 18:28:51.446",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "2 - Try a simple query with select, using both column reference syntaxes",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Perform a select using the column name\")\naccountsDF.select(accountsDF[\"first_name\"]).show(5)\n\nsc.setJobGroup(\"DataFrame Queries\",\"Perform a select using the dot notation\")\naccountsDF.select(accountsDF.first_name).show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.446",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "3": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+\n|first_name|\n+----------+\n|    Donald|\n|     Donna|\n|    Dorthy|\n|     Leila|\n|     Anita|\n+----------+\nonly showing top 5 rows\n\n+----------+\n|first_name|\n+----------+\n|    Donald|\n|     Donna|\n|    Dorthy|\n|     Leila|\n|     Anita|\n+----------+\nonly showing top 5 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531446_593399517",
+      "id": "20181115-092436_561920580",
+      "dateCreated": "2021-02-02 18:28:51.446",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse both column reference syntaxes.\nColumn name `accountsDF[\"first_name\"]`\nDot notation `accountsDF.first_name`",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.446",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse both column reference syntaxes.\n\u003cbr  /\u003eColumn name \u003ccode\u003eaccountsDF[\"first_name\"]\u003c/code\u003e\n\u003cbr  /\u003eDot notation \u003ccode\u003eaccountsDF.first_name\u003c/code\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531446_-1917681143",
+      "id": "20210121-154157_1254144985",
+      "dateCreated": "2021-02-02 18:28:51.446",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "3 - Create a column object to work with, based on the first_name column in the accountsDF DataFrame",
+      "text": "%pyspark\n\nfnCol \u003d accountsDF.first_name",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.446",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531446_-1419406922",
+      "id": "20200112-141802_1054964679",
+      "dateCreated": "2021-02-02 18:28:51.446",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNew Column objects are created when you perform operations on existing columns. \nThese are of object type `Column`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.446",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNew Column objects are created when you perform operations on existing columns.\n\u003cbr  /\u003eThese are of object type \u003ccode\u003eColumn\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531446_-1118745629",
+      "id": "20210121-144529_1694404663",
+      "dateCreated": "2021-02-02 18:28:51.446",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "4 - Create a Column object based on a column expression",
+      "text": "%pyspark\n\nlucyCol \u003d (fnCol \u003d\u003d \"Lucy\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.446",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531446_-1341269155",
+      "id": "20200112-142648_9596488",
+      "dateCreated": "2021-02-02 18:28:51.446",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSimilar to the SQL `where` clause a function can search a column for specific rows.\nCreate a new Column object based on a column expression that identifies users whose first name is \n`Lucy`. Use the equality operator on the `fnCol` object you created above.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.447",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eSimilar to the SQL \u003ccode\u003ewhere\u003c/code\u003e clause a function can search a column for specific rows.\n\u003cbr  /\u003eCreate a new Column object based on a column expression that identifies users whose first name is\n\u003cbr  /\u003e\u003ccode\u003eLucy\u003c/code\u003e. Use the equality operator on the \u003ccode\u003efnCol\u003c/code\u003e object you created above.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531447_918398789",
+      "id": "20210121-144650_2146158373",
+      "dateCreated": "2021-02-02 18:28:51.447",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "5 - Use the lucyCol column expression in a select statement",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Use the lucyCol column expression in a select statement\")\naccountsDF.select(accountsDF.first_name,accountsDF.last_name, lucyCol).show()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first_name": "string",
+                      "last_name": "string",
+                      "(first_name \u003d Lucy)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+---------+-------------------+\n|first_name|last_name|(first_name \u003d Lucy)|\n+----------+---------+-------------------+\n|    Donald|   Becton|              false|\n|     Donna|    Jones|              false|\n|    Dorthy| Chalmers|              false|\n|     Leila|  Spencer|              false|\n|     Anita| Laughlin|              false|\n|    Stevie|   Bridge|              false|\n|     David|   Eggers|              false|\n|   Dorothy|  Koopman|              false|\n|      Kara|     Kohl|              false|\n|     Diane|   Nelson|              false|\n|    Robert|   Fisher|              false|\n|    Marcia|  Roberts|              false|\n|    Andres|    Cruse|              false|\n|       Ann|    Moore|              false|\n|    Joseph|   Lackey|              false|\n|     Sarah|   Duvall|              false|\n|      Lucy|   Corley|               true|\n|    Roland| Crawford|              false|\n|     Leona|     Bray|              false|\n|   Forrest|   Becker|              false|\n+----------+---------+-------------------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531447_-93919207",
+      "id": "20200112-143300_1634366214",
+      "dateCreated": "2021-02-02 18:28:51.447",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the `lucyCol` column expression in a select statement.\nBecause `lucyCol` is based on a boolean expression, the column values will be true or false depending on \nthe value of the first_name column. \nConfirm that users named Lucy are identified with the value true.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the \u003ccode\u003elucyCol\u003c/code\u003e column expression in a select statement.\n\u003cbr  /\u003eBecause \u003ccode\u003elucyCol\u003c/code\u003e is based on a boolean expression, the column values will be true or false depending on\n\u003cbr  /\u003ethe value of the first_name column.\n\u003cbr  /\u003eConfirm that users named Lucy are identified with the value true.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_-1087435751",
+      "id": "20210121-145123_1231702253",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "6 - Use the lucyCol column expression in a where transformation ",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Use the lucyCol column expression in a filter\")\naccountsDF.where(lucyCol).show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "acct_num": "string",
+                      "acct_create_dt": "string",
+                      "acct_close_dt": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "address": "string",
+                      "city": "string",
+                      "state": "string",
+                      "zipcode": "string",
+                      "phone_number": "string",
+                      "created": "string",
+                      "modified": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+-------------------+-------------------+----------+---------+--------------------+-----------+-----+-------+------------+-------------------+-------------------+\n|acct_num|     acct_create_dt|      acct_close_dt|first_name|last_name|             address|       city|state|zipcode|phone_number|            created|           modified|\n+--------+-------------------+-------------------+----------+---------+--------------------+-----------+-----+-------+------------+-------------------+-------------------+\n|      17|2008-12-27 23:31:40|               null|      Lucy|   Corley|   4834 Brown Street| Santa Rosa|   CA|  94980|  7076068290|2014-03-18 13:29:47|2014-03-18 13:29:47|\n|    1762|2009-03-19 23:43:00|               null|      Lucy|    Davis|2195 Riverside Drive| Sacramento|   CA|  95620|  9169959437|2014-03-18 13:29:50|2014-03-18 13:29:50|\n|    6551|2010-09-04 19:28:22|2014-02-14 19:19:16|      Lucy|  Casiano|2821 Wood Duck Drive|   Alhambra|   CA|  91810|  6261078791|2014-03-18 13:29:59|2014-03-18 13:29:59|\n|    6978|2010-09-22 07:13:16|               null|      Lucy|      Lee|4781 Shadowmar Drive|    Salinas|   CA|  93961|  8315367970|2014-03-18 13:30:00|2014-03-18 13:30:00|\n|    7107|2010-02-10 00:23:38|2014-01-23 22:55:06|      Lucy| Hastings|   4759 Gateway Road|     Fresno|   CA|  93692|  5595001084|2014-03-18 13:30:00|2014-03-18 13:30:00|\n|    7917|2010-10-13 00:59:22|               null|      Lucy|  Hampton|1617 Carolina Avenue|   San Jose|   CA|  95146|  4082939251|2014-03-18 13:30:02|2014-03-18 13:30:02|\n|    8470|2010-11-06 03:10:52|               null|      Lucy|  McBride|3465 Chardonnay D...|Bakersfield|   CA|  93289|  6614954091|2014-03-18 13:30:03|2014-03-18 13:30:03|\n|    9434|2010-04-14 15:24:03|2013-04-23 00:46:46|      Lucy|   Curley|4267 School House...|  Santa Ana|   CA|  92654|  6570214676|2014-03-18 13:30:04|2014-03-18 13:30:04|\n|   10237|2010-03-29 05:55:16|               null|      Lucy|  Bottoms|  3393 Fulton Street|  Santa Ana|   CA|  92746|  6576575485|2014-03-18 13:30:06|2014-03-18 13:30:06|\n|   11024|2010-12-07 21:03:20|               null|      Lucy|    Osuna|    460 Brown Street|     Mojave|   CA|  93570|  6616624059|2014-03-18 13:30:07|2014-03-18 13:30:07|\n+--------+-------------------+-------------------+----------+---------+--------------------+-----------+-----+-------+------------+-------------------+-------------------+\nonly showing top 10 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_-1643104121",
+      "id": "20200112-145904_1415865387",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nThe `where` operation requires a boolean-based column expression. \nUse the `lucyCol` column expression in a where transformation and view the data in the resulting DataFrame. \nShow only 10 rows. Confirm that only users named Lucy are in the data.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe \u003ccode\u003ewhere\u003c/code\u003e operation requires a boolean-based column expression.\n\u003cbr  /\u003eUse the \u003ccode\u003elucyCol\u003c/code\u003e column expression in a where transformation and view the data in the resulting DataFrame.\n\u003cbr  /\u003eShow only 10 rows. Confirm that only users named Lucy are in the data.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_570081841",
+      "id": "20210121-145258_227610107",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "7 - Try the same query without using the lucyCol variable",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Try the same query without using the lucyCol variable\")\naccountsDF.where(accountsDF.first_name \u003d\u003d \"Lucy\").show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "acct_num": "string",
+                      "acct_create_dt": "string",
+                      "acct_close_dt": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "address": "string",
+                      "city": "string",
+                      "state": "string",
+                      "zipcode": "string",
+                      "phone_number": "string",
+                      "created": "string",
+                      "modified": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+-------------------+-------------------+----------+---------+--------------------+------------+-----+-------+------------+-------------------+-------------------+\n|acct_num|     acct_create_dt|      acct_close_dt|first_name|last_name|             address|        city|state|zipcode|phone_number|            created|           modified|\n+--------+-------------------+-------------------+----------+---------+--------------------+------------+-----+-------+------------+-------------------+-------------------+\n|      17|2008-12-27 23:31:40|               null|      Lucy|   Corley|   4834 Brown Street|  Santa Rosa|   CA|  94980|  7076068290|2014-03-18 13:29:47|2014-03-18 13:29:47|\n|    1762|2009-03-19 23:43:00|               null|      Lucy|    Davis|2195 Riverside Drive|  Sacramento|   CA|  95620|  9169959437|2014-03-18 13:29:50|2014-03-18 13:29:50|\n|    6551|2010-09-04 19:28:22|2014-02-14 19:19:16|      Lucy|  Casiano|2821 Wood Duck Drive|    Alhambra|   CA|  91810|  6261078791|2014-03-18 13:29:59|2014-03-18 13:29:59|\n|    6978|2010-09-22 07:13:16|               null|      Lucy|      Lee|4781 Shadowmar Drive|     Salinas|   CA|  93961|  8315367970|2014-03-18 13:30:00|2014-03-18 13:30:00|\n|    7107|2010-02-10 00:23:38|2014-01-23 22:55:06|      Lucy| Hastings|   4759 Gateway Road|      Fresno|   CA|  93692|  5595001084|2014-03-18 13:30:00|2014-03-18 13:30:00|\n|    7917|2010-10-13 00:59:22|               null|      Lucy|  Hampton|1617 Carolina Avenue|    San Jose|   CA|  95146|  4082939251|2014-03-18 13:30:02|2014-03-18 13:30:02|\n|    8470|2010-11-06 03:10:52|               null|      Lucy|  McBride|3465 Chardonnay D...| Bakersfield|   CA|  93289|  6614954091|2014-03-18 13:30:03|2014-03-18 13:30:03|\n|    9434|2010-04-14 15:24:03|2013-04-23 00:46:46|      Lucy|   Curley|4267 School House...|   Santa Ana|   CA|  92654|  6570214676|2014-03-18 13:30:04|2014-03-18 13:30:04|\n|   10237|2010-03-29 05:55:16|               null|      Lucy|  Bottoms|  3393 Fulton Street|   Santa Ana|   CA|  92746|  6576575485|2014-03-18 13:30:06|2014-03-18 13:30:06|\n|   11024|2010-12-07 21:03:20|               null|      Lucy|    Osuna|    460 Brown Street|      Mojave|   CA|  93570|  6616624059|2014-03-18 13:30:07|2014-03-18 13:30:07|\n|   12491|2011-02-11 07:55:11|2014-01-26 02:31:24|      Lucy|   Cannon|1362 Walkers Ridg...|Santa Monica|   CA|  90487|  3106096373|2014-03-18 13:30:10|2014-03-18 13:30:10|\n|   13476|2011-07-10 16:50:40|               null|      Lucy|  Wallace|    24 Locust Street|Palm Springs|   CA|  92239|  7601025927|2014-03-18 13:30:12|2014-03-18 13:30:12|\n|   14897|2011-11-19 03:10:02|2014-03-13 22:40:56|      Lucy|    Licon|4067 Paul Wayne H...|       Salem|   OR|  97363|  5037415525|2014-03-18 13:30:14|2014-03-18 13:30:14|\n|   17747|2011-08-14 12:58:03|               null|      Lucy|     Wood| 3887 Victoria Court|    Portland|   OR|  97019|  5038238726|2014-03-18 13:30:19|2014-03-18 13:30:19|\n|   18408|2011-05-05 17:39:42|               null|      Lucy|  Johnson|3184 Cherry Tree ...|  Long Beach|   CA|  90751|  5624702066|2014-03-18 13:30:21|2014-03-18 13:30:21|\n|   19935|2011-05-23 10:11:49|               null|      Lucy|   Kohler|    719 Eagle Street|  Sacramento|   CA|  95895|  9169164900|2014-03-18 13:30:23|2014-03-18 13:30:23|\n|   24849|2011-08-08 05:42:46|2014-01-29 03:28:59|      Lucy|    Lopez|    3296 Melody Lane|  Marysville|   CA|  95907|  5304905633|2014-03-18 13:30:32|2014-03-18 13:30:32|\n|   26107|2011-09-15 04:55:28|               null|      Lucy|Kimbrough|     4141 Eagle Lane|     Anaheim|   CA|  92881|  7143246525|2014-03-18 13:30:34|2014-03-18 13:30:34|\n|   26917|2011-10-19 12:49:11|2014-02-22 21:25:35|      Lucy|    Tartt|   977 School Street|   San Mateo|   CA|  94458|  6502275042|2014-03-18 13:30:36|2014-03-18 13:30:36|\n|   28505|2011-10-03 07:50:40|2014-01-24 06:10:40|      Lucy| Douglass|       263 Owen Lane|     Anaheim|   CA|  92803|  7144471561|2014-03-18 13:30:39|2014-03-18 13:30:39|\n+--------+-------------------+-------------------+----------+---------+--------------------+------------+-----+-------+------------+-------------------+-------------------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_1267214783",
+      "id": "20200112-150715_766693464",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nColumn expressions do not need to be assigned to a variable. They can be written within a function.\n`accountsDF.first_name \u003d\u003d \u0027Lucy\u0027`\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eColumn expressions do not need to be assigned to a variable. They can be written within a function.\n\u003cbr  /\u003e\u003ccode\u003eaccountsDF.first_name \u003d\u003d \u0027Lucy\u0027\u003c/code\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_-1767521808",
+      "id": "20210121-145450_2047478406",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "8 - Select the city and state columns and the first three characters of the phone number column",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Select the city and state columns and the first three characters of the phone number column\")\naccountsDF.select(\"city\", \"state\", accountsDF.phone_number.substr(1,3)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "city": "string",
+                      "state": "string",
+                      "substring(phone_number, 1, 3)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------------+-----+-----------------------------+\n|         city|state|substring(phone_number, 1, 3)|\n+-------------+-----+-----------------------------+\n|      Oakland|   CA|                          510|\n|San Francisco|   CA|                          415|\n|    San Mateo|   CA|                          650|\n|    San Mateo|   CA|                          650|\n|     Richmond|   CA|                          510|\n|   Sacramento|   CA|                          916|\n|      Oakland|   CA|                          510|\n|    San Mateo|   CA|                          650|\n|    Palo Alto|   CA|                          650|\n|      Oakland|   CA|                          510|\n|      Oakland|   CA|                          510|\n|    Palo Alto|   CA|                          650|\n|San Francisco|   CA|                          415|\n|   Sacramento|   CA|                          916|\n|     Berkeley|   CA|                          510|\n|San Francisco|   CA|                          415|\n|   Santa Rosa|   CA|                          707|\n|    Palo Alto|   CA|                          650|\n|   Santa Rosa|   CA|                          707|\n|   Santa Rosa|   CA|                          707|\n+-------------+-----+-----------------------------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_-1849319712",
+      "id": "20200112-151240_768748553",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nColumn expressions are not limited to where operations like those above. They can be used in any transformation\nfor which a simple column could be used, such as a select. Try selecting the city and state columns, and the \nfirst three characters of the phone_number column (in the U.S., the first three digits of a phone number are \nknown as the area code).\n\nUse the `select` funtion to select columns for city, state, and phone number.\n\nUse the `substr` operator on the phone_number column to extract the area code.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.448",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eColumn expressions are not limited to where operations like those above. They can be used in any transformation\n\u003cbr  /\u003efor which a simple column could be used, such as a select. Try selecting the city and state columns, and the\n\u003cbr  /\u003efirst three characters of the phone_number column (in the U.S., the first three digits of a phone number are\n\u003cbr  /\u003eknown as the area code).\u003c/p\u003e\n\u003cp\u003eUse the \u003ccode\u003eselect\u003c/code\u003e funtion to select columns for city, state, and phone number.\u003c/p\u003e\n\u003cp\u003eUse the \u003ccode\u003esubstr\u003c/code\u003e operator on the phone_number column to extract the area code.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531448_1580339185",
+      "id": "20210121-145705_956448325",
+      "dateCreated": "2021-02-02 18:28:51.448",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "9 - Repeat the same query, using the alias operator to rename that column as area_code",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Repeat the same query, using the alias operator to rename that column as area_code\")\naccountsDF.select(\"city\", \"state\", accountsDF.phone_number.substr(1,3).alias(\"area_code\")).show()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.449",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "city": "string",
+                      "state": "string",
+                      "area_code": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------------+-----+---------+\n|         city|state|area_code|\n+-------------+-----+---------+\n|      Oakland|   CA|      510|\n|San Francisco|   CA|      415|\n|    San Mateo|   CA|      650|\n|    San Mateo|   CA|      650|\n|     Richmond|   CA|      510|\n|   Sacramento|   CA|      916|\n|      Oakland|   CA|      510|\n|    San Mateo|   CA|      650|\n|    Palo Alto|   CA|      650|\n|      Oakland|   CA|      510|\n|      Oakland|   CA|      510|\n|    Palo Alto|   CA|      650|\n|San Francisco|   CA|      415|\n|   Sacramento|   CA|      916|\n|     Berkeley|   CA|      510|\n|San Francisco|   CA|      415|\n|   Santa Rosa|   CA|      707|\n|    Palo Alto|   CA|      650|\n|   Santa Rosa|   CA|      707|\n|   Santa Rosa|   CA|      707|\n+-------------+-----+---------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531449_-1033579321",
+      "id": "20200112-151632_64424046",
+      "dateCreated": "2021-02-02 18:28:51.449",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNotice that in the last step, the values returned by the query were correct, but the column name \nwas `substring(phone_number, 1, 3)`, which is long and hard to work with. \n\nUse the `alias` operator to rename the column `area_code`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.452",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNotice that in the last step, the values returned by the query were correct, but the column name\n\u003cbr  /\u003ewas \u003ccode\u003esubstring(phone_number, 1, 3)\u003c/code\u003e, which is long and hard to work with.\u003c/p\u003e\n\u003cp\u003eUse the \u003ccode\u003ealias\u003c/code\u003e operator to rename the column \u003ccode\u003earea_code\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531449_-435820850",
+      "id": "20210121-145912_643742369",
+      "dateCreated": "2021-02-02 18:28:51.449",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "10 - Perform a query with just first_name and last_name columns, and only includes users whose first and last names both begin with the same two letters",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Perform a query with just first_name and last_name columns, and only includes users whose first and last names both begin with the same two letters\")\naccountsDF.select(\"first_name\",\"last_name\").where(accountsDF.first_name.substr(1,2) \u003d\u003d accountsDF.last_name.substr(1,2)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.452",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "first_name": "string",
+                      "last_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+---------+\n|first_name|last_name|\n+----------+---------+\n|   Johnnie|    Jones|\n|    Robert|   Roller|\n|   Michael|  Minnick|\n| Rosemarie|Robertson|\n|     Keith|   Kemble|\n|    Thomas|   Thayer|\n|      Lori| Locklear|\n|  Brittany|    Brown|\n|    Manuel|  Malchow|\n|  Jennifer| Jeffries|\n|    Angela|  Andrews|\n|    Barbra|   Barker|\n|    Sandra|  Santana|\n|   Ricardo|   Rivera|\n|      Adam|    Adams|\n|  Rachelle|   Rainey|\n|   Herbert|Henderson|\n|   Theresa| Thompson|\n|  Marshall|Maldonado|\n|    Robert|   Robert|\n+----------+---------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531452_1724593778",
+      "id": "20200112-152226_1854965189",
+      "dateCreated": "2021-02-02 18:28:51.452",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nPerform a query that results in a DataFrame with just first_name and last_name columns, and only includes users \nwhose first and last names both begin with the same two letters. (For example, the user Roberta Roget would be \nincluded, because both her first and last names begin with “Ro”.)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.452",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003ePerform a query that results in a DataFrame with just first_name and last_name columns, and only includes users\n\u003cbr  /\u003ewhose first and last names both begin with the same two letters. (For example, the user Roberta Roget would be\n\u003cbr  /\u003eincluded, because both her first and last names begin with “Ro”.)\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531452_-589535795",
+      "id": "20210121-150115_1198995278",
+      "dateCreated": "2021-02-02 18:28:51.452",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Group and Count Data by Name",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.452",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eGroup and Count Data by Name\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531452_1261925623",
+      "id": "20210123-124548_207412224",
+      "dateCreated": "2021-02-02 18:28:51.452",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "11 - Query the accountsDF DataFrame using groupBy with count",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Query the accountsDF DataFrame using groupBy with count\")\naccountsDF.groupBy(\"last_name\").count().show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.453",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "last_name": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "last_name",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "count",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+-----+\n|last_name|count|\n+---------+-----+\n| Francois|    6|\n|   Bohner|    3|\n|    Tyler|   50|\n|   Maddox|   60|\n| Abramson|    3|\n|  Custard|    3|\n| Striplin|    3|\n|    Bunch|   20|\n|    Roach|   35|\n|    Veith|    3|\n+---------+-----+\nonly showing top 10 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531452_-2039956932",
+      "id": "20200112-152830_1772531488",
+      "dateCreated": "2021-02-02 18:28:51.452",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nQuery the accountsDF DataFrame using `groupBy` with `count` to find out the total number people sharing \neach last name. (Note that the count aggregation transformation returns a DataFrame, unlike the count \nDataFrame action, which returns a single value to the driver.)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.453",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eQuery the accountsDF DataFrame using \u003ccode\u003egroupBy\u003c/code\u003e with \u003ccode\u003ecount\u003c/code\u003e to find out the total number people sharing\n\u003cbr  /\u003eeach last name. (Note that the count aggregation transformation returns a DataFrame, unlike the count\n\u003cbr  /\u003eDataFrame action, which returns a single value to the driver.)\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531453_1252435981",
+      "id": "20210121-150255_1745187974",
+      "dateCreated": "2021-02-02 18:28:51.453",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "12 - Query accountsDF again, this time counting the number of people who share the same last and first name",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Query accountsDF again, this time counting the number of people who share the same last and first name\")\naccountsDF.groupBy(\"last_name\",\"first_name\").count().show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.453",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "last_name": "string",
+                      "first_name": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+----------+-----+\n|last_name|first_name|count|\n+---------+----------+-----+\n| Williams|   Lillian|    6|\n|Robertson| Rosemarie|    3|\n|     Bell|    Joanna|    3|\n|    Spano|    Amanda|    3|\n|    Beane|     Marie|    3|\n| Matthews|     Linda|    3|\n| Flanagan|   William|    3|\n|    Cobbs|     James|    3|\n|   Parker|      Emma|    3|\n|  Cashman|  Lawrence|    3|\n|     Vela|      Jack|    3|\n|    Fried|   Barbara|    3|\n|  Hamblin|     James|    3|\n|   Echols|   Destiny|    3|\n|   Whitby|   Jeffrey|    3|\n| Sturgeon|  Patricia|    3|\n|   Vargas|   Minerva|    3|\n|  Spencer|    Nickie|    3|\n|  Belcher|    Walter|    3|\n|   Cooper|     Elana|    3|\n+---------+----------+-----+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531453_683452071",
+      "id": "20200112-153408_855238257",
+      "dateCreated": "2021-02-02 18:28:51.453",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nYou can also group by multiple columns. Group by `last_name` and `first_name`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.453",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eYou can also group by multiple columns. Group by \u003ccode\u003elast_name\u003c/code\u003e and \u003ccode\u003efirst_name\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531453_-1195778707",
+      "id": "20210121-150457_2104180875",
+      "dateCreated": "2021-02-02 18:28:51.453",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "13 - Review the schema and a few records of the data using the parquet-tools command",
+      "text": "%sh\n\nparquet-tools schema /home/training/training_materials/devsh/data/base_stations.parquet\nparquet-tools head /home/training/training_materials/devsh/data/base_stations.parquet",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.455",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize\u003d512m; support was removed in 8.0\nJava HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize\u003d512m; support was removed in 8.0\nmessage spark_schema {\n  optional int32 id;\n  optional binary zip (STRING);\n  optional binary city (STRING);\n  optional binary state (STRING);\n  optional double lat;\n  optional double lon;\n}\n\nJava HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize\u003d512m; support was removed in 8.0\nJava HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize\u003d512m; support was removed in 8.0\nid \u003d 1\nzip \u003d 86502\ncity \u003d Chambers\nstate \u003d AZ\nlat \u003d 35.2375\nlon \u003d -109.523\n\nid \u003d 2\nzip \u003d 86514\ncity \u003d Teec Nos Pos\nstate \u003d AZ\nlat \u003d 36.7797\nlon \u003d -109.359\n\nid \u003d 3\nzip \u003d 85602\ncity \u003d Benson\nstate \u003d AZ\nlat \u003d 31.9883\nlon \u003d -110.2941\n\nid \u003d 4\nzip \u003d 86011\ncity \u003d Flagstaff\nstate \u003d AZ\nlat \u003d 35.6308\nlon \u003d -112.0524\n\nid \u003d 5\nzip \u003d 86016\ncity \u003d Gray Mountain\nstate \u003d AZ\nlat \u003d 35.6308\nlon \u003d -112.0524\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531453_-317560888",
+      "id": "20200112-154816_141130711",
+      "dateCreated": "2021-02-02 18:28:51.455",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Join Account Data with Cellular Towers by Zip Code\n\nJoin the accounts data that you have been using with data about cell tower base station locations, which is \nin the base_stations.parquet file. \n\nStart by reviewing the schema and a few records of the data using the `parquet-tools` command.\n\n\n```shell\n$ parquet-tools schema data/base_stations.parquet\n$ parquet-tools head data/base_stations.parquet\n```\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eJoin Account Data with Cellular Towers by Zip Code\u003c/h3\u003e\n\u003cp\u003eJoin the accounts data that you have been using with data about cell tower base station locations, which is\n\u003cbr  /\u003ein the base_stations.parquet file.\u003c/p\u003e\n\u003cp\u003eStart by reviewing the schema and a few records of the data using the \u003ccode\u003eparquet-tools\u003c/code\u003e command.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"shell\"\u003e$ parquet-tools schema data/base_stations.parquet\n$ parquet-tools head data/base_stations.parquet\n\u003c/code\u003e\u003c/pre\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_-1467539889",
+      "id": "20210121-150641_263121069",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "14 - Upload the base_stations.parquet file to /devsh_loudacre",
+      "text": "%sh\n\nhdfs dfs -rm -r -skipTrash /devsh_loudacre/base_stations.parquet\nhdfs dfs -put /home/training/training_materials/devsh/data/base_stations.parquet /devsh_loudacre",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Deleted /devsh_loudacre/base_stations.parquet\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_1050974715",
+      "id": "20200112-155140_1898004953",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "15 - Create a new DataFrame called baseDF using the base stations data",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Read the base_stations.parquet file\")\nbaseDF \u003d spark.read.parquet(\"/devsh_loudacre/base_stations.parquet\")\n\nsc.setJobGroup(\"DataFrame Queries\",\"Show the baseDF DataFrame\")\nbaseDF.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "zip": "string",
+                      "city": "string",
+                      "state": "string",
+                      "lat": "string",
+                      "lon": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+-----+-------------+-----+-------+---------+\n| id|  zip|         city|state|    lat|      lon|\n+---+-----+-------------+-----+-------+---------+\n|  1|86502|     Chambers|   AZ|35.2375| -109.523|\n|  2|86514| Teec Nos Pos|   AZ|36.7797| -109.359|\n|  3|85602|       Benson|   AZ|31.9883|-110.2941|\n|  4|86011|    Flagstaff|   AZ|35.6308|-112.0524|\n|  5|86016|Gray Mountain|   AZ|35.6308|-112.0524|\n|  6|86018|        Parks|   AZ|35.2563|  -111.95|\n|  7|86336|       Sedona|   AZ|34.8266|-111.7506|\n|  8|85547|       Payson|   AZ|34.2575|-111.2878|\n|  9|85548|      Safford|   AZ| 32.797|-109.7522|\n| 10|85533|      Clifton|   AZ|33.1323|-109.2462|\n+---+-----+-------------+-----+-------+---------+\nonly showing top 10 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_1826389121",
+      "id": "20200112-155746_1774759971",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nCreate a new DataFrame called baseDF reading the data from the base stations.\nDisplay the baseDF schema and data to compare it to the data in the Parquet file.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame called baseDF reading the data from the base stations.\n\u003cbr  /\u003eDisplay the baseDF schema and data to compare it to the data in the Parquet file.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_1684347515",
+      "id": "20210121-150918_631160064",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "16 - Join baseDF and accountsDF to find users that live close to a base station",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Join baseDF and accountsDF to find users that live close to a base station\")\naccountsDF.select(\"acct_num\",\"first_name\",\"last_name\",\"zipcode\").join(baseDF, baseDF.zip \u003d\u003d accountsDF.zipcode).show()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "acct_num": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "zipcode": "string",
+                      "id": "string",
+                      "zip": "string",
+                      "city": "string",
+                      "state": "string",
+                      "lat": "string",
+                      "lon": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+----------+-----------+-------+---+-----+-------------+-----+-------+---------+\n|acct_num|first_name|  last_name|zipcode| id|  zip|         city|state|    lat|      lon|\n+--------+----------+-----------+-------+---+-----+-------------+-----+-------+---------+\n|      37|    Cheryl|       West|  94622|231|94622|      Oakland|   CA| 37.799|-122.2337|\n|      56|   Terrell|   Hardiman|  94261|127|94261|   Sacramento|   CA|38.3774|-121.4444|\n|      60|     Irwin|Clatterbuck|  94403|185|94403|    San Mateo|   CA|37.5395|-122.2998|\n|      68|    Walter|    Greiner|  94701| 35|94701|     Berkeley|   CA|37.8606|-122.2967|\n|     126|     Keith|     Branan|  94623| 34|94623|      Oakland|   CA|37.6802|-121.9215|\n|     130|   Maynard|     Penley|  94120|165|94120|San Francisco|   CA|37.7848|-122.7278|\n|     179|     Julia|    Nowicki|  94059|182|94059| Redwood City|   CA|37.3811|-122.3348|\n|     183| Elizabeth|   McMillan|  94150|173|94150|San Francisco|   CA|37.7848|-122.7278|\n|     196|     Bruce|     Vargas|  94975|211|94975|     Petaluma|   CA|38.4631|  -122.99|\n|     233|     Arden|      Black|  94088|190|94088|    Sunnyvale|   CA|37.1894|-121.7053|\n|     241|    Conrad|  Fairchild|  94116|164|94116|San Francisco|   CA|37.7441|-122.4863|\n|     275|   Chelsea|      Gaona|  94040|189|94040|Mountain View|   CA|37.3855| -122.088|\n|     410|   Kenneth|    Nowicki|  94110|163|94110|San Francisco|   CA|37.7509|-122.4153|\n|     415|     Jason|       King|  94529| 39|94529|      Concord|   CA|37.7772|-121.9554|\n|     435|    Andrew|      Oakes|  94130|167|94130|San Francisco|   CA|37.8231|-122.3693|\n|     481|     Grace|     Brooks|  95675| 37|95675|  River Pines|   CA|38.5463| -120.743|\n|     489|    George|       Sams|  94088|190|94088|    Sunnyvale|   CA|37.1894|-121.7053|\n|     530|       Ann|   Stennett|  95190|202|95190|     San Jose|   CA|37.3894|-121.8868|\n|     543|      Joan|     Benito|  95915|121|95915|       Belden|   CA|39.9324|-121.3144|\n|     556|  Gretchen|    Akridge|  94074|184|94074| San Gregorio|   CA|37.3255|-122.3556|\n+--------+----------+-----------+-------+---+-----+-------------+-----+-------+---------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_-1792288029",
+      "id": "20200112-160544_1190452153",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nSome account holders live in zip codes that have a base station. Join `baseDF` and `accountsDF` to find those users.\nFor each of those users, include their `account ID`, `first name`, `last name`, and the `ID` and `location` \ndata (latitude and longitude) for the base station in their zip code.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eSome account holders live in zip codes that have a base station. Join \u003ccode\u003ebaseDF\u003c/code\u003e and \u003ccode\u003eaccountsDF\u003c/code\u003e to find those users.\n\u003cbr  /\u003eFor each of those users, include their \u003ccode\u003eaccount ID\u003c/code\u003e, \u003ccode\u003efirst name\u003c/code\u003e, \u003ccode\u003elast name\u003c/code\u003e, and the \u003ccode\u003eID\u003c/code\u003e and \u003ccode\u003elocation\u003c/code\u003e\n\u003cbr  /\u003edata (latitude and longitude) for the base station in their zip code.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_-1312373788",
+      "id": "20210121-151152_1476818975",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "17 - Upload the accountdevice directory in /devsh_loudacre/",
+      "text": "%sh\n\nhdfs dfs -put /home/training/training_materials/devsh/data/accountdevice /devsh_loudacre",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.456",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_-1151481228",
+      "id": "20200112-161833_1780105065",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Count Active Devices\n\nThe accountdevice CSV dataset contains a list of all the devices used by all accounts. \nEach row in the data set includes a `row ID`, an `account ID`, an `ID` for the type of device, the `date` the\ndevice was activated for the account, and the specific `device ID`. \n\nThe CSV data file is in the `/home/training/training_materials/devsh/data/accountdevice` directory. \nReview the data in the data set, then upload the directory and its contents to the HDFS \ndirectory `/devsh_loudacre/accountdevice`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCount Active Devices\u003c/h3\u003e\n\u003cp\u003eThe accountdevice CSV dataset contains a list of all the devices used by all accounts.\n\u003cbr  /\u003eEach row in the data set includes a \u003ccode\u003erow ID\u003c/code\u003e, an \u003ccode\u003eaccount ID\u003c/code\u003e, an \u003ccode\u003eID\u003c/code\u003e for the type of device, the \u003ccode\u003edate\u003c/code\u003e the\n\u003cbr  /\u003edevice was activated for the account, and the specific \u003ccode\u003edevice ID\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eThe CSV data file is in the \u003ccode\u003e/home/training/training_materials/devsh/data/accountdevice\u003c/code\u003e directory.\n\u003cbr  /\u003eReview the data in the data set, then upload the directory and its contents to the HDFS\n\u003cbr  /\u003edirectory \u003ccode\u003e/devsh_loudacre/accountdevice\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531456_1771510051",
+      "id": "20210121-151350_1681857651",
+      "dateCreated": "2021-02-02 18:28:51.456",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "18 - Create a DataFrame from the account device data",
+      "text": "%pyspark\n\nsc.setJobGroup(\"DataFrame Queries\",\"Read the account device data\")\naccountDeviceDF \u003d spark.read.option(\"header\",\"true\").option(\"inferSchema\",\"true\").csv(\"/devsh_loudacre/accountdevice\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_1760353262",
+      "id": "20200112-162339_1419543639",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nCreate a dataframe `accountDeviceDF` using the option to include the header and to infer the schema.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a dataframe \u003ccode\u003eaccountDeviceDF\u003c/code\u003e using the option to include the header and to infer the schema.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_1107280452",
+      "id": "20210121-151838_1962634110",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "19 - Find the total number of each device across all active accounts",
+      "text": "%pyspark\n\n# Create a DataFrame with only active accounts\nactiveAccountsDF \u003d accountsDF.where(accountsDF.acct_close_dt.isNull())\n\n# Create a DataFrame with a device model IDs for only devices used by active accounts\nactiveAcctDevsDF \u003d  activeAccountsDF.join(accountDeviceDF,activeAccountsDF.acct_num \u003d\u003d accountDeviceDF.account_id).select(\"device_id\")\n\n# Sum up the total number of each device model \nsumDevicesDF \u003d activeAcctDevsDF.groupBy(\"device_id\").count().withColumnRenamed(\"count\",\"active_num\")\n\n# Order by count in descending order\norderDevicesDF \u003d sumDevicesDF.orderBy(sumDevicesDF.active_num.desc())\n\n# create a DataFrame based on the devices.json file\nsc.setJobGroup(\"DataFrame Queries\",\"Read the devices.json file\")\ndevDF \u003d spark.read.json(\"/devsh_loudacre/devices.json\")\n\n# Join the list of device model totals with the list of devices\n# to get the make and model for each device\njoinDevicesDF \u003d orderDevicesDF.join(devDF,sumDevicesDF.device_id \u003d\u003d devDF.devnum)\n\n# Write out the data with the correct columns\n# Use overwrite mode so solution can be run multiple times\n\nsc.setJobGroup(\"DataFrame Queries\",\"Find the total number of each device across all active accounts\")\njoinDevicesDF.select(\"device_id\",\"make\",\"model\",joinDevicesDF.active_num).show()\nsc.setJobGroup(\"DataFrame Queries\",\"Save the result to a top-devices folder\")\njoinDevicesDF.select(\"device_id\",\"make\",\"model\",joinDevicesDF.active_num).write.mode(\"overwrite\").save(\"/devsh_loudacre/top_devices\")\n\n# Review exercise results\n# $ hdfs dfs -get /devsh_loudacre/top_devices /tmp/\n# $ parquet-tools head /tmp/top_devices\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "device_id": "string",
+                      "make": "string",
+                      "model": "string",
+                      "active_num": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+--------+--------------+----------+\n|device_id|    make|         model|active_num|\n+---------+--------+--------------+----------+\n|       29|Sorrento|          F41L|     30901|\n|       38| Titanic|          1100|      3727|\n|        9| Titanic|          1000|      3644|\n|        5|  iFruit|             1|      3643|\n|        1|Sorrento|          F00L|      3620|\n|       10|  MeeToo|           1.0|      3547|\n|       43|Sorrento|          F01L|      3424|\n|       34| Titanic|          2000|      3257|\n|       27|Sorrento|          F10L|      3245|\n|        2| Titanic|          2100|      3087|\n|       14| Titanic|          2200|      3066|\n|       33|  MeeToo|           2.0|      3033|\n|        7|  iFruit|             2|      2973|\n|       15|   Ronin|Novelty Note 1|      2972|\n|       44|Sorrento|          F11L|      2968|\n|       47|   Ronin|            S1|      2963|\n|       23|Sorrento|          F20L|      2718|\n|       11|Sorrento|          F21L|      2691|\n|       21| Titanic|          2300|      2670|\n|        3|  MeeToo|           3.0|      2622|\n+---------+--------+--------------+----------+\nonly showing top 20 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_1456421905",
+      "id": "20200112-165123_336323532",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nUse the account device data and the DataFrames you created previously in this exercise to find the \ntotal number of each device model across all active accounts— that is, accounts that have not been closed. \n\nThe new DataFrame should be sorted from most to least common model. \n\nSave the data as Parquet files in a directory called /devsh_loudacre/top_devices with the following columns:\n```code\n| Column Name    | Description                                                                                    |    Example      |\n| -------------- |------------------------------------------------------------------------------------------------| ----------------|\n| device_id      | The ID number of each known device (including those that might not be in use by any account)   |              18 |\n| make           | The manufacturer name for the device                                                           |           Ronin |\n| model          | The model name for the device                                                                  |  Novelty Note 2 |\n| active_num     | The total number of the model used by active accounts                                          |            2092 |\n```\n\nHints:\n\n* Active accounts are those with a null value for acct_close_dt (account close date) in the accounts table.\n* The account_id column in the device accounts data corresponds to the acct_num column in accounts table.\n* The device_id column in the device accounts data corresponds to the devnum column in the list of known devices in the /devsh_loudacre/devices.json file.\n* When you count devices, use withColumnRenamed to rename the count column to active_num. (The count column name is ambiguous because it is both a function and a column.)\n* The query to complete this exercise is somewhat complicated and includes a sequence of many transformations. You may wish to assign variables to the intermediate DataFrames resulting from the transformations that make up the query to make the code easier to work with and debug.\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse the account device data and the DataFrames you created previously in this exercise to find the\n\u003cbr  /\u003etotal number of each device model across all active accounts— that is, accounts that have not been closed.\u003c/p\u003e\n\u003cp\u003eThe new DataFrame should be sorted from most to least common model.\u003c/p\u003e\n\u003cp\u003eSave the data as Parquet files in a directory called /devsh_loudacre/top_devices with the following columns:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"code\"\u003e| Column Name    | Description                                                                                    |    Example      |\n| -------------- |------------------------------------------------------------------------------------------------| ----------------|\n| device_id      | The ID number of each known device (including those that might not be in use by any account)   |              18 |\n| make           | The manufacturer name for the device                                                           |           Ronin |\n| model          | The model name for the device                                                                  |  Novelty Note 2 |\n| active_num     | The total number of the model used by active accounts                                          |            2092 |\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eHints:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eActive accounts are those with a null value for acct_close_dt (account close date) in the accounts table.\u003c/li\u003e\n\u003cli\u003eThe account_id column in the device accounts data corresponds to the acct_num column in accounts table.\u003c/li\u003e\n\u003cli\u003eThe device_id column in the device accounts data corresponds to the devnum column in the list of known devices in the /devsh_loudacre/devices.json file.\u003c/li\u003e\n\u003cli\u003eWhen you count devices, use withColumnRenamed to rename the count column to active_num. (The count column name is ambiguous because it is both a function and a column.)\u003c/li\u003e\n\u003cli\u003eThe query to complete this exercise is somewhat complicated and includes a sequence of many transformations. You may wish to assign variables to the intermediate DataFrames resulting from the transformations that make up the query to make the code easier to work with and debug.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_-1926402164",
+      "id": "20210121-151708_768017486",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Tear Down\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eTear Down\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_2087473950",
+      "id": "20200830-135207_202010610",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Delete the Livy session",
+      "text": "%sh\n\nsessionId\u003d$(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\ncurl -s localhost:8998/sessions/$sessionId -X DELETE",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.458",
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\"msg\":\"deleted\"}"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_-110258515",
+      "id": "20200830-135250_2003268334",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Additional resources",
+      "text": "%md\nWe hope you\u0027ve enjoyed this lab. Below are additional resources that you should find useful:\n\n1. [Cloudera Tutorials](http://cloudera.com/tutorials.html) are your natural next step where you can explore Spark in more depth.\n2. [Cloudera Community](https://community.cloudera.com) is a great resource for questions and answers on Spark, Data Analytics/Science, and many more Big Data topics.\n3. [Apache Spark Documentation](https://spark.apache.org/documentation.html) - official Spark documentation.\n4. [Apache Zeppelin Project Home Page](https://zeppelin.apache.org) - official Zeppelin web site.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.459",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 10.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eWe hope you\u0027ve enjoyed this lab. Below are additional resources that you should find useful:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href\u003d\"http://cloudera.com/tutorials.html\"\u003eCloudera Tutorials\u003c/a\u003e are your natural next step where you can explore Spark in more depth.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://community.cloudera.com\"\u003eCloudera Community\u003c/a\u003e is a great resource for questions and answers on Spark, Data Analytics/Science, and many more Big Data topics.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://spark.apache.org/documentation.html\"\u003eApache Spark Documentation\u003c/a\u003e - official Spark documentation.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://zeppelin.apache.org\"\u003eApache Zeppelin Project Home Page\u003c/a\u003e - official Zeppelin web site.\u003c/li\u003e\n\u003c/ol\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531458_957122825",
+      "id": "20181116-135131_93712280",
+      "dateCreated": "2021-02-02 18:28:51.458",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003ccenter\u003e\n\u003ca href\u003d\"https://www.cloudera.com/about/training/courses.html\"\u003e\n  \u003cimg src\u003d\"https://www.cloudera.com/content/dam/www/marketing/media-kit/logo-assets/cloudera_logo_darkorange.png\" alt\u003d\"Cloudera University\" style\u003d\"width:280px;height:40px;border:0;\" align\u003d\"middle\"\u003e\n\u003c/a\u003e\n\u003c/center\u003e\n\u003c/br\u003e\n\u003c/br\u003e",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.461",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 2.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003ccenter\u003e\n\u003ca href\u003d\"https://www.cloudera.com/about/training/courses.html\"\u003e\n  \u003cimg src\u003d\"https://www.cloudera.com/content/dam/www/marketing/media-kit/logo-assets/cloudera_logo_darkorange.png\" alt\u003d\"Cloudera University\" style\u003d\"width:280px;height:40px;border:0;\" align\u003d\"middle\"\u003e\n\u003c/a\u003e\n\u003c/center\u003e\n\u003c/br\u003e\n\u003c/br\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531459_-1443156805",
+      "id": "20200110-154537_1406191376",
+      "dateCreated": "2021-02-02 18:28:51.459",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:28:51.461",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1612290531461_-1765829032",
+      "id": "20200110-162013_302547143",
+      "dateCreated": "2021-02-02 18:28:51.461",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "/DevSH/Labs/Pyspark/AnalyzingDataWithDataFrame",
+  "id": "2FWXTNJ2C",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "sh:shared_process": [],
+    "spark:shared_process": [],
+    "livy:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -83,7 +83,7 @@
       "title": "Environment variable required to use SetJobGroup",
       "text": "%sh\n\nPYSPARK_PIN_THREAD\u003dtrue",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 22:40:30.926",
+      "dateUpdated": "2021-02-02 17:29:47.302",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -110,8 +110,8 @@
       "jobName": "paragraph_1612036727522_2076707385",
       "id": "20200830-062347_1042316978",
       "dateCreated": "2021-01-30 19:58:47.522",
-      "dateStarted": "2021-02-01 22:40:30.999",
-      "dateFinished": "2021-02-01 22:40:31.019",
+      "dateStarted": "2021-02-02 17:29:47.849",
+      "dateFinished": "2021-02-02 17:29:50.427",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -160,7 +160,7 @@
       "title": "Retrieve the Spark Context",
       "text": "%livy.pyspark\n\nsc \u003d spark.sparkContext",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 22:40:35.597",
+      "dateUpdated": "2021-02-02 17:29:53.495",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -184,11 +184,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cfont color\u003d\"red\"\u003ePrevious livy session is expired, new livy session is created. Paragraphs that depend on this paragraph need to be re-executed!\u003c/font\u003e"
-          },
-          {
-            "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612215846993_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612215846993_0003/\"\u003ehttp://master:8088/proxy/application_1612215846993_0003/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612286955196_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612286955196_0001/\"\u003ehttp://master:8088/proxy/application_1612286955196_0001/\u003c/a\u003e"
           }
         ]
       },
@@ -196,15 +192,15 @@
       "jobName": "paragraph_1612036727523_1635443311",
       "id": "20200830-062453_1327233055",
       "dateCreated": "2021-01-30 19:58:47.523",
-      "dateStarted": "2021-02-01 22:40:35.691",
-      "dateFinished": "2021-02-01 22:41:05.986",
+      "dateStarted": "2021-02-02 17:29:54.138",
+      "dateFinished": "2021-02-02 17:30:55.725",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\n\nhdfs dfs -mkdir /mine",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 22:08:27.386",
+      "dateUpdated": "2021-02-02 17:31:09.304",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -227,7 +223,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-01 22:08:28,692 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n"
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 17:31:10,830 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n"
           }
         ]
       },
@@ -235,8 +231,8 @@
       "jobName": "paragraph_1612036727523_749287265",
       "id": "20210121-115217_395565636",
       "dateCreated": "2021-01-30 19:58:47.523",
-      "dateStarted": "2021-02-01 22:08:27.551",
-      "dateFinished": "2021-02-01 22:08:29.733",
+      "dateStarted": "2021-02-02 17:31:09.513",
+      "dateFinished": "2021-02-02 17:31:11.925",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -402,7 +398,7 @@
       "title": "1 - Review the data-100.json file",
       "text": "%sh\ncat /data/custom/data-100.json",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 22:08:48.944",
+      "dateUpdated": "2021-02-02 17:31:16.909",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -434,8 +430,8 @@
       "jobName": "paragraph_1612036727527_1639269341",
       "id": "20171105-200623_656362182",
       "dateCreated": "2021-01-30 19:58:47.527",
-      "dateStarted": "2021-02-01 22:08:49.131",
-      "dateFinished": "2021-02-01 22:08:49.464",
+      "dateStarted": "2021-02-02 17:31:17.073",
+      "dateFinished": "2021-02-02 17:31:17.391",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -443,7 +439,7 @@
       "title": "2 - Upload the data file to the /mine directory in HDFS",
       "text": "%sh\nhdfs dfs -rm -skipTrash /mine/data-100.json\nhdfs dfs -put /data/custom/data-100.json /mine/data-100.json\n\nhdfs dfs -ls /mine",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 22:08:53.958",
+      "dateUpdated": "2021-02-02 17:31:21.016",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -469,7 +465,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-01 22:08:55,145 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/data-100.json\u0027: No such file or directory\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-01 22:08:57,121 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-01 22:08:59,264 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 1 items\n-rw-r--r--   2 root supergroup     116201 2021-02-01 22:08 /mine/data-100.json\n"
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 17:31:22,227 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/data-100.json\u0027: No such file or directory\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 17:31:24,339 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n2021-02-02 17:31:25,532 WARN hdfs.DataStreamer: Caught exception\njava.lang.InterruptedException\n\tat java.lang.Object.wait(Native Method)\n\tat java.lang.Thread.join(Thread.java:1252)\n\tat java.lang.Thread.join(Thread.java:1326)\n\tat org.apache.hadoop.hdfs.DataStreamer.closeResponder(DataStreamer.java:986)\n\tat org.apache.hadoop.hdfs.DataStreamer.endBlock(DataStreamer.java:640)\n\tat org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:810)\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 17:31:26,507 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 1 items\n-rw-r--r--   2 root supergroup     116201 2021-02-02 17:31 /mine/data-100.json\n"
           }
         ]
       },
@@ -477,16 +473,16 @@
       "jobName": "paragraph_1612036727528_1179314014",
       "id": "20171105-201709_849284875",
       "dateCreated": "2021-01-30 19:58:47.528",
-      "dateStarted": "2021-02-01 22:08:54.107",
-      "dateFinished": "2021-02-01 22:09:00.274",
+      "dateStarted": "2021-02-02 17:31:21.158",
+      "dateFinished": "2021-02-02 17:31:27.564",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "title": "3 - Create a new DataFrame based on the data-100.json file in HDFS",
+      "title": "3 - Clean raw data to json based on the data-100.json file in HDFS",
       "text": "%livy.pyspark\n\n#ingestDF \u003d spark.read.json(\"/mine/data-100.json\",multiLine\u003dTrue)\ntryRDD \u003d sc.wholeTextFiles(\"/mine/data-100.json\")\ncleanRDD \u003d tryRDD.map(lambda pair: pair[1].replace(\"\\n\",\"\").replace(\"\\r\",\"\"))\ncleanRDD.saveAsTextFile(\"/mine/data-100-clean.json\")\n\n#\u0027\"_source\" : {\u0027\n#myData \u003d tryRDD.collect()[0][1]\n#mycleanData \u003d myData.replace(\"\\n\",\"\").replace(\"\\r\",\"\")\n\n\n#scrubRDD \u003d tryRDD.map(lambda item: item[1])\n\n#splitRDD \u003d scrubRDD.flatMap(lambda pair: pair[1].split(\u0027},\u0027))\n\n#def cleanNewline(inRDD):\n#    for row in \n\n\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 23:52:03.993",
+      "dateUpdated": "2021-02-02 17:32:34.760",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -512,7 +508,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612215846993_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612215846993_0003/\"\u003ehttp://master:8088/proxy/application_1612215846993_0003/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612286955196_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612286955196_0001/\"\u003ehttp://master:8088/proxy/application_1612286955196_0001/\u003c/a\u003e"
           }
         ]
       },
@@ -520,15 +516,15 @@
       "jobName": "paragraph_1612036727528_655683568",
       "id": "20171105-201449_1118165660",
       "dateCreated": "2021-01-30 19:58:47.528",
-      "dateStarted": "2021-02-01 23:52:04.047",
-      "dateFinished": "2021-02-01 23:52:05.070",
+      "dateStarted": "2021-02-02 17:32:34.884",
+      "dateFinished": "2021-02-02 17:32:38.021",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\n\nhdfs dfs -head /mine/data-100-clean.json/part-00000\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 23:57:24.060",
+      "dateUpdated": "2021-02-02 17:32:41.636",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -551,7 +547,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-01 23:57:25,029 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n{        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"yYrAuHIBLPh0KG6dzhLM\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:28.636442Z\",          \"ts\" : \"2020-06-15T16:12:23.327254Z\",          \"uid\" : \"CgA9reVdl5BOwlFv5\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47132,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.043824,          \"orig_bytes\" : 3795,          \"resp_bytes\" : 5622,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadTtFf\",          \"orig_pkts\" : 30,          \"orig_ip_bytes\" : 9166,          \"resp_pkts\" : 22,          \"resp_ip_bytes\" : 12404,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },      {        \"_index\" : \".co"
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 17:32:43,029 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n{        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"yYrAuHIBLPh0KG6dzhLM\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:28.636442Z\",          \"ts\" : \"2020-06-15T16:12:23.327254Z\",          \"uid\" : \"CgA9reVdl5BOwlFv5\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47132,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.043824,          \"orig_bytes\" : 3795,          \"resp_bytes\" : 5622,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadTtFf\",          \"orig_pkts\" : 30,          \"orig_ip_bytes\" : 9166,          \"resp_pkts\" : 22,          \"resp_ip_bytes\" : 12404,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },      {        \"_index\" : \".co"
           }
         ]
       },
@@ -559,8 +555,8 @@
       "jobName": "paragraph_1612223528191_-845879261",
       "id": "20210201-235208_1468143232",
       "dateCreated": "2021-02-01 23:52:08.191",
-      "dateStarted": "2021-02-01 23:57:24.104",
-      "dateFinished": "2021-02-01 23:57:26.092",
+      "dateStarted": "2021-02-02 17:32:41.772",
+      "dateFinished": "2021-02-02 17:32:44.113",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -606,9 +602,9 @@
     },
     {
       "title": "4 - Print the schema of the new dataframe",
-      "text": "%livy.pyspark\nnewRDD \u003d sc.wholeTextFiles(\"/mine/data-100-clean.json/part-00000\")\n\ntestStr \u003d \u0027{ \"something1\" : \"this crazy thing\", \"s2\" : \"1234\" }, { \"something1\" : \"this crazy thing\", \"s2\" : \"1234\" }\u0027\ndef getRecords(s):\n    \n    return s.replace(\u0027},\u0027,\u0027},SPLIT_HERE\u0027).split(\u0027SPLIT_HERE\u0027)\n#print(getRecords(testStr))\ndataRecords \u003d newRDD.flatMap(lambda t: getRecords(t[1]))\n\nfor row in dataRecords.take(20):\n    print(\"-------\")\n    print(row)\n    \n",
+      "text": "%livy.pyspark\n\n\n\nnewRDD \u003d sc.wholeTextFiles(\"/mine/data-100-clean.json/part-00000\")\n\n#split up the records\ndef getRecords(s):\n    return s.replace(\u0027},\u0027,\u0027}SPLIT_HERE\u0027).split(\u0027SPLIT_HERE\u0027)\n#pop the source out to flatten record\ndef splitSource(s):\n    return s.replace(\u0027\"_source\" : {\u0027, \u0027SPLIT_HERE\u0027).split(\u0027SPLIT_HERE\u0027)\n#clean all the not needed chars from fields that are not needed\ndef cleanField(l):\n    return list(map(lambda s: s.replace(\u0027          \u0027, \u0027\u0027)\\\n    .replace(\u0027        \u0027,\u0027\u0027).replace(\u0027\"\u0027,\u0027\u0027)\\\n    .replace(\u0027{\u0027,\u0027\u0027).replace(\u0027}\u0027,\u0027\u0027).replace(\u0027 \u0027, \u0027\u0027), l))\n\ndef removeBlankFields(l):\n    return(list(filter(lambda f: f !\u003d \u0027\u0027, l)))\n    \ndef dictFields(l):\n    fieldsDict \u003d {}\n    for field in l:\n        lst \u003d field.split(\u0027:\u0027)\n        if len(lst) \u003e 1:\n         fieldsDict[lst[0]] \u003d lst[1]\n    return fieldsDict\n\ndef buildFields(d):\n    return [d.get(\u0027id.orig_h\u0027), d.get(\u0027id.orig_p\u0027), d.get(\u0027id.resp_h\u0027), d.get(\u0027id.resp_p\u0027), d.get(\u0027orig_bytes\u0027), d.get(\u0027resp_bytes\u0027), d.get(\u0027missed_bytes\u0027), d.get(\u0027orig_pkts\u0027), d.get(\u0027orig_ip_bytes\u0027), d.get(\u0027resp_pkts\u0027), d.get(\u0027resp_ip_bytes\u0027)]\n\ndef fieldsToCSV(l):\n    s \u003d l[0]\n    for i in range(1, len(l)):\n        s \u003d s + \u0027,\u0027 + str(l[i])\n    return s\n    \n\n        \n# Do the work\ndataRecords \u003d newRDD.flatMap(lambda t: getRecords(t[1]))\nsourceSplitRecords \u003d dataRecords.map(lambda row: splitSource(row))\nfieldLineRecords \u003d sourceSplitRecords.map(lambda r: r[0].split(\u0027,\u0027) + r[1].split(\u0027,\u0027)) \ncleanRecords \u003d fieldLineRecords.map(lambda r: cleanField(r))\nvalidRecords \u003d cleanRecords.map(lambda r: removeBlankFields(r))\nrecordsDict \u003d validRecords.filter(lambda l: len(l) \u003e 26).map(lambda r: dictFields(r))\nfinalRDD \u003d recordsDict.map(lambda r: buildFields(r))\n\ncsvRDD \u003d finalRDD.map(lambda r: fieldsToCSV(r))\n\ncsvRDD.saveAsTextFile(\u0027/mine/data-100-csv\u0027)\n\nfor row in csvRDD.take(6):\n    print(\"-------\")\n    print(row)\n\nprint(\"###############\")\n\nfor row in fieldLineRecords.take(5):\n    print(\"-------\")\n    print(row)\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-02 02:20:33.336",
+      "dateUpdated": "2021-02-02 17:55:43.186",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -632,11 +628,11 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "-------\n{        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"yYrAuHIBLPh0KG6dzhLM\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:28.636442Z\",          \"ts\" : \"2020-06-15T16:12:23.327254Z\",          \"uid\" : \"CgA9reVdl5BOwlFv5\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47132,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.043824,          \"orig_bytes\" : 3795,          \"resp_bytes\" : 5622,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadTtFf\",          \"orig_pkts\" : 30,          \"orig_ip_bytes\" : 9166,          \"resp_pkts\" : 22,          \"resp_ip_bytes\" : 12404,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"3_XAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:28.618445Z\",          \"ts\" : \"2020-06-15T16:12:23.462556Z\",          \"uid\" : \"CgD0F43gkySW6JPKr8\",          \"id.orig_h\" : \"172.17.1.10\",          \"id.orig_p\" : 34887,          \"id.resp_h\" : \"172.17.1.240\",          \"id.resp_p\" : 389,          \"proto\" : \"tcp\",          \"duration\" : 0.093316,          \"orig_bytes\" : 2970,          \"resp_bytes\" : 313082,          \"conn_state\" : \"RSTR\",          \"missed_bytes\" : 0,          \"history\" : \"ShADTadtFr\",          \"orig_pkts\" : 64,          \"orig_ip_bytes\" : 8524,          \"resp_pkts\" : 448,          \"resp_ip_bytes\" : 644108,          \"orig_l2_addr\" : \"00:50:56:95:fc:63\",          \"resp_l2_addr\" : \"00:50:56:95:40:97\",          \"id.orig_h_name.src\" : \"DNS_A\",          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ],          \"id.resp_h_name.src\" : \"DNS_A\",          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ],          \"vlan\" : 16        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"4fXAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:29.385343Z\",          \"ts\" : \"2020-06-15T16:12:24.211741Z\",          \"uid\" : \"CRIfs24nfiuQQE4KC3\",          \"id.orig_h\" : \"172.17.1.10\",          \"id.orig_p\" : 34892,          \"id.resp_h\" : \"172.17.1.240\",          \"id.resp_p\" : 389,          \"proto\" : \"tcp\",          \"duration\" : 0.017177,          \"orig_bytes\" : 2149,          \"resp_bytes\" : 4770,          \"conn_state\" : \"RSTR\",          \"missed_bytes\" : 0,          \"history\" : \"ShADTadFr\",          \"orig_pkts\" : 18,          \"orig_ip_bytes\" : 5042,          \"resp_pkts\" : 18,          \"resp_ip_bytes\" : 10284,          \"orig_l2_addr\" : \"00:50:56:95:fc:63\",          \"resp_l2_addr\" : \"00:50:56:95:40:97\",          \"id.orig_h_name.src\" : \"DNS_A\",          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ],          \"id.resp_h_name.src\" : \"DNS_A\",          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ],          \"vlan\" : 16        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"4_XAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:28.903862Z\",          \"ts\" : \"2020-06-15T16:12:23.820848Z\",          \"uid\" : \"C7w0GzbWcZ5MGe7te\",          \"id.orig_h\" : \"172.17.1.10\",          \"id.orig_p\" : 34890,          \"id.resp_h\" : \"172.17.1.240\",          \"id.resp_p\" : 389,          \"proto\" : \"tcp\",          \"duration\" : 0.082471,          \"orig_bytes\" : 2149,          \"resp_bytes\" : 4770,          \"conn_state\" : \"RSTR\",          \"missed_bytes\" : 0,          \"history\" : \"ShADTadFr\",          \"orig_pkts\" : 20,          \"orig_ip_bytes\" : 5122,          \"resp_pkts\" : 18,          \"resp_ip_bytes\" : 10284,          \"orig_l2_addr\" : \"00:50:56:95:fc:63\",          \"resp_l2_addr\" : \"00:50:56:95:40:97\",          \"id.orig_h_name.src\" : \"DNS_A\",          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ],          \"id.resp_h_name.src\" : \"DNS_A\",          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ],          \"vlan\" : 16        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"5fXAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:29.475547Z\",          \"ts\" : \"2020-06-15T16:12:24.337670Z\",          \"uid\" : \"Cfpfe44JfwTQAXg6x1\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47142,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.041,          \"orig_bytes\" : 6184,          \"resp_bytes\" : 6008,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadFf\",          \"orig_pkts\" : 32,          \"orig_ip_bytes\" : 14048,          \"resp_pkts\" : 26,          \"resp_ip_bytes\" : 13384,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"6_XAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:29.503102Z\",          \"ts\" : \"2020-06-15T16:07:27.836872Z\",          \"uid\" : \"COppCN362qInqCqTZ8\",          \"id.orig_h\" : \"172.17.1.23\",          \"id.orig_p\" : 55865,          \"id.resp_h\" : \"10.115.0.242\",          \"id.resp_p\" : 135,          \"proto\" : \"tcp\",          \"duration\" : 1.521179,          \"orig_bytes\" : 1,          \"resp_bytes\" : 0,          \"conn_state\" : \"OTH\",          \"missed_bytes\" : 0,          \"history\" : \"DadA\",          \"orig_pkts\" : 8,          \"orig_ip_bytes\" : 372,          \"resp_pkts\" : 8,          \"resp_ip_bytes\" : 372,          \"orig_l2_addr\" : \"00:50:56:95:e4:a3\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.orig_h_name.src\" : \"HTTP_HOST\",          \"id.orig_h_name.vals\" : [            \"us.storage.endpoint.ingress.rapid7.com\",            \"us.bootstrap.endpoint.ingress.rapid7.com:443\",            \"dc6-insightcltr.dc6.local\",            \"us.bootstrap.endpoint.ingress.rapid7.com\"          ],          \"id.resp_h_name.src\" : \"NTLM_AUTH\",          \"id.resp_h_name.vals\" : [            \"APOGEE\"          ],          \"vlan\" : 16        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"7vXAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:29.322566Z\",          \"ts\" : \"2020-06-15T16:12:24.231191Z\",          \"uid\" : \"CkdUQC1c4F3yhYdxB7\",          \"id.orig_h\" : \"172.17.1.10\",          \"id.orig_p\" : 34893,          \"id.resp_h\" : \"172.17.1.240\",          \"id.resp_p\" : 389,          \"proto\" : \"tcp\",          \"duration\" : 0.02434,          \"orig_bytes\" : 2149,          \"resp_bytes\" : 4770,          \"conn_state\" : \"RSTR\",          \"missed_bytes\" : 0,          \"history\" : \"ShADTadFr\",          \"orig_pkts\" : 18,          \"orig_ip_bytes\" : 5042,          \"resp_pkts\" : 18,          \"resp_ip_bytes\" : 10284,          \"orig_l2_addr\" : \"00:50:56:95:fc:63\",          \"resp_l2_addr\" : \"00:50:56:95:40:97\",          \"id.orig_h_name.src\" : \"DNS_A\",          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ],          \"id.resp_h_name.src\" : \"DNS_A\",          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ],          \"vlan\" : 16        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"8PXAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:30.009619Z\",          \"ts\" : \"2020-06-15T16:07:28.246902Z\",          \"uid\" : \"CX5G5B1ZTk2QVtGgEj\",          \"id.orig_h\" : \"172.17.1.23\",          \"id.orig_p\" : 52791,          \"id.resp_h\" : \"10.115.0.242\",          \"id.resp_p\" : 135,          \"proto\" : \"tcp\",          \"duration\" : 1.681203,          \"orig_bytes\" : 1,          \"resp_bytes\" : 0,          \"conn_state\" : \"OTH\",          \"missed_bytes\" : 0,          \"history\" : \"DadA\",          \"orig_pkts\" : 8,          \"orig_ip_bytes\" : 372,          \"resp_pkts\" : 8,          \"resp_ip_bytes\" : 372,          \"orig_l2_addr\" : \"00:50:56:95:e4:a3\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.orig_h_name.src\" : \"HTTP_HOST\",          \"id.orig_h_name.vals\" : [            \"us.storage.endpoint.ingress.rapid7.com\",            \"us.bootstrap.endpoint.ingress.rapid7.com\",            \"dc6-insightcltr.dc6.local\",            \"us.bootstrap.endpoint.ingress.rapid7.com:443\"          ],          \"id.resp_h_name.src\" : \"NTLM_AUTH\",          \"id.resp_h_name.vals\" : [            \"APOGEE\"          ],          \"vlan\" : 16        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"9_XAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:30.257339Z\",          \"ts\" : \"2020-06-15T16:07:30.139256Z\",          \"uid\" : \"C4oDO6PeUbIEhk1Zg\",          \"id.orig_h\" : \"172.17.1.16\",          \"id.orig_p\" : 55396,          \"id.resp_h\" : \"208.67.222.222\",          \"id.resp_p\" : 443,          \"proto\" : \"udp\",          \"duration\" : 0.001651,          \"orig_bytes\" : 776,          \"resp_bytes\" : 1446,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"Dd\",          \"orig_pkts\" : 2,          \"orig_ip_bytes\" : 832,          \"resp_pkts\" : 2,          \"resp_ip_bytes\" : 1502,          \"resp_cc\" : \"US\",          \"orig_l2_addr\" : \"ec:b1:d7:58:0e:b0\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.resp_h_name.src\" : \"DNS_PTR\",          \"id.resp_h_name.vals\" : [            \"resolver1.opendns.com\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"-PXAuHIBeiPvJqGI08xA\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:30.631477Z\",          \"ts\" : \"2020-06-15T16:10:45.575103Z\",          \"uid\" : \"COIwhak7kxParbucj\",          \"id.orig_h\" : \"172.17.1.15\",          \"id.orig_p\" : 44857,          \"id.resp_h\" : \"172.64.140.28\",          \"id.resp_p\" : 443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 100.055136,          \"orig_bytes\" : 448,          \"resp_bytes\" : 3359,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadFf\",          \"orig_pkts\" : 18,          \"orig_ip_bytes\" : 1640,          \"resp_pkts\" : 18,          \"resp_ip_bytes\" : 7462,          \"resp_cc\" : \"US\",          \"orig_l2_addr\" : \"50:65:f3:4f:30:c8\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.resp_h_name.src\" : \"SSL_SNI\",          \"id.resp_h_name.vals\" : [            \"getgreenshot.org\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"_PXAuHIBeiPvJqGI18z2\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:29.836223Z\",          \"ts\" : \"2020-06-15T16:07:26.749666Z\",          \"uid\" : \"Ciz2LA2gXVN1U1tjfb\",          \"id.orig_h\" : \"172.17.1.15\",          \"id.orig_p\" : 62940,          \"id.resp_h\" : \"239.255.255.250\",          \"id.resp_p\" : 1900,          \"proto\" : \"udp\",          \"duration\" : 3.001909,          \"orig_bytes\" : 3460,          \"resp_bytes\" : 0,          \"conn_state\" : \"S0\",          \"missed_bytes\" : 0,          \"history\" : \"D\",          \"orig_pkts\" : 20,          \"orig_ip_bytes\" : 4020,          \"resp_pkts\" : 0,          \"resp_ip_bytes\" : 0,          \"orig_l2_addr\" : \"50:65:f3:4f:30:c8\",          \"resp_l2_addr\" : \"01:00:5e:7f:ff:fa\"        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"__XAuHIBeiPvJqGI18z2\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:30.261327Z\",          \"ts\" : \"2020-06-15T16:07:30.143460Z\",          \"uid\" : \"CTrwjUl7T4gWCWWW5\",          \"id.orig_h\" : \"172.17.1.16\",          \"id.orig_p\" : 55400,          \"id.resp_h\" : \"208.67.222.222\",          \"id.resp_p\" : 443,          \"proto\" : \"udp\",          \"duration\" : 0.001667,          \"orig_bytes\" : 648,          \"resp_bytes\" : 480,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"Dd\",          \"orig_pkts\" : 2,          \"orig_ip_bytes\" : 704,          \"resp_pkts\" : 2,          \"resp_ip_bytes\" : 536,          \"resp_cc\" : \"US\",          \"orig_l2_addr\" : \"ec:b1:d7:58:0e:b0\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.resp_h_name.src\" : \"DNS_PTR\",          \"id.resp_h_name.vals\" : [            \"resolver1.opendns.com\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"AfXAuHIBeiPvJqGI1832\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:31.456085Z\",          \"ts\" : \"2020-06-15T16:12:21.414819Z\",          \"uid\" : \"C66vHOzHL61X9hqta\",          \"id.orig_h\" : \"10.115.0.242\",          \"id.orig_p\" : 52195,          \"id.resp_h\" : \"40.90.4.205\",          \"id.resp_p\" : 53,          \"proto\" : \"udp\",          \"service\" : \"dns\",          \"duration\" : 0.009306,          \"orig_bytes\" : 134,          \"resp_bytes\" : 418,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"Dd\",          \"orig_pkts\" : 2,          \"orig_ip_bytes\" : 190,          \"resp_pkts\" : 2,          \"resp_ip_bytes\" : 474,          \"resp_cc\" : \"US\",          \"orig_l2_addr\" : \"b0:83:fe:e3:4b:99\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.orig_h_name.src\" : \"NTLM_AUTH\",          \"id.orig_h_name.vals\" : [            \"APOGEE\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"BfXAuHIBeiPvJqGI3M1Y\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:30.579951Z\",          \"ts\" : \"2020-06-15T16:12:25.508568Z\",          \"uid\" : \"CKJwSm1kzejicIhp6d\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47152,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.043593,          \"orig_bytes\" : 11149,          \"resp_bytes\" : 7944,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadTFf\",          \"orig_pkts\" : 42,          \"orig_ip_bytes\" : 24498,          \"resp_pkts\" : 30,          \"resp_ip_bytes\" : 17464,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"CPXAuHIBeiPvJqGI3M1Y\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:32.678159Z\",          \"ts\" : \"2020-06-15T16:12:27.607270Z\",          \"uid\" : \"CaHsCU1lnYCIzMeiRg\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47172,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.040421,          \"orig_bytes\" : 1327,          \"resp_bytes\" : 4015,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadFf\",          \"orig_pkts\" : 22,          \"orig_ip_bytes\" : 3814,          \"resp_pkts\" : 18,          \"resp_ip_bytes\" : 8982,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"CfXAuHIBeiPvJqGI3M1Y\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:31.650450Z\",          \"ts\" : \"2020-06-15T16:12:26.608377Z\",          \"uid\" : \"C8z3IPjbuYeiqtkS6\",          \"id.orig_h\" : \"172.17.1.21\",          \"id.orig_p\" : 47162,          \"id.resp_h\" : \"172.17.1.20\",          \"id.resp_p\" : 8443,          \"proto\" : \"tcp\",          \"service\" : \"ssl\",          \"duration\" : 0.04092,          \"orig_bytes\" : 10691,          \"resp_bytes\" : 7460,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadTFf\",          \"orig_pkts\" : 40,          \"orig_ip_bytes\" : 23478,          \"resp_pkts\" : 24,          \"resp_ip_bytes\" : 16184,          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\",          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"BYrAuHIBLPh0KG6d4BO_\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:31.450105Z\",          \"ts\" : \"2020-06-15T16:12:21.424234Z\",          \"uid\" : \"CBkA0d3GP92mwtW5ae\",          \"id.orig_h\" : \"10.115.0.242\",          \"id.orig_p\" : 51781,          \"id.resp_h\" : \"40.90.4.2\",          \"id.resp_p\" : 53,          \"proto\" : \"udp\",          \"service\" : \"dns\",          \"duration\" : 0.002782,          \"orig_bytes\" : 134,          \"resp_bytes\" : 166,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"Dd\",          \"orig_pkts\" : 2,          \"orig_ip_bytes\" : 190,          \"resp_pkts\" : 2,          \"resp_ip_bytes\" : 222,          \"resp_cc\" : \"US\",          \"orig_l2_addr\" : \"b0:83:fe:e3:4b:99\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.orig_h_name.src\" : \"NTLM_AUTH\",          \"id.orig_h_name.vals\" : [            \"APOGEE\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"G_XAuHIBeiPvJqGI5c0y\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:34.425705Z\",          \"ts\" : \"2020-06-15T16:12:23.827189Z\",          \"uid\" : \"CHwe2i4bgOSmzWIJ29\",          \"id.orig_h\" : \"10.115.0.242\",          \"id.orig_p\" : 51618,          \"id.resp_h\" : \"205.251.194.101\",          \"id.resp_p\" : 53,          \"proto\" : \"udp\",          \"service\" : \"dns\",          \"duration\" : 0.002522,          \"orig_bytes\" : 188,          \"resp_bytes\" : 654,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"Dd\",          \"orig_pkts\" : 2,          \"orig_ip_bytes\" : 244,          \"resp_pkts\" : 2,          \"resp_ip_bytes\" : 710,          \"resp_cc\" : \"US\",          \"orig_l2_addr\" : \"b0:83:fe:e3:4b:99\",          \"resp_l2_addr\" : \"e0:cb:bc:9d:18:90\",          \"id.orig_h_name.src\" : \"NTLM_AUTH\",          \"id.orig_h_name.vals\" : [            \"APOGEE\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"HfXAuHIBeiPvJqGI5c0y\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:34.658163Z\",          \"ts\" : \"2020-06-15T16:12:17.505731Z\",          \"uid\" : \"CQabtV3H1ZArqiyzod\",          \"id.orig_h\" : \"172.17.1.16\",          \"id.orig_p\" : 33224,          \"id.resp_h\" : \"172.17.1.240\",          \"id.resp_p\" : 135,          \"proto\" : \"tcp\",          \"service\" : \"dce_rpc\",          \"duration\" : 11.99775,          \"orig_bytes\" : 496,          \"resp_bytes\" : 452,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"ShADadFf\",          \"orig_pkts\" : 18,          \"orig_ip_bytes\" : 1736,          \"resp_pkts\" : 14,          \"resp_ip_bytes\" : 1488,          \"orig_l2_addr\" : \"ec:b1:d7:58:0e:b0\",          \"resp_l2_addr\" : \"00:50:56:95:40:97\",          \"id.resp_h_name.src\" : \"DNS_A\",          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ]        }      },\n-------\n      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\",        \"_type\" : \"_doc\",        \"_id\" : \"IYrAuHIBLPh0KG6d8hP2\",        \"_score\" : 1.0,        \"_source\" : {          \"@path\" : \"conn\",          \"@sensor\" : \"sensor_172_17_1_21\",          \"@timestamp\" : \"2020-06-15T16:12:36.993019Z\",          \"ts\" : \"2020-06-15T16:12:26.993019Z\",          \"uid\" : \"C6NB23xAKkGTRfqH4\",          \"id.orig_h\" : \"172.17.1.15\",          \"id.orig_p\" : 58813,          \"id.resp_h\" : \"172.17.1.240\",          \"id.resp_p\" : 53,          \"proto\" : \"udp\",          \"service\" : \"dns\",          \"duration\" : 0.003501,          \"orig_bytes\" : 92,          \"resp_bytes\" : 630,          \"conn_state\" : \"SF\",          \"missed_bytes\" : 0,          \"history\" : \"Dd\",          \"orig_pkts\" : 2,          \"orig_ip_bytes\" : 148,          \"resp_pkts\" : 2,          \"resp_ip_bytes\" : 686,          \"orig_l2_addr\" : \"50:65:f3:4f:30:c8\",          \"resp_l2_addr\" : \"00:50:56:95:40:97\",          \"id.resp_h_name.src\" : \"DNS_A\",          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ]        }      },"
+            "data": "-------\n172.17.1.21,47132,172.17.1.20,8443,3795,5622,0,30,9166,22,12404\n-------\n172.17.1.10,34887,172.17.1.240,389,2970,313082,0,64,8524,448,644108\n-------\n172.17.1.10,34892,172.17.1.240,389,2149,4770,0,18,5042,18,10284\n-------\n172.17.1.10,34890,172.17.1.240,389,2149,4770,0,20,5122,18,10284\n-------\n172.17.1.21,47142,172.17.1.20,8443,6184,6008,0,32,14048,26,13384\n-------\n172.17.1.23,55865,10.115.0.242,135,1,0,0,8,372,8,372\n###############\n-------\n[\u0027{        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\"\u0027, \u0027        \"_type\" : \"_doc\"\u0027, \u0027        \"_id\" : \"yYrAuHIBLPh0KG6dzhLM\"\u0027, \u0027        \"_score\" : 1.0\u0027, \u0027        \u0027, \u0027          \"@path\" : \"conn\"\u0027, \u0027          \"@sensor\" : \"sensor_172_17_1_21\"\u0027, \u0027          \"@timestamp\" : \"2020-06-15T16:12:28.636442Z\"\u0027, \u0027          \"ts\" : \"2020-06-15T16:12:23.327254Z\"\u0027, \u0027          \"uid\" : \"CgA9reVdl5BOwlFv5\"\u0027, \u0027          \"id.orig_h\" : \"172.17.1.21\"\u0027, \u0027          \"id.orig_p\" : 47132\u0027, \u0027          \"id.resp_h\" : \"172.17.1.20\"\u0027, \u0027          \"id.resp_p\" : 8443\u0027, \u0027          \"proto\" : \"tcp\"\u0027, \u0027          \"service\" : \"ssl\"\u0027, \u0027          \"duration\" : 0.043824\u0027, \u0027          \"orig_bytes\" : 3795\u0027, \u0027          \"resp_bytes\" : 5622\u0027, \u0027          \"conn_state\" : \"SF\"\u0027, \u0027          \"missed_bytes\" : 0\u0027, \u0027          \"history\" : \"ShADadTtFf\"\u0027, \u0027          \"orig_pkts\" : 30\u0027, \u0027          \"orig_ip_bytes\" : 9166\u0027, \u0027          \"resp_pkts\" : 22\u0027, \u0027          \"resp_ip_bytes\" : 12404\u0027, \u0027          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\"\u0027, \u0027          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      }\u0027]\n-------\n[\u0027      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\"\u0027, \u0027        \"_type\" : \"_doc\"\u0027, \u0027        \"_id\" : \"3_XAuHIBeiPvJqGI08xA\"\u0027, \u0027        \"_score\" : 1.0\u0027, \u0027        \u0027, \u0027          \"@path\" : \"conn\"\u0027, \u0027          \"@sensor\" : \"sensor_172_17_1_21\"\u0027, \u0027          \"@timestamp\" : \"2020-06-15T16:12:28.618445Z\"\u0027, \u0027          \"ts\" : \"2020-06-15T16:12:23.462556Z\"\u0027, \u0027          \"uid\" : \"CgD0F43gkySW6JPKr8\"\u0027, \u0027          \"id.orig_h\" : \"172.17.1.10\"\u0027, \u0027          \"id.orig_p\" : 34887\u0027, \u0027          \"id.resp_h\" : \"172.17.1.240\"\u0027, \u0027          \"id.resp_p\" : 389\u0027, \u0027          \"proto\" : \"tcp\"\u0027, \u0027          \"duration\" : 0.093316\u0027, \u0027          \"orig_bytes\" : 2970\u0027, \u0027          \"resp_bytes\" : 313082\u0027, \u0027          \"conn_state\" : \"RSTR\"\u0027, \u0027          \"missed_bytes\" : 0\u0027, \u0027          \"history\" : \"ShADTadtFr\"\u0027, \u0027          \"orig_pkts\" : 64\u0027, \u0027          \"orig_ip_bytes\" : 8524\u0027, \u0027          \"resp_pkts\" : 448\u0027, \u0027          \"resp_ip_bytes\" : 644108\u0027, \u0027          \"orig_l2_addr\" : \"00:50:56:95:fc:63\"\u0027, \u0027          \"resp_l2_addr\" : \"00:50:56:95:40:97\"\u0027, \u0027          \"id.orig_h_name.src\" : \"DNS_A\"\u0027, \u0027          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ]\u0027, \u0027          \"id.resp_h_name.src\" : \"DNS_A\"\u0027, \u0027          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ]\u0027, \u0027          \"vlan\" : 16        }      }\u0027]\n-------\n[\u0027      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\"\u0027, \u0027        \"_type\" : \"_doc\"\u0027, \u0027        \"_id\" : \"4fXAuHIBeiPvJqGI08xA\"\u0027, \u0027        \"_score\" : 1.0\u0027, \u0027        \u0027, \u0027          \"@path\" : \"conn\"\u0027, \u0027          \"@sensor\" : \"sensor_172_17_1_21\"\u0027, \u0027          \"@timestamp\" : \"2020-06-15T16:12:29.385343Z\"\u0027, \u0027          \"ts\" : \"2020-06-15T16:12:24.211741Z\"\u0027, \u0027          \"uid\" : \"CRIfs24nfiuQQE4KC3\"\u0027, \u0027          \"id.orig_h\" : \"172.17.1.10\"\u0027, \u0027          \"id.orig_p\" : 34892\u0027, \u0027          \"id.resp_h\" : \"172.17.1.240\"\u0027, \u0027          \"id.resp_p\" : 389\u0027, \u0027          \"proto\" : \"tcp\"\u0027, \u0027          \"duration\" : 0.017177\u0027, \u0027          \"orig_bytes\" : 2149\u0027, \u0027          \"resp_bytes\" : 4770\u0027, \u0027          \"conn_state\" : \"RSTR\"\u0027, \u0027          \"missed_bytes\" : 0\u0027, \u0027          \"history\" : \"ShADTadFr\"\u0027, \u0027          \"orig_pkts\" : 18\u0027, \u0027          \"orig_ip_bytes\" : 5042\u0027, \u0027          \"resp_pkts\" : 18\u0027, \u0027          \"resp_ip_bytes\" : 10284\u0027, \u0027          \"orig_l2_addr\" : \"00:50:56:95:fc:63\"\u0027, \u0027          \"resp_l2_addr\" : \"00:50:56:95:40:97\"\u0027, \u0027          \"id.orig_h_name.src\" : \"DNS_A\"\u0027, \u0027          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ]\u0027, \u0027          \"id.resp_h_name.src\" : \"DNS_A\"\u0027, \u0027          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ]\u0027, \u0027          \"vlan\" : 16        }      }\u0027]\n-------\n[\u0027      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\"\u0027, \u0027        \"_type\" : \"_doc\"\u0027, \u0027        \"_id\" : \"4_XAuHIBeiPvJqGI08xA\"\u0027, \u0027        \"_score\" : 1.0\u0027, \u0027        \u0027, \u0027          \"@path\" : \"conn\"\u0027, \u0027          \"@sensor\" : \"sensor_172_17_1_21\"\u0027, \u0027          \"@timestamp\" : \"2020-06-15T16:12:28.903862Z\"\u0027, \u0027          \"ts\" : \"2020-06-15T16:12:23.820848Z\"\u0027, \u0027          \"uid\" : \"C7w0GzbWcZ5MGe7te\"\u0027, \u0027          \"id.orig_h\" : \"172.17.1.10\"\u0027, \u0027          \"id.orig_p\" : 34890\u0027, \u0027          \"id.resp_h\" : \"172.17.1.240\"\u0027, \u0027          \"id.resp_p\" : 389\u0027, \u0027          \"proto\" : \"tcp\"\u0027, \u0027          \"duration\" : 0.082471\u0027, \u0027          \"orig_bytes\" : 2149\u0027, \u0027          \"resp_bytes\" : 4770\u0027, \u0027          \"conn_state\" : \"RSTR\"\u0027, \u0027          \"missed_bytes\" : 0\u0027, \u0027          \"history\" : \"ShADTadFr\"\u0027, \u0027          \"orig_pkts\" : 20\u0027, \u0027          \"orig_ip_bytes\" : 5122\u0027, \u0027          \"resp_pkts\" : 18\u0027, \u0027          \"resp_ip_bytes\" : 10284\u0027, \u0027          \"orig_l2_addr\" : \"00:50:56:95:fc:63\"\u0027, \u0027          \"resp_l2_addr\" : \"00:50:56:95:40:97\"\u0027, \u0027          \"id.orig_h_name.src\" : \"DNS_A\"\u0027, \u0027          \"id.orig_h_name.vals\" : [            \"dc6utility.dc6.local\"          ]\u0027, \u0027          \"id.resp_h_name.src\" : \"DNS_A\"\u0027, \u0027          \"id.resp_h_name.vals\" : [            \"dc6-bms-ad01.dc6.local\"          ]\u0027, \u0027          \"vlan\" : 16        }      }\u0027]\n-------\n[\u0027      {        \"_index\" : \".corelight-conn-2020.06.15-15851847906376601724\"\u0027, \u0027        \"_type\" : \"_doc\"\u0027, \u0027        \"_id\" : \"5fXAuHIBeiPvJqGI08xA\"\u0027, \u0027        \"_score\" : 1.0\u0027, \u0027        \u0027, \u0027          \"@path\" : \"conn\"\u0027, \u0027          \"@sensor\" : \"sensor_172_17_1_21\"\u0027, \u0027          \"@timestamp\" : \"2020-06-15T16:12:29.475547Z\"\u0027, \u0027          \"ts\" : \"2020-06-15T16:12:24.337670Z\"\u0027, \u0027          \"uid\" : \"Cfpfe44JfwTQAXg6x1\"\u0027, \u0027          \"id.orig_h\" : \"172.17.1.21\"\u0027, \u0027          \"id.orig_p\" : 47142\u0027, \u0027          \"id.resp_h\" : \"172.17.1.20\"\u0027, \u0027          \"id.resp_p\" : 8443\u0027, \u0027          \"proto\" : \"tcp\"\u0027, \u0027          \"service\" : \"ssl\"\u0027, \u0027          \"duration\" : 0.041\u0027, \u0027          \"orig_bytes\" : 6184\u0027, \u0027          \"resp_bytes\" : 6008\u0027, \u0027          \"conn_state\" : \"SF\"\u0027, \u0027          \"missed_bytes\" : 0\u0027, \u0027          \"history\" : \"ShADadFf\"\u0027, \u0027          \"orig_pkts\" : 32\u0027, \u0027          \"orig_ip_bytes\" : 14048\u0027, \u0027          \"resp_pkts\" : 26\u0027, \u0027          \"resp_ip_bytes\" : 13384\u0027, \u0027          \"orig_l2_addr\" : \"3c:ec:ef:02:35:d6\"\u0027, \u0027          \"resp_l2_addr\" : \"00:50:56:95:90:ca\"        }      }\u0027]"
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612215846993_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612215846993_0003/\"\u003ehttp://master:8088/proxy/application_1612215846993_0003/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612286955196_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612286955196_0001/\"\u003ehttp://master:8088/proxy/application_1612286955196_0001/\u003c/a\u003e"
           }
         ]
       },
@@ -644,8 +640,47 @@
       "jobName": "paragraph_1612036727529_1218994302",
       "id": "20200111-135914_1639147600",
       "dateCreated": "2021-01-30 19:58:47.529",
-      "dateStarted": "2021-02-02 00:55:19.392",
-      "dateFinished": "2021-02-02 00:55:20.453",
+      "dateStarted": "2021-02-02 17:50:20.581",
+      "dateFinished": "2021-02-02 17:50:21.625",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nhdfs dfs -ls /mine/data-100-csv\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 17:51:23.300",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 17:51:24,410 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 2 items\n-rw-r--r--   2 root supergroup          0 2021-02-02 17:50 /mine/data-100-csv/_SUCCESS\n-rw-r--r--   2 root supergroup       5943 2021-02-02 17:50 /mine/data-100-csv/part-00000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612288178212_-1649029409",
+      "id": "20210202-174938_562135057",
+      "dateCreated": "2021-02-02 17:49:38.212",
+      "dateStarted": "2021-02-02 17:51:23.386",
+      "dateFinished": "2021-02-02 17:51:25.672",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -691,9 +726,9 @@
     },
     {
       "title": "5 - Display the data of the new dataframe",
-      "text": "%pyspark\n#ingestDF.select(ingestDF[\"_source\"][\"@timestamp\"], ingestDF[\"_source\"][\"orig_h\"], ingestDF[\"_source\"][\"orig_p\"], ingestDF[\"_source\"][\"resp_h\"], #ingestDF._source.resp_p, ingestDF[\"_source\"][\"orig_bytes\"])\n\nspark.close()",
+      "text": "%livy.pyspark\nfrom pyspark.sql.types import *\n\ncols \u003d [\n    StructField(\u0027orig_h\u0027, StringType()),\n    StructField(\u0027orig_p\u0027, StringType()), \n    StructField(\u0027resp_h\u0027, StringType()), \n    StructField(\u0027resp_p\u0027, StringType()), \n    StructField(\u0027orig_bytes\u0027, LongType()),\n    StructField(\u0027resp_bytes\u0027, LongType()),\n    StructField(\u0027missed_bytes\u0027, LongType()),\n    StructField(\u0027orig_pkts\u0027, LongType()),\n    StructField(\u0027orig_ip_bytes\u0027, LongType()),\n    StructField(\u0027resp_pkts\u0027, LongType()),\n    StructField(\u0027resp_ip_bytes\u0027, LongType())\n    ]\n\nschema \u003d StructType(cols)    \n\nslicedDF \u003d spark.read.schema(schema).csv(\u0027/mine/data-100-csv/part-00000\u0027)\n\nslicedDF.printSchema()\nslicedDF.show(4)\n\n#slicedDF.write.option(\u0027header\u0027,\u0027true\u0027).csv(\u0027/mine/stg-data/data-100.csv\u0027)\n\nipPortOrigDF \u003d slicedDF.select(\u0027orig_h\u0027, \u0027orig_p\u0027,\u0027orig_bytes\u0027)\n\n#ipPortOrigDF.show()\n\nbandwidthOrigDF \u003d ipPortOrigDF.rdd.map(lambda r: (r[0], r[2])).reduceByKey(lambda count1,count2: count1 + count2)\n\nfor row in bandwidthOrigDF.take(5):\n    print(\"-------\")\n    print(row)",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:44:39.637",
+      "dateUpdated": "2021-02-02 21:07:05.677",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -713,11 +748,19 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
+            "type": "HTML",
+            "data": "\u003cfont color\u003d\"red\"\u003ePrevious livy session is expired, new livy session is created. Paragraphs that depend on this paragraph need to be re-executed!\u003c/font\u003e"
+          },
+          {
             "type": "TEXT",
-            "data": "Fail to execute line 3: spark.close()\nTraceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-7317180139694959349.py\", line 380, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 3, in \u003cmodule\u003e\nAttributeError: \u0027SparkSession\u0027 object has no attribute \u0027close\u0027\n"
+            "data": "root\n |-- orig_h: string (nullable \u003d true)\n |-- orig_p: string (nullable \u003d true)\n |-- resp_h: string (nullable \u003d true)\n |-- resp_p: string (nullable \u003d true)\n |-- orig_bytes: long (nullable \u003d true)\n |-- resp_bytes: long (nullable \u003d true)\n |-- missed_bytes: long (nullable \u003d true)\n |-- orig_pkts: long (nullable \u003d true)\n |-- orig_ip_bytes: long (nullable \u003d true)\n |-- resp_pkts: long (nullable \u003d true)\n |-- resp_ip_bytes: long (nullable \u003d true)\n\n+-----------+------+------------+------+----------+----------+------------+---------+-------------+---------+-------------+\n|     orig_h|orig_p|      resp_h|resp_p|orig_bytes|resp_bytes|missed_bytes|orig_pkts|orig_ip_bytes|resp_pkts|resp_ip_bytes|\n+-----------+------+------------+------+----------+----------+------------+---------+-------------+---------+-------------+\n|172.17.1.21| 47132| 172.17.1.20|  8443|      3795|      5622|           0|       30|         9166|       22|        12404|\n|172.17.1.10| 34887|172.17.1.240|   389|      2970|    313082|           0|       64|         8524|      448|       644108|\n|172.17.1.10| 34892|172.17.1.240|   389|      2149|      4770|           0|       18|         5042|       18|        10284|\n|172.17.1.10| 34890|172.17.1.240|   389|      2149|      4770|           0|       20|         5122|       18|        10284|\n+-----------+------+------------+------+----------+----------+------------+---------+-------------+---------+-------------+\nonly showing top 4 rows\n\n-------\n(\u0027172.17.1.21\u0027, 207512)\n-------\n(\u0027172.17.1.10\u0027, 91118)\n-------\n(\u0027172.17.1.23\u0027, 1169)\n-------\n(\u0027172.17.1.16\u0027, 3144)\n-------\n(\u0027172.17.1.15\u0027, 1408)"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612286955196_0002\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612286955196_0002/\"\u003ehttp://master:8088/proxy/application_1612286955196_0002/\u003c/a\u003e"
           }
         ]
       },
@@ -725,9 +768,48 @@
       "jobName": "paragraph_1612036727530_364552858",
       "id": "20200111-140737_1335490660",
       "dateCreated": "2021-01-30 19:58:47.530",
-      "dateStarted": "2021-02-01 21:44:41.217",
-      "dateFinished": "2021-02-01 21:45:36.721",
-      "status": "ERROR",
+      "dateStarted": "2021-02-02 21:07:05.764",
+      "dateFinished": "2021-02-02 21:07:44.178",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nhdfs dfs -ls /mine/stg-data/\nhdfs dfs -getmerge /mine/stg-data/data-100.csv /data/custom/data-100.csv",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-02 18:03:56.856",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 18:03:58,309 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 1 items\ndrwxr-xr-x   - root supergroup          0 2021-02-02 18:00 /mine/stg-data/data-100.csv\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-02 18:04:00,269 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612288840872_-603271262",
+      "id": "20210202-180040_170341267",
+      "dateCreated": "2021-02-02 18:00:40.872",
+      "dateStarted": "2021-02-02 18:03:56.919",
+      "dateFinished": "2021-02-02 18:04:01.407",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -772,9 +854,9 @@
     },
     {
       "title": "6 - Display the data using an iteration",
-      "text": "%pyspark\n",
+      "text": "%livy.pyspark\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-01-30 19:58:47.531",
+      "dateUpdated": "2021-02-02 18:08:29.708",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -2153,7 +2235,7 @@
     {
       "text": "%md\n# Tear Down\n---",
       "user": "anonymous",
-      "dateUpdated": "2021-01-30 19:58:47.551",
+      "dateUpdated": "2021-02-02 21:21:53.491",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -2165,7 +2247,7 @@
         "colWidth": 12.0,
         "editorMode": "ace/mode/markdown",
         "fontSize": 9.0,
-        "editorHide": false,
+        "editorHide": true,
         "results": {},
         "enabled": true
       },
@@ -2192,9 +2274,9 @@
     },
     {
       "title": "Delete the Livy session",
-      "text": "%sh\n\n#curl -s 192.168.1.173:8998/sessions/0 | python3 -mjson.tool\n\n#sessionId \u003d $(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\ncurl -s 192.168.1.173:8998/sessions/0 -X DELETE",
+      "text": "%sh\n\ncurl -s 192.168.1.173:8998/sessions/ | python3 -mjson.tool\n\n#sessionId \u003d $(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\n#curl -s 192.168.1.173:8998/sessions/1 -X DELETE",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 22:40:17.984",
+      "dateUpdated": "2021-02-02 21:21:53.411",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -2226,8 +2308,8 @@
       "jobName": "paragraph_1612036727551_-1675884508",
       "id": "20200830-065153_912358573",
       "dateCreated": "2021-01-30 19:58:47.551",
-      "dateStarted": "2021-02-01 22:40:18.068",
-      "dateFinished": "2021-02-01 22:40:20.858",
+      "dateStarted": "2021-02-02 21:21:24.540",
+      "dateFinished": "2021-02-02 21:21:28.152",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -2334,13 +2416,14 @@
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "/DevSH/Labs/Pyspark/ExploringDataFrames",
+  "name": "/pyspark/RDD/cleaningData",
   "id": "2FWE4DHP1",
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
     "md:shared_process": [],
     "sh:shared_process": [],
+    "spark:shared_process": [],
     "livy:shared_process": []
   },
   "config": {

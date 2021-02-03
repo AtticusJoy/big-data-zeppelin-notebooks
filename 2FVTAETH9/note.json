@@ -3,7 +3,7 @@
     {
       "text": "%md\n### Setup\n\nremove files and get new spark context",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.128",
+      "dateUpdated": "2021-02-03 00:28:50.555",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -33,9 +33,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_2007784378",
+      "jobName": "paragraph_1612312130555_1017355179",
       "id": "20210128-042035_456830115",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.555",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -44,7 +44,7 @@
       "title": "Get new Spark Context",
       "text": "%pyspark\n\nsc \u003d spark.sparkContext",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.128",
+      "dateUpdated": "2021-02-03 00:28:50.555",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -77,9 +77,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_610659037",
+      "jobName": "paragraph_1612312130555_-970965278",
       "id": "20210128-042056_1692353318",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.555",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -88,7 +88,7 @@
       "title": "Adding folder for hdfs data",
       "text": "%sh\nhdfs dfs -ls /\nhdfs dfs -mkdir /mine\nhdfs dfs -ls /\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:47.852",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -117,9 +117,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_196938697",
+      "jobName": "paragraph_1612312130555_-1907792403",
       "id": "20210128-043943_2057210230",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.555",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -128,7 +128,7 @@
       "title": "Loading grades into hdfs",
       "text": "%sh\nhdfs dfs -rm -skipTrash /mine/grades.csv\nhdfs dfs -put /data/grades.csv /mine\nhdfs dfs -ls /mine",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.128",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -157,9 +157,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_-910809038",
+      "jobName": "paragraph_1612312130556_1337760816",
       "id": "20210128-044413_1744761970",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -167,7 +167,7 @@
     {
       "text": "%md\n### hdfs dfs commands work!\nthe slf4j warnings are super annoying though. ***perhaps I can change this in the image***\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.128",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -197,9 +197,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_-230135643",
+      "jobName": "paragraph_1612312130556_1106658018",
       "id": "20210128-044731_243674548",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -208,7 +208,7 @@
       "title": "Add and Analyze the grades DataFrame",
       "text": "%pyspark\n\ngradesDF \u003d spark.read.option(\"header\", \"true\").option(\"InferSchema\", \"true\").csv(\"/mine/grades.csv\")\ngradesDF.printSchema()\ngradesDF.show(5)\ngradesDF.count()\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.128",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -241,9 +241,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_-393081631",
+      "jobName": "paragraph_1612312130556_-495844684",
       "id": "20210128-045422_837921609",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -252,7 +252,7 @@
       "title": "Load /data/ssn-address.tsv into to HDFS (hint: tsv is tabbed separated file",
       "text": "%sh\nhdfs dfs -rm -skipTrash /mine/ssn-address.tsv\nhdfs dfs -put /data/ssn-address.tsv /mine\nhdfs dfs -ls /mine",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.128",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -281,9 +281,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224128_-1276940703",
+      "jobName": "paragraph_1612312130556_-1955979392",
       "id": "20210128-050351_1829368962",
-      "dateCreated": "2021-02-01 21:33:44.128",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -292,7 +292,7 @@
       "title": "Add and Analyze the ssn-address DataFrame",
       "text": "%pyspark\ngroup_name \u003d \"Abby\u0027s Test Jobs\"\nsc.setJobGroup(group_name, \"Read and show ssn-address df\")\nssn_addressDF \u003d spark.read.format(\"csv\").option(\"delimiter\", \"\\t\").load(\"/mine/ssn-address.tsv\")\nssn_addressDF.printSchema()\nssn_addressDF.show()\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.134",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -325,9 +325,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224133_924855249",
+      "jobName": "paragraph_1612312130556_-1699841419",
       "id": "20210128-050302_1912533767",
-      "dateCreated": "2021-02-01 21:33:44.133",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -335,7 +335,7 @@
     {
       "text": "%md\n## NEXT\n\nproceed to figure out how to fix column names, dirty data, and rename headers and load cleanly into HDFS (another csv or Hive)\nthen run join on ssn and metrics on names and reports on who we don\u0027t have addresses for to mail the report cards to\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.134",
+      "dateUpdated": "2021-02-03 00:28:50.556",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -365,9 +365,9 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224134_1009379628",
+      "jobName": "paragraph_1612312130556_949987937",
       "id": "20210128-051950_574265380",
-      "dateCreated": "2021-02-01 21:33:44.134",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
@@ -375,7 +375,7 @@
     {
       "text": "%md\n### Deleting Livy session\nIn order to delete old livy session, you have to look up and then curl to delete. \n***The jq program is not installed on the image. \nMaybe I can make that change later.***",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.134",
+      "dateUpdated": "2021-02-03 00:28:50.557",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -405,18 +405,18 @@
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224134_-922369712",
+      "jobName": "paragraph_1612312130556_636529033",
       "id": "20210128-044010_1283318798",
-      "dateCreated": "2021-02-01 21:33:44.134",
+      "dateCreated": "2021-02-03 00:28:50.556",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Delete old LIVY session",
-      "text": "%sh\n\n#curl -s 192.168.1.173:8998/sessions | python3 -mjson.tool\n\n#sessionId \u003d $(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\n#curl -s 192.168.1.173:8998/sessions/0 -X DELETE\n",
+      "text": "%sh\n\n#curl -s 192.168.1.173:8998/sessions/0 | python3 -mjson.tool\n\n#sessionId \u003d $(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\ncurl -s 192.168.1.173:8998/sessions/0 -X DELETE\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:34:26.648",
+      "dateUpdated": "2021-02-03 00:28:50.557",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -440,39 +440,38 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "{\n    \"from\": 0,\n    \"total\": 0,\n    \"sessions\": []\n}\n"
+            "data": "{\"msg\":\"deleted\"}"
           }
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1612215224134_219213012",
+      "jobName": "paragraph_1612312130557_257180571",
       "id": "20210128-042228_71010364",
-      "dateCreated": "2021-02-01 21:33:44.134",
-      "dateStarted": "2021-02-01 21:34:14.113",
-      "dateFinished": "2021-02-01 21:34:14.388",
-      "status": "FINISHED",
+      "dateCreated": "2021-02-03 00:28:50.557",
+      "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-01 21:33:44.134",
+      "dateUpdated": "2021-02-03 00:28:50.557",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1612215224134_-807785575",
+      "jobName": "paragraph_1612312130557_-1309932080",
       "id": "20210128-043045_1955880742",
-      "dateCreated": "2021-02-01 21:33:44.134",
+      "dateCreated": "2021-02-03 00:28:50.557",
       "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "~Trash/abby",
-  "id": "2FXUDKMA7",
+  "name": "abby",
+  "id": "2FVTAETH9",
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
