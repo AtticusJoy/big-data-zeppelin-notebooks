@@ -1,0 +1,3715 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# About This Lab\n**Objective:** Become familiar with dataframes schemas operations.\nCreate and save DataFrames using different types of data sources. \nLearn options for inferring and defining schemas.\n**File locations:**\n    Exercise files: /home/training/training_materials/devsh/exercises/dataframes\n    Data (local): /home/training/training_materials/devsh/data/devices.json\n    Data (HDFS): /devsh_loudacre/devices.json\n    Hive table: devsh.accounts\n**Successful outcome:**\n**Before you begin:**\n**Related lessons:** Working with Dataframes and Schemas\n\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.433",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eAbout This Lab\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eObjective:\u003c/strong\u003e Become familiar with dataframes schemas operations.\n\u003cbr  /\u003eCreate and save DataFrames using different types of data sources.\n\u003cbr  /\u003eLearn options for inferring and defining schemas.\n\u003cbr  /\u003e\u003cstrong\u003eFile locations:\u003c/strong\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eExercise files: /home/training/training_materials/devsh/exercises/dataframes\nData (local): /home/training/training_materials/devsh/data/devices.json\nData (HDFS): /devsh_loudacre/devices.json\nHive table: devsh.accounts\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eSuccessful outcome:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cstrong\u003eBefore you begin:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cstrong\u003eRelated lessons:\u003c/strong\u003e Working with Dataframes and Schemas\u003c/p\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_853959320",
+      "id": "20171105-200834_1116095891",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n# Setup\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.433",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSetup\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_1592992826",
+      "id": "20181114-164229_902436001",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "status": "READY"
+    },
+    {
+      "text": "%sh\nhdfs dfs -mkdir /mine",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:16:15.072",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:16:16,116 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nmkdir: `/mine\u0027: File exists\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "ExitValue: 1"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612422494914_1131832393",
+      "id": "paragraph_1612422494914_1131832393",
+      "dateCreated": "2021-02-04 07:08:14.914",
+      "dateStarted": "2021-02-04 07:16:15.083",
+      "dateFinished": "2021-02-04 07:16:17.130",
+      "status": "ERROR"
+    },
+    {
+      "title": "Delete existing HDFS files to prevent file exists errors",
+      "text": "%sh\nhdfs dfs -rm -skipTrash /mine/accounts.csv\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:21:51.097",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:21:52,117 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nDeleted /mine/accounts.csv\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_1190920501",
+      "id": "20210122-182625_537679893",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "dateStarted": "2021-02-04 07:21:51.100",
+      "dateFinished": "2021-02-04 07:21:53.280",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Environment variable required to use SetJobGroup",
+      "text": "%sh\n\nPYSPARK_PIN_THREAD\u003dtrue",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:21:55.516",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_1934465248",
+      "id": "20200830-073644_1484939052",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "dateStarted": "2021-02-04 07:21:55.520",
+      "dateFinished": "2021-02-04 07:21:55.531",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Retrieve the Spark Context",
+      "text": "%livy.pyspark\n\nsc \u003d spark.sparkContext",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:21:57.088",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_500106621",
+      "id": "20200830-074054_2080534068",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "dateStarted": "2021-02-04 07:21:57.092",
+      "dateFinished": "2021-02-04 07:22:29.543",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n#### Load a Dataframe into the Hive metastore",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.433",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eLoad a Dataframe into the Hive metastore\u003c/h4\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_221877971",
+      "id": "20210203-002925_180951533",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "status": "READY"
+    },
+    {
+      "text": "%livy.sql\nSHOW DATABASES\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:26:56.963",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "databaseName": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "databaseName\ndefault"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_133655401",
+      "id": "20210203-044959_1432408824",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "dateStarted": "2021-02-04 07:26:56.965",
+      "dateFinished": "2021-02-04 07:27:01.074",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%livy.sql\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:07:32.949",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612422452949_1105715494",
+      "id": "paragraph_1612422452949_1105715494",
+      "dateCreated": "2021-02-04 07:07:32.949",
+      "status": "READY"
+    },
+    {
+      "text": "%livy.sql\n\nCREATE DATABASE mine\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:32:35.375",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {}
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_1251918463",
+      "id": "20210203-003355_1603829657",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "dateStarted": "2021-02-04 07:32:26.981",
+      "dateFinished": "2021-02-04 07:32:28.011",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%livy.sql\nDROP TABLE IF EXISTS mine.account_info ",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:32:37.759",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {},
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435433_2110774856",
+      "id": "20210203-003442_238637556",
+      "dateCreated": "2021-02-04 06:33:55.433",
+      "dateStarted": "2021-02-04 07:32:37.763",
+      "dateFinished": "2021-02-04 07:32:38.795",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%livy.sql\nSHOW TABLES in mine",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:33:33.829",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "database": "string",
+                      "tableName": "string",
+                      "isTemporary": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "database\ttableName\tisTemporary\nmine\taccounts_info\tfalse"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435434_1733046307",
+      "id": "20210204-044754_745551977",
+      "dateCreated": "2021-02-04 06:33:55.434",
+      "dateStarted": "2021-02-04 07:33:33.831",
+      "dateFinished": "2021-02-04 07:33:34.874",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\n#### If a new run of bigdata-docker-compose, add the base directory to HDFS\nhdfs dfs -mkdir /mine\nhdfs dfs -ls /",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:32:47.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:32:48,551 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nmkdir: `/mine\u0027: File exists\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:32:50,572 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 5 items\ndrwxr-xr-x   - root supergroup          0 2021-02-04 05:45 /log\ndrwxr-xr-x   - root supergroup          0 2021-02-04 07:21 /mine\ndrwxr-xr-x   - root supergroup          0 2021-02-04 05:46 /spark-jars\ndrwxrwx---   - root supergroup          0 2021-02-04 05:46 /tmp\ndrwxr-xr-x   - root supergroup          0 2021-02-04 06:35 /user\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435434_1382306175",
+      "id": "20210203-052743_1228000808",
+      "dateCreated": "2021-02-04 06:33:55.434",
+      "dateStarted": "2021-02-04 07:32:47.441",
+      "dateFinished": "2021-02-04 07:32:51.678",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\nhdfs dfs -rm -r -skipTrash /mine/accounts.csv\n\nhdfs dfs -put /data/custom/accounts.csv /mine/accounts.csv\n\nhdfs dfs -head /mine/accounts.csv\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:32:53.602",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:32:54,625 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/accounts.csv\u0027: No such file or directory\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:32:56,744 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:32:59,227 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n\"first_name\",\"last_name\",\"company_name\",\"address\",\"city\",\"county\",\"state\",\"zip\",\"phone1\",\"phone2\",\"email\",\"web\"\r\n\"James\",\"Butt\",\"Benton, John B Jr\",\"6649 N Blue Gum St\",\"New Orleans\",\"Orleans\",\"LA\",70116,\"504-621-8927\",\"504-845-1427\",\"jbutt@gmail.com\",\"http://www.bentonjohnbjr.com\"\r\n\"Josephine\",\"Darakjy\",\"Chanay, Jeffrey A Esq\",\"4 B Blue Ridge Blvd\",\"Brighton\",\"Livingston\",\"MI\",48116,\"810-292-9388\",\"810-374-9840\",\"josephine_darakjy@darakjy.org\",\"http://www.chanayjeffreyaesq.com\"\r\n\"Art\",\"Venere\",\"Chemel, James L Cpa\",\"8 W Cerritos Ave #54\",\"Bridgeport\",\"Gloucester\",\"NJ\",\"08014\",\"856-636-8749\",\"856-264-4130\",\"art@venere.org\",\"http://www.chemeljameslcpa.com\"\r\n\"Lenna\",\"Paprocki\",\"Feltz Printing Service\",\"639 Main St\",\"Anchorage\",\"Anchorage\",\"AK\",99501,\"907-385-4412\",\"907-921-2010\",\"lpaprocki@hotmail.com\",\"http://www.feltzprintingservice.com\"\r\n\"Donette\",\"Foller\",\"Printing Dimensions\",\"34 Center St\",\"Hamilton\",\"Butler\",\"OH\",45011,\"513-570-1893\",\"513-549-4561\",\"donette.foller@cox.net\",\"http://www.printingdimensions."
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435434_1806655561",
+      "id": "20210203-003009_512335839",
+      "dateCreated": "2021-02-04 06:33:55.434",
+      "dateStarted": "2021-02-04 07:32:53.605",
+      "dateFinished": "2021-02-04 07:33:00.353",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%livy.pyspark\n\naccountsDF \u003d spark.read.option(\"header\", \"true\").csv(\"/mine/accounts.csv\")\naccountsDF.printSchema()\naccountsDF.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:33:03.788",
+      "progress": 50,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- first_name: string (nullable \u003d true)\n |-- last_name: string (nullable \u003d true)\n |-- company_name: string (nullable \u003d true)\n |-- address: string (nullable \u003d true)\n |-- city: string (nullable \u003d true)\n |-- county: string (nullable \u003d true)\n |-- state: string (nullable \u003d true)\n |-- zip: string (nullable \u003d true)\n |-- phone1: string (nullable \u003d true)\n |-- phone2: string (nullable \u003d true)\n |-- email: string (nullable \u003d true)\n |-- web: string (nullable \u003d true)\n\n+----------+---------+--------------------+--------------------+-----------+----------+-----+-----+------------+------------+--------------------+--------------------+\n|first_name|last_name|        company_name|             address|       city|    county|state|  zip|      phone1|      phone2|               email|                 web|\n+----------+---------+--------------------+--------------------+-----------+----------+-----+-----+------------+------------+--------------------+--------------------+\n|     James|     Butt|   Benton, John B Jr|  6649 N Blue Gum St|New Orleans|   Orleans|   LA|70116|504-621-8927|504-845-1427|     jbutt@gmail.com|http://www.benton...|\n| Josephine|  Darakjy|Chanay, Jeffrey A...| 4 B Blue Ridge Blvd|   Brighton|Livingston|   MI|48116|810-292-9388|810-374-9840|josephine_darakjy...|http://www.chanay...|\n|       Art|   Venere| Chemel, James L Cpa|8 W Cerritos Ave #54| Bridgeport|Gloucester|   NJ|08014|856-636-8749|856-264-4130|      art@venere.org|http://www.chemel...|\n|     Lenna| Paprocki|Feltz Printing Se...|         639 Main St|  Anchorage| Anchorage|   AK|99501|907-385-4412|907-921-2010|lpaprocki@hotmail...|http://www.feltzp...|\n|   Donette|   Foller| Printing Dimensions|        34 Center St|   Hamilton|    Butler|   OH|45011|513-570-1893|513-549-4561|donette.foller@co...|http://www.printi...|\n+----------+---------+--------------------+--------------------+-----------+----------+-----+-----+------------+------------+--------------------+--------------------+\nonly showing top 5 rows"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435434_2052732278",
+      "id": "20210203-011131_465550119",
+      "dateCreated": "2021-02-04 06:33:55.434",
+      "dateStarted": "2021-02-04 07:33:03.790",
+      "dateFinished": "2021-02-04 07:33:09.881",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%livy.pyspark\n#Save df to hive metastore\n\naccountsDF.write.saveAsTable(\"mine.accounts_info\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:33:22.354",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435434_2018842278",
+      "id": "20210203-044415_364558996",
+      "dateCreated": "2021-02-04 06:33:55.434",
+      "dateStarted": "2021-02-04 07:33:22.356",
+      "dateFinished": "2021-02-04 07:33:24.406",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n# Lab\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eLab\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1287719346",
+      "id": "20181114-164844_1661453681",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Create a Dataframe Based on a Hive Table",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCreate a Dataframe Based on a Hive Table\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1202442689",
+      "id": "20171105-200519_752831754",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nThe %sql magic provides you with a Spark SQL environment that allows you to interact with Hive tables.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe %sql magic provides you with a Spark SQL environment that allows you to interact with Hive tables.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1782130451",
+      "id": "20181115-084123_1911813743",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "1 - Review the schema of the devsh.accounts table",
+      "text": "%sql",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1227386252",
+      "id": "20171105-200623_656362182",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "2 - Create a new DataFrame using the Hive devsh.accounts table",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_692129251",
+      "id": "20171105-201709_849284875",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nPrint the schema and the first 10 rows of the DataFrame, and note that the schema aligns with that of the Hive table.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003ePrint the schema and the first 10 rows of the DataFrame, and note that the schema aligns with that of the Hive table.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1430095050",
+      "id": "20171105-201449_1118165660",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "3 - View the dataframe and confirm alignment with the Hive table",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1999112298",
+      "id": "20200111-175746_198257135",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nCreate a new DataFrame with rows from the accounts data where the zip code is 94913, and save the result to CSV files in the /devsh_loudacre/ accounts_zip94913 HDFS directory. \nYou can do this in a single command, as shown below, or with multiple commands.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame with rows from the accounts data where the zip code is 94913, and save the result to CSV files in the /devsh_loudacre/ accounts_zip94913 HDFS directory.\n\u003cbr  /\u003eYou can do this in a single command, as shown below, or with multiple commands.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1573348442",
+      "id": "20200111-180055_1261073848",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "4 - Create a new dataframe and save it to HDFS",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1281017181",
+      "id": "20200111-180152_647295647",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nUse hdfs to view the /devsh_loudacre/accounts_zip94913 directory in HDFS and the data in one of the saved files.\nConfirm that the CSV file includes a header line, and that only records for the selected zip code are included.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eUse hdfs to view the /devsh_loudacre/accounts_zip94913 directory in HDFS and the data in one of the saved files.\n\u003cbr  /\u003eConfirm that the CSV file includes a header line, and that only records for the selected zip code are included.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_136605039",
+      "id": "20200111-180517_2057464815",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "5 - Confirm successful write to HDFS",
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1721072805",
+      "id": "20200111-180616_878429565",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Optional: \nTry creating a new DataFrame based on the CSV files you created above. \nCompare the schema of the original accountsDF and the new DataFrame. What’s different? \nTry again, this time setting the inferSchema option to true and compare again.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eOptional:\u003c/h3\u003e\n\u003cp\u003eTry creating a new DataFrame based on the CSV files you created above.\n\u003cbr  /\u003eCompare the schema of the original accountsDF and the new DataFrame. What’s different?\n\u003cbr  /\u003eTry again, this time setting the inferSchema option to true and compare again.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1196426162",
+      "id": "20200111-181226_903550862",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "6 - Optional: study the impact of the inferSchema option",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1223608661",
+      "id": "20200111-181420_1328402570",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Define a Schema for a DataFrame\nIf you have not done so yet, review the data in the HDFS file /devsh_loudacre/devices.json.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eDefine a Schema for a DataFrame\u003c/h3\u003e\n\u003cp\u003eIf you have not done so yet, review the data in the HDFS file /devsh_loudacre/devices.json.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_476160730",
+      "id": "20200111-182630_966116104",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "7 - Review the data in /devsh_loudacre/devices.json",
+      "text": "%sh\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_2118470890",
+      "id": "20200111-182913_1175240105",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nCreate a new DataFrame based on the devices.json file. (This command could take several seconds while it infers the schema.)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame based on the devices.json file. (This command could take several seconds while it infers the schema.)\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_388491550",
+      "id": "20200111-183241_1034944500",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "8 - Read the devices.json file into a devDF dataframe",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1209813408",
+      "id": "20200111-183151_1635217379",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nView the schema of the devDF DataFrame. Note the column names and types that Spark inferred from the JSON file. \nIn particular, note that the release_dt column is of type string, whereas the data in the column actually represents a timestamp.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eView the schema of the devDF DataFrame. Note the column names and types that Spark inferred from the JSON file.\n\u003cbr  /\u003eIn particular, note that the release_dt column is of type string, whereas the data in the column actually represents a timestamp.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1725422288",
+      "id": "20200111-183538_253681976",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "9 - View the schema of the devDF dataframe",
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1914767830",
+      "id": "20200111-183606_516389013",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nDefine a schema that correctly specifies the column types for this DataFrame. \nStart by importing the package with the definitions of necessary classes and types.\nNext, create a collection of StructField objects, which represent column definitions. \nThe release_dt column should be a timestamp.\n\n```spark\nfrom pyspark.sql.types import *\ndevColumns \u003d [ StructField(\"devnum\",LongType()), StructField(\"make\",StringType()), StructField(\"model\",StringType()), StructField(\"release_dt\",TimestampType()), StructField(\"dev_type\",StringType())]\n```",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eDefine a schema that correctly specifies the column types for this DataFrame.\n\u003cbr  /\u003eStart by importing the package with the definitions of necessary classes and types.\n\u003cbr  /\u003eNext, create a collection of StructField objects, which represent column definitions.\n\u003cbr  /\u003eThe release_dt column should be a timestamp.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"spark\"\u003efrom pyspark.sql.types import *\ndevColumns \u003d [ StructField(\"devnum\",LongType()), StructField(\"make\",StringType()), StructField(\"model\",StringType()), StructField(\"release_dt\",TimestampType()), StructField(\"dev_type\",StringType())]\n\u003c/code\u003e\u003c/pre\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_1193951825",
+      "id": "20200111-185637_433874821",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "10 - Define a schema",
+      "text": "%pyspark\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.435",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_801755404",
+      "id": "20200111-185741_1002287600",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "11 - Create a schema (a StructType object) using the column definition list",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435435_872011426",
+      "id": "20200111-190339_1337771160",
+      "dateCreated": "2021-02-04 06:33:55.435",
+      "status": "READY"
+    },
+    {
+      "title": "12 - Recreate the devDF DataFrame, this time using the new schema",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1503755240",
+      "id": "20200111-190529_818511213",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "13 - View the schema and data of the new DataFrame, and confirm that the release_dt column type is now timestamp",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1404622414",
+      "id": "20200111-190751_1912942450",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nNow that the device data uses the correct schema, write the data into Parquet format, which automatically embeds the schema. \nSave the Parquet data files into an HDFS directory called /devsh_loudacre/devices_parquet.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNow that the device data uses the correct schema, write the data into Parquet format, which automatically embeds the schema.\n\u003cbr  /\u003eSave the Parquet data files into an HDFS directory called /devsh_loudacre/devices_parquet.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_738296377",
+      "id": "20200111-191615_1691108697",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "14 - Save the devDF dataframe to /devsh_loudacre/devices_parquet using the parquet format",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_59754237",
+      "id": "20200111-191643_697955659",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Optional: \n\nUse parquet-tools to view the schema of the saved files. First download the HDFS directory (or an individual file), then run the command.\n\n```shell\n$ hdfs dfs -get /devsh_loudacre/devices_parquet /tmp/ \n$ parquet-tools schema /tmp/devices_parquet/\n```\n\nIn CDH 5, the parquet-tools command could be used directly on files in HDFS. In CDH 6, this is no longer the case. \nAs a workaround, you can use: hadoop jar /opt/cloudera/parcels/CDH/jars/parquet-tools-1.9.0- cdh6.1.1.jar schema hdfs://localhost/devsh_loudacre/devices_parquet/. Related JIRA: CDH-80574.\n\nNote that the type of the release_dt column is noted as int96; this is how Spark denotes a timestamp type in Parquet.\nFor more information about parquet-tools, run parquet-tools --help.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eOptional:\u003c/h3\u003e\n\u003cp\u003eUse parquet-tools to view the schema of the saved files. First download the HDFS directory (or an individual file), then run the command.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"shell\"\u003e$ hdfs dfs -get /devsh_loudacre/devices_parquet /tmp/ \n$ parquet-tools schema /tmp/devices_parquet/\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eIn CDH 5, the parquet-tools command could be used directly on files in HDFS. In CDH 6, this is no longer the case.\n\u003cbr  /\u003eAs a workaround, you can use: hadoop jar /opt/cloudera/parcels/CDH/jars/parquet-tools-1.9.0- cdh6.1.1.jar schema hdfs://localhost/devsh_loudacre/devices_parquet/. Related JIRA: CDH-80574.\u003c/p\u003e\n\u003cp\u003eNote that the type of the release_dt column is noted as int96; this is how Spark denotes a timestamp type in Parquet.\n\u003cbr  /\u003eFor more information about parquet-tools, run parquet-tools \u0026ndash;help.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_535652587",
+      "id": "20200111-192204_1182605032",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "15 - Optional - Confirm the schema of the saved files using parquet-tools",
+      "text": "%sh",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_818423400",
+      "id": "20200111-192641_1103008129",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nCreate a new DataFrame using the Parquet files you saved in devices_parquet and view its schema.\nNote that Spark is able to correctly infer the timestamp type of the release_dt column from Parquet’s embedded schema.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame using the Parquet files you saved in devices_parquet and view its schema.\n\u003cbr  /\u003eNote that Spark is able to correctly infer the timestamp type of the release_dt column from Parquet’s embedded schema.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_170055580",
+      "id": "20200111-193044_783469452",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "16 - Optional - Read the parquet files back in a dataframe to confirm the schema is well saved",
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_344803916",
+      "id": "20200111-193146_2016640957",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n# Result\n**You have now:** explored different methods to define the schema of a dataframe.\n\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eResult\u003c/h1\u003e\n\u003cp\u003e\u003cstrong\u003eYou have now:\u003c/strong\u003e explored different methods to define the schema of a dataframe.\u003c/p\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1998558817",
+      "id": "20181119-142716_792318228",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n# Solution\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSolution\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1725319898",
+      "id": "20171113-155535_1769142099",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Create a Dataframe Based on a Hive Table",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCreate a Dataframe Based on a Hive Table\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1981421985",
+      "id": "20210122-190017_1915525627",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "1 - Review the schema of the mine.accounts_info table",
+      "text": "%livy.sql\n\nDESCRIBE mine.accounts_info",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:33:48.247",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "col_name": "string",
+                      "data_type": "string",
+                      "comment": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "col_name\tdata_type\tcomment\nfirst_name\tstring\tnull\nlast_name\tstring\tnull\ncompany_name\tstring\tnull\naddress\tstring\tnull\ncity\tstring\tnull\ncounty\tstring\tnull\nstate\tstring\tnull\nzip\tstring\tnull\nphone1\tstring\tnull\nphone2\tstring\tnull\nemail\tstring\tnull\nweb\tstring\tnull"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_340915368",
+      "id": "20200111-173912_1607664098",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:33:48.249",
+      "dateFinished": "2021-02-04 07:33:49.280",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nThe Livy interprepter provides you with a Spark SQL environment that allows you directly to interact with Hive tables.\nThe %sql provides a SQL like environment allowing straight SQL commands.\n\nThis exercise usess a DataFrame based on the `account` table in the Hive database. \n\nHive beeline CLI\nbeeline -u jdbc:hive2://localhost:10000 -e \"DESCRIBE devsh.accounts\"\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe Livy interprepter provides you with a Spark SQL environment that allows you directly to interact with Hive tables.\n\u003cbr  /\u003eThe %sql provides a SQL like environment allowing straight SQL commands.\u003c/p\u003e\n\u003cp\u003eThis exercise usess a DataFrame based on the \u003ccode\u003eaccount\u003c/code\u003e table in the Hive database.\u003c/p\u003e\n\u003cp\u003eHive beeline CLI\n\u003cbr  /\u003ebeeline -u jdbc:hive2://localhost:10000 -e \u0026ldquo;DESCRIBE devsh.accounts\u0026rdquo;\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1091171334",
+      "id": "20210121-130036_113149906",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "2 - Create a new DataFrame using the Hive devsh.accounts_info table",
+      "text": "%livy.pyspark\n\naccountsInfoDF \u003d spark.read.table(\"mine.accounts_info\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:34:00.676",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_2083889138",
+      "id": "20200111-175424_830219293",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:34:00.680",
+      "dateFinished": "2021-02-04 07:34:01.712",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nThe `table` function uses a jdbc connection to locates the Hive metastore to pull\nin schema information from the hive RDBMS database. This also passes the connect\nstring for HiveServer2 to the Spark driver. \n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe \u003ccode\u003etable\u003c/code\u003e function uses a jdbc connection to locates the Hive metastore to pull\n\u003cbr  /\u003ein schema information from the hive RDBMS database. This also passes the connect\n\u003cbr  /\u003estring for HiveServer2 to the Spark driver.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_2065398888",
+      "id": "20210122-182010_1298352692",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "3 - View the dataframe and confirm alignment with the Hive table",
+      "text": "%livy.pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Show the accounts data\")\naccountsDF.printSchema()\naccountsDF.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:34:07.505",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "acct_num": "string",
+                      "acct_create_dt": "string",
+                      "acct_close_dt": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "address": "string",
+                      "city": "string",
+                      "state": "string",
+                      "zipcode": "string",
+                      "phone_number": "string",
+                      "created": "string",
+                      "modified": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- first_name: string (nullable \u003d true)\n |-- last_name: string (nullable \u003d true)\n |-- company_name: string (nullable \u003d true)\n |-- address: string (nullable \u003d true)\n |-- city: string (nullable \u003d true)\n |-- county: string (nullable \u003d true)\n |-- state: string (nullable \u003d true)\n |-- zip: string (nullable \u003d true)\n |-- phone1: string (nullable \u003d true)\n |-- phone2: string (nullable \u003d true)\n |-- email: string (nullable \u003d true)\n |-- web: string (nullable \u003d true)\n\n+----------+---------+--------------------+--------------------+-----------+--------------+-----+-----+------------+------------+--------------------+--------------------+\n|first_name|last_name|        company_name|             address|       city|        county|state|  zip|      phone1|      phone2|               email|                 web|\n+----------+---------+--------------------+--------------------+-----------+--------------+-----+-----+------------+------------+--------------------+--------------------+\n|     James|     Butt|   Benton, John B Jr|  6649 N Blue Gum St|New Orleans|       Orleans|   LA|70116|504-621-8927|504-845-1427|     jbutt@gmail.com|http://www.benton...|\n| Josephine|  Darakjy|Chanay, Jeffrey A...| 4 B Blue Ridge Blvd|   Brighton|    Livingston|   MI|48116|810-292-9388|810-374-9840|josephine_darakjy...|http://www.chanay...|\n|       Art|   Venere| Chemel, James L Cpa|8 W Cerritos Ave #54| Bridgeport|    Gloucester|   NJ|08014|856-636-8749|856-264-4130|      art@venere.org|http://www.chemel...|\n|     Lenna| Paprocki|Feltz Printing Se...|         639 Main St|  Anchorage|     Anchorage|   AK|99501|907-385-4412|907-921-2010|lpaprocki@hotmail...|http://www.feltzp...|\n|   Donette|   Foller| Printing Dimensions|        34 Center St|   Hamilton|        Butler|   OH|45011|513-570-1893|513-549-4561|donette.foller@co...|http://www.printi...|\n|    Simona|  Morasca| Chapman, Ross E Esq|        3 Mcauley Dr|    Ashland|       Ashland|   OH|44805|419-503-2484|419-800-6759|  simona@morasca.com|http://www.chapma...|\n|    Mitsue|  Tollner|  Morlong Associates|           7 Eads St|    Chicago|          Cook|   IL|60632|773-573-6914|773-924-8565|mitsue_tollner@ya...|http://www.morlon...|\n|     Leota| Dilliard|    Commercial Press|    7 W Jackson Blvd|   San Jose|   Santa Clara|   CA|95111|408-752-3500|408-813-1105|   leota@hotmail.com|http://www.commer...|\n|      Sage|   Wieser|Truhlar And Truhl...|    5 Boston Ave #88|Sioux Falls|     Minnehaha|   SD|57105|605-414-2147|605-794-4895| sage_wieser@cox.net|http://www.truhla...|\n|      Kris|  Marrier|King, Christopher...|228 Runamuck Pl #...|  Baltimore|Baltimore City|   MD|21224|410-655-8723|410-804-4694|      kris@gmail.com|http://www.kingch...|\n+----------+---------+--------------------+--------------------+-----------+--------------+-----+-----+------------+------------+--------------------+--------------------+\nonly showing top 10 rows"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1834776954",
+      "id": "20200111-175849_1440047182",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:34:07.514",
+      "dateFinished": "2021-02-04 07:34:08.567",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nPrint the schema and the first 10 rows of the DataFrame. Compare that the Dataframe schema \naligns with that of the Hive table.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003ePrint the schema and the first 10 rows of the DataFrame. Compare that the Dataframe schema\n\u003cbr  /\u003ealigns with that of the Hive table.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1763958275",
+      "id": "20210121-134836_1444803397",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "4 - Create a new dataframe and save it to HDFS",
+      "text": "%livy.pyspark\n#from pyspark.sql.functions import col\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Write the filtered accounts data\")\naccountsDF.select(\"first_name\", \"last_name\", \"address\", \"city\", \"county\", \"state\", \"zip\", accountsDF.web.alias(\"website\")).where(\"state \u003d \u0027CA\u0027\").write.option(\"header\",\"true\").csv(\"/mine/accounts_stateCA\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:38:51.399",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1491972653",
+      "id": "20200111-180302_674401673",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:38:51.401",
+      "dateFinished": "2021-02-04 07:38:52.431",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nThe `where` function is used to select rows. \n\nThe `write` function is used to write data from Spark to HDFS. Spark will write to a large number of data formats.\nCommon data types include: .avro, .csv, .json, and .text\n\nThe `option` function will pass in parameters; such as `header` \u003d true, to include the schema on the first row.\n\nCreate a new DataFrame with rows from the accounts data where the zip code is 94913, and save the result \nto CSV files in the /devsh_loudacre/ accounts_zip94913 HDFS directory.\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThe \u003ccode\u003ewhere\u003c/code\u003e function is used to select rows.\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003ewrite\u003c/code\u003e function is used to write data from Spark to HDFS. Spark will write to a large number of data formats.\n\u003cbr  /\u003eCommon data types include: .avro, .csv, .json, and .text\u003c/p\u003e\n\u003cp\u003eThe \u003ccode\u003eoption\u003c/code\u003e function will pass in parameters; such as \u003ccode\u003eheader\u003c/code\u003e \u003d true, to include the schema on the first row.\u003c/p\u003e\n\u003cp\u003eCreate a new DataFrame with rows from the accounts data where the zip code is 94913, and save the result\n\u003cbr  /\u003eto CSV files in the /devsh_loudacre/ accounts_zip94913 HDFS directory.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1312564093",
+      "id": "20210121-140054_655193673",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "5 - Confirm successful write to HDFS",
+      "text": "%sh\n\nhdfs dfs -ls /mine/accounts_stateCA\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:38:57.038",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:38:58,010 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 2 items\n-rw-r--r--   2 root supergroup          0 2021-02-04 07:38 /mine/accounts_stateCA/_SUCCESS\n-rw-r--r--   2 root supergroup       7039 2021-02-04 07:38 /mine/accounts_stateCA/part-00000-8301f4d7-5782-48fb-94aa-c227fbe1904d-c000.csv\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_251589687",
+      "id": "20200111-180700_593022127",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:38:57.041",
+      "dateFinished": "2021-02-04 07:38:59.063",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\nhdfs dfs -head /mine/accounts_stateCA/part-00000-8301f4d7-5782-48fb-94aa-c227fbe1904d-c000.csv",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:39:15.240",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:39:16,258 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nfirst_name,last_name,address,city,county,state,zip,website\nLeota,Dilliard,7 W Jackson Blvd,San Jose,Santa Clara,CA,95111,http://www.commercialpress.com\nKiley,Caldarera,25 E 75th St #69,Los Angeles,Los Angeles,CA,90034,http://www.feinerbros.com\nVeronika,Inouye,6 Greenleaf Ave,San Jose,Santa Clara,CA,95111,http://www.cnetworkinc.com\nRozella,Ostrosky,17 Morena Blvd,Camarillo,Ventura,CA,93012,http://www.parkwaycompany.com\nKanisha,Waycott,5 Tomahawk Dr,Los Angeles,Los Angeles,CA,90006,http://www.schroergeneeesq.com\nShenika,Seewald,4 Otis St,Van Nuys,Los Angeles,CA,91405,http://www.eastcoastmarketing.com\nKallie,Blackwood,701 S Harrison Rd,San Francisco,San Francisco,CA,94104,http://www.rowleyschlimgeninc.com\nBobbye,Rhym,30 W 80th St #1995,San Carlos,San Mateo,CA,94070,http://www.smitspatriciagarity.com\nMicaela,Rhymes,20932 Hedley St,Concord,Contra Costa,CA,94520,http://www.hleeleonardattorneyatlaw.com\nDominque,Dickerson,69 Marquette Ave,Hayward,Alameda,CA,94545,http://www.eaielectronicassocsinc.com\nStephaine,Barfie"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1202789590",
+      "id": "20210122-182843_1309430737",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:39:15.242",
+      "dateFinished": "2021-02-04 07:39:17.585",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nUse hdfs to view /mine/accounts_stateCA directory in HDFS and the data in one of the saved files.\nCopy and paste one of the files from accounts_stateCA directory into the hdfs dfs -head command.\nConfirm that the CSV file includes a header line, and that only records for the selected state are included.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eUse hdfs to view /mine/accounts_stateCA directory in HDFS and the data in one of the saved files.\u003cbr/\u003eCopy and paste one of the files from accounts_stateCA directory into the hdfs dfs -head command.\u003cbr/\u003eConfirm that the CSV file includes a header line, and that only records for the selected state are included.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_978351749",
+      "id": "20210121-140625_1512204011",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "6 - Optional: study the impact of the inferSchema option",
+      "text": "%livy.pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Read a csv file: no options\")\nspark.read.csv(\"/mine/accounts_stateCA\").printSchema()\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Read a csv file: header\u003dtrue\")\nspark.read.option(\"header\",\"true\").csv(\"/mine/accounts_stateCA\").printSchema()\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Read a csv file: header\u003dtrue inferSchema\u003dtrue\")\nspark.read.option(\"header\",\"true\").option(\"inferSchema\",\"true\").csv(\"/mine/accounts_stateCA\").printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:39:24.211",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- _c0: string (nullable \u003d true)\n |-- _c1: string (nullable \u003d true)\n |-- _c2: string (nullable \u003d true)\n |-- _c3: string (nullable \u003d true)\n |-- _c4: string (nullable \u003d true)\n |-- _c5: string (nullable \u003d true)\n |-- _c6: string (nullable \u003d true)\n |-- _c7: string (nullable \u003d true)\n\nroot\n |-- first_name: string (nullable \u003d true)\n |-- last_name: string (nullable \u003d true)\n |-- address: string (nullable \u003d true)\n |-- city: string (nullable \u003d true)\n |-- county: string (nullable \u003d true)\n |-- state: string (nullable \u003d true)\n |-- zip: string (nullable \u003d true)\n |-- website: string (nullable \u003d true)\n\nroot\n |-- first_name: string (nullable \u003d true)\n |-- last_name: string (nullable \u003d true)\n |-- address: string (nullable \u003d true)\n |-- city: string (nullable \u003d true)\n |-- county: string (nullable \u003d true)\n |-- state: string (nullable \u003d true)\n |-- zip: integer (nullable \u003d true)\n |-- website: string (nullable \u003d true)"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_556490859",
+      "id": "20200111-182021_1532001378",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:39:24.213",
+      "dateFinished": "2021-02-04 07:39:26.248",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nNo options assigns an alphanumeric sequence to all fields and casts all fields as data type string.\n\nHeader \u003d true will assign field names but will cast all fields as data type string.\n\nHeader \u003d true, Infer Schema \u003d true will assign filed names and assign data types. \n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNo options assigns an alphanumeric sequence to all fields and casts all fields as data type string.\u003c/p\u003e\n\u003cp\u003eHeader \u003d true will assign field names but will cast all fields as data type string.\u003c/p\u003e\n\u003cp\u003eHeader \u003d true, Infer Schema \u003d true will assign filed names and assign data types.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1425441173",
+      "id": "20210122-183034_1388155243",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Define a Schema for a DataFrame\nIf you have not done so yet, review the data in the HDFS file /devsh_loudacre/devices.json\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eDefine a Schema for a DataFrame\u003c/h3\u003e\n\u003cp\u003eIf you have not done so yet, review the data in the HDFS file /devsh_loudacre/devices.json\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_625943967",
+      "id": "20210122-190110_2062914929",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "Add /data/custom/voyager-seasons.json to hdfs",
+      "text": "%sh\nhdfs dfs -rm -skipTrash /mine/voyager-seasons.json\nhdfs dfs -put /data/custom/voyager-seasons.json /mine/voyager-seasons.json\nhdfs dfs -ls /mine\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:42:33.682",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:42:34,748 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/voyager-seasons.json\u0027: No such file or directory\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:42:36,716 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:42:39,051 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 3 items\n-rw-r--r--   2 root supergroup      92819 2021-02-04 07:32 /mine/accounts.csv\ndrwxr-xr-x   - root supergroup          0 2021-02-04 07:38 /mine/accounts_stateCA\n-rw-r--r--   2 root supergroup       2745 2021-02-04 07:42 /mine/voyager-seasons.json\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612424407224_1928760731",
+      "id": "paragraph_1612424407224_1928760731",
+      "dateCreated": "2021-02-04 07:40:07.224",
+      "dateStarted": "2021-02-04 07:42:33.684",
+      "dateFinished": "2021-02-04 07:42:40.106",
+      "status": "FINISHED"
+    },
+    {
+      "title": "7 - Review the data in /devsh_loudacre/devices.json",
+      "text": "%sh\n\nhdfs dfs -head /mine/voyager-seasons.json",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:42:52.418",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:42:53,665 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n[{\"id\":1932,\"url\":\"http://www.tvmaze.com/seasons/1932/star-trek-voyager-season-1\",\"number\":1,\"name\":\"\",\"episodeOrder\":16,\"premiereDate\":\"1995-01-16\",\"endDate\":\"1995-05-22\",\"network\":{\"id\":70,\"name\":\"UPN\",\"country\":{\"name\":\"United States\",\"code\":\"US\",\"timezone\":\"America/New_York\"}},\"webChannel\":null,\"image\":null,\"summary\":null,\"_links\":{\"self\":{\"href\":\"http://api.tvmaze.com/seasons/1932\"}}},{\"id\":1933,\"url\":\"http://www.tvmaze.com/seasons/1933/star-trek-voyager-season-2\",\"number\":2,\"name\":\"\",\"episodeOrder\":26,\"premiereDate\":\"1995-08-28\",\"endDate\":\"1996-05-20\",\"network\":{\"id\":70,\"name\":\"UPN\",\"country\":{\"name\":\"United States\",\"code\":\"US\",\"timezone\":\"America/New_York\"}},\"webChannel\":null,\"image\":null,\"summary\":null,\"_links\":{\"self\":{\"href\":\"http://api.tvmaze.com/seasons/1933\"}}},{\"id\":1934,\"url\":\"http://www.tvmaze.com/seasons/1934/star-trek-voyager-season-3\",\"number\":3,\"name\":\"\",\"episodeOrder\":26,\"premiereDate\":\"1996-09-04\",\"endDate\":\"1997-05-21\",\"network\":{\"id\":70,\"name\":\"UPN\",\"country\":{\"name\":\"United States\",\"c"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1967047521",
+      "id": "20200111-183034_19858163",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:42:52.421",
+      "dateFinished": "2021-02-04 07:42:54.749",
+      "status": "FINISHED"
+    },
+    {
+      "title": "8 - Read the devices.json file into a devDF dataframe",
+      "text": "%livy.pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Read the devices.json file\")\nvoyDF \u003d spark.read.json(\"/mine/voyager-seasons.json\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:44:21.861",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1079790048",
+      "id": "20200111-183406_507235503",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:44:21.863",
+      "dateFinished": "2021-02-04 07:44:22.890",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nCreate a new DataFrame based on the devices.json file. (This command could take several seconds while it infers the schema.)\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.436",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame based on the devices.json file. (This command could take several seconds while it infers the schema.)\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1120972174",
+      "id": "20210121-140752_339312179",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "status": "READY"
+    },
+    {
+      "title": "9- View the schema of the devDF dataframe",
+      "text": "%livy.pyspark\n\nvoyDF.printSchema()\n\nvoySmDF \u003d voyDF.select(voyDF.endDate.alias(\"end_date\"), voyDF.episodeOrder.alias(\"episode_order\"), \"id\", \"number\", voyDF.premiereDate.alias(\u0027premiere_date\u0027), \"summary\", \"url\")\nvoySmDF.write.json(\"/mine/voy-ep-clean.json\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:55:19.859",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- _links: struct (nullable \u003d true)\n |    |-- self: struct (nullable \u003d true)\n |    |    |-- href: string (nullable \u003d true)\n |-- endDate: string (nullable \u003d true)\n |-- episodeOrder: long (nullable \u003d true)\n |-- id: long (nullable \u003d true)\n |-- image: string (nullable \u003d true)\n |-- name: string (nullable \u003d true)\n |-- network: struct (nullable \u003d true)\n |    |-- country: struct (nullable \u003d true)\n |    |    |-- code: string (nullable \u003d true)\n |    |    |-- name: string (nullable \u003d true)\n |    |    |-- timezone: string (nullable \u003d true)\n |    |-- id: long (nullable \u003d true)\n |    |-- name: string (nullable \u003d true)\n |-- number: long (nullable \u003d true)\n |-- premiereDate: string (nullable \u003d true)\n |-- summary: string (nullable \u003d true)\n |-- url: string (nullable \u003d true)\n |-- webChannel: string (nullable \u003d true)"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612417544103_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612417544103_0003/\"\u003ehttp://master:8088/proxy/application_1612417544103_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435436_1564527874",
+      "id": "20200111-185504_2076885456",
+      "dateCreated": "2021-02-04 06:33:55.436",
+      "dateStarted": "2021-02-04 07:55:19.862",
+      "dateFinished": "2021-02-04 07:55:20.884",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\n\nhdfs dfs -ls /mine\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:55:57.003",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 07:55:58,013 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 4 items\n-rw-r--r--   2 root supergroup      92819 2021-02-04 07:32 /mine/accounts.csv\ndrwxr-xr-x   - root supergroup          0 2021-02-04 07:38 /mine/accounts_stateCA\ndrwxr-xr-x   - root supergroup          0 2021-02-04 07:55 /mine/voy-ep-clean.json\n-rw-r--r--   2 root supergroup       2745 2021-02-04 07:42 /mine/voyager-seasons.json\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612425327497_1376275705",
+      "id": "paragraph_1612425327497_1376275705",
+      "dateCreated": "2021-02-04 07:55:27.497",
+      "dateStarted": "2021-02-04 07:55:57.006",
+      "dateFinished": "2021-02-04 07:55:59.168",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\nView the schema of the `devDF` DataFrame. Note the column names and types that Spark inferred from the \nJSON file. In particular, note that the `release_dt` column is of type `string`, whereas the data in \nthe column actually represents a timestamp.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eView the schema of the \u003ccode\u003edevDF\u003c/code\u003e DataFrame. Note the column names and types that Spark inferred from the\n\u003cbr  /\u003eJSON file. In particular, note that the \u003ccode\u003erelease_dt\u003c/code\u003e column is of type \u003ccode\u003estring\u003c/code\u003e, whereas the data in\n\u003cbr  /\u003ethe column actually represents a timestamp.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_464375829",
+      "id": "20210121-142717_1842020453",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "10 - Define a schema",
+      "text": "%pyspark\n\nfrom pyspark.sql.types import *\n\ndevColumns \u003d [ \n    StructField(\"devnum\",LongType()), \n    StructField(\"make\",StringType()), \n    StructField(\"model\",StringType()), \n    StructField(\"release_dt\",TimestampType()), \n    StructField(\"dev_type\",StringType())\n    ]\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_632989294",
+      "id": "20200111-190012_576363507",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nDefine a schema that correctly specifies the data types for each column of this DataFrame. \n\nStart by importing the package with the definitions of necessary classes and types.\n\nA `StructField` object is used to define the field name and the data type.\nA schema is defined as a collection of `StructFields`.\n\nNext, create a collection of `StructField` objects, which represent column definitions. \nThe `release_dt` column should be a timestamp.\n\n```spark\nfrom pyspark.sql.types import *\ndevColumns \u003d [ StructField(\"devnum\",LongType()), StructField(\"make\",StringType()), StructField(\"model\",StringType()), StructField(\"release_dt\",TimestampType()), StructField(\"dev_type\",StringType())]\n```\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eDefine a schema that correctly specifies the data types for each column of this DataFrame.\u003c/p\u003e\n\u003cp\u003eStart by importing the package with the definitions of necessary classes and types.\u003c/p\u003e\n\u003cp\u003eA \u003ccode\u003eStructField\u003c/code\u003e object is used to define the field name and the data type.\n\u003cbr  /\u003eA schema is defined as a collection of \u003ccode\u003eStructFields\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003eNext, create a collection of \u003ccode\u003eStructField\u003c/code\u003e objects, which represent column definitions.\n\u003cbr  /\u003eThe \u003ccode\u003erelease_dt\u003c/code\u003e column should be a timestamp.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"spark\"\u003efrom pyspark.sql.types import *\ndevColumns \u003d [ StructField(\"devnum\",LongType()), StructField(\"make\",StringType()), StructField(\"model\",StringType()), StructField(\"release_dt\",TimestampType()), StructField(\"dev_type\",StringType())]\n\u003c/code\u003e\u003c/pre\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_2015758719",
+      "id": "20210121-140904_185066472",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "11 - Create a schema (a StructType object) using the column definition list",
+      "text": "%pyspark\n\ndevSchema \u003d StructType(devColumns)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_581476742",
+      "id": "20200111-190405_1345983159",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nCreate a schema (a `StructType` object) using the column definition list.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a schema (a \u003ccode\u003eStructType\u003c/code\u003e object) using the column definition list.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1495981115",
+      "id": "20210121-143155_1071743868",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "12 - Recreate the devDF DataFrame, this time using the new schema",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Read the devices.json file with a schema\")\ndevDF \u003d spark.read.schema(devSchema).json(\"/devsh_loudacre/devices.json\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_809036175",
+      "id": "20200111-190932_1097085748",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "13 - View the schema and data of the new DataFrame, and confirm that the release_dt column type is now timestamp",
+      "text": "%pyspark\n\ndevDF.printSchema()\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Show the devices DataFrame\")\ndevDF.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "devnum": "string",
+                      "make": "string",
+                      "model": "string",
+                      "release_dt": "string",
+                      "dev_type": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- devnum: long (nullable \u003d true)\n |-- make: string (nullable \u003d true)\n |-- model: string (nullable \u003d true)\n |-- release_dt: timestamp (nullable \u003d true)\n |-- dev_type: string (nullable \u003d true)\n\n+------+--------+-----+-------------------+--------+\n|devnum|    make|model|         release_dt|dev_type|\n+------+--------+-----+-------------------+--------+\n|     1|Sorrento| F00L|2008-10-21 00:00:00|   phone|\n|     2| Titanic| 2100|2010-04-19 00:00:00|   phone|\n|     3|  MeeToo|  3.0|2011-02-18 00:00:00|   phone|\n|     4|  MeeToo|  3.1|2011-09-21 00:00:00|   phone|\n|     5|  iFruit|    1|2008-10-21 00:00:00|   phone|\n+------+--------+-----+-------------------+--------+\nonly showing top 5 rows"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1396120072",
+      "id": "20200111-190849_1182876565",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nView the schema and data of the new DataFrame, and confirm that the `release_dt` column type is \nnow of type `timestamp`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eView the schema and data of the new DataFrame, and confirm that the \u003ccode\u003erelease_dt\u003c/code\u003e column type is\n\u003cbr  /\u003enow of type \u003ccode\u003etimestamp\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1884090610",
+      "id": "20210121-143308_2141220186",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "14 - Save the devDF dataframe to /devsh_loudacre/devices_parquet using the parquet format",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Write the devices DataFrame in parquet format\")\ndevDF.write.parquet(\"/devsh_loudacre/devices_parquet\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1981828541",
+      "id": "20200111-191831_2119240237",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nNow that the device data uses the correct schema, write the data into Parquet format, which automatically embeds the schema. \nSave the Parquet data files into an HDFS directory called /devsh_loudacre/devices_parquet.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNow that the device data uses the correct schema, write the data into Parquet format, which automatically embeds the schema.\n\u003cbr  /\u003eSave the Parquet data files into an HDFS directory called /devsh_loudacre/devices_parquet.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1512904731",
+      "id": "20210121-141421_1547432313",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "15 - Optional - Confirm the schema of the saved files using parquet-tools",
+      "text": "%sh\n\nhdfs dfs -get /devsh_loudacre/devices_parquet /tmp/\nparquet-tools schema /tmp/devices_parquet/",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "get: `/tmp/devices_parquet/_SUCCESS\u0027: File exists\nJava HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize\u003d512m; support was removed in 8.0\nJava HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize\u003d512m; support was removed in 8.0\nmessage spark_schema {\n  optional int64 devnum;\n  optional binary make (STRING);\n  optional binary model (STRING);\n  optional int96 release_dt;\n  optional binary dev_type (STRING);\n}\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_596074908",
+      "id": "20200111-192819_852011514",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n### Optional\n\nUse `parquet-tools` to view the schema of the saved files. First download the HDFS directory (or an individual file), then run the command.\n\n```shell\n$ hdfs dfs -get /devsh_loudacre/devices_parquet /tmp/ \n$ parquet-tools schema /tmp/devices_parquet/\n```\n\nIn CDH 5, the parquet-tools command could be used directly on files in HDFS. In CDH 6, this is no longer the case. \nAs a workaround, you can use: hadoop jar /opt/cloudera/parcels/CDH/jars/parquet-tools-1.9.0- cdh6.1.1.jar schema hdfs://localhost/devsh_loudacre/devices_parquet/. Related JIRA: CDH-80574.\n\nNote that the type of the `release_dt` column is noted as `int96`; this is how Spark denotes a timestamp type in Parquet.\nFor more information about `parquet-tools`, run `parquet-tools --help`.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eOptional\u003c/h3\u003e\n\u003cp\u003eUse \u003ccode\u003eparquet-tools\u003c/code\u003e to view the schema of the saved files. First download the HDFS directory (or an individual file), then run the command.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"shell\"\u003e$ hdfs dfs -get /devsh_loudacre/devices_parquet /tmp/ \n$ parquet-tools schema /tmp/devices_parquet/\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eIn CDH 5, the parquet-tools command could be used directly on files in HDFS. In CDH 6, this is no longer the case.\n\u003cbr  /\u003eAs a workaround, you can use: hadoop jar /opt/cloudera/parcels/CDH/jars/parquet-tools-1.9.0- cdh6.1.1.jar schema hdfs://localhost/devsh_loudacre/devices_parquet/. Related JIRA: CDH-80574.\u003c/p\u003e\n\u003cp\u003eNote that the type of the \u003ccode\u003erelease_dt\u003c/code\u003e column is noted as \u003ccode\u003eint96\u003c/code\u003e; this is how Spark denotes a timestamp type in Parquet.\n\u003cbr  /\u003eFor more information about \u003ccode\u003eparquet-tools\u003c/code\u003e, run \u003ccode\u003eparquet-tools --help\u003c/code\u003e.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1977689924",
+      "id": "20210121-141607_1157000296",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "16 - Optional - Read the parquet files back in a dataframe to confirm the schema is well saved",
+      "text": "%pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Read the devices DataFrame in parquet format\")\nspark.read.parquet(\"/devsh_loudacre/devices_parquet\").printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- devnum: long (nullable \u003d true)\n |-- make: string (nullable \u003d true)\n |-- model: string (nullable \u003d true)\n |-- release_dt: timestamp (nullable \u003d true)\n |-- dev_type: string (nullable \u003d true)"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_377714245",
+      "id": "20200111-193316_622744995",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\nCreate a new DataFrame using the Parquet files you saved in devices_parquet and view its schema.\nNote that Spark is able to correctly infer the timestamp type of the release_dt column from Parquet’s embedded schema.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eCreate a new DataFrame using the Parquet files you saved in devices_parquet and view its schema.\n\u003cbr  /\u003eNote that Spark is able to correctly infer the timestamp type of the release_dt column from Parquet’s embedded schema.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_386264671",
+      "id": "20210121-141733_613796356",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%md\n# Tear Down\n---",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eTear Down\u003c/h1\u003e\n\u003chr /\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1395642240",
+      "id": "20200830-075248_1182047608",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "title": "Delete the Livy session",
+      "text": "%sh\n\ncurl -s 192.168.1.173:8998/sessions/ | python3 -mjson.tool\n\n#sessionId \u003d $(curl -s localhost:8998/sessions | jq \u0027.sessions[0].id\u0027)\ncurl -s 192.168.1.173:8998/sessions/0 -X DELETE",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 07:15:35.448",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\n    \"from\": 0,\n    \"total\": 0,\n    \"sessions\": []\n}\n{\"msg\":\"Session \u00270\u0027 not found.\"}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_559381807",
+      "id": "20200830-075258_565376786",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "dateStarted": "2021-02-04 07:15:35.450",
+      "dateFinished": "2021-02-04 07:15:35.514",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Additional resources",
+      "text": "%md\nWe hope you\u0027ve enjoyed this lab. Below are additional resources that you should find useful:\n\n1. [Cloudera Tutorials](http://cloudera.com/tutorials.html) are your natural next step where you can explore Spark in more depth.\n2. [Cloudera Community](https://community.cloudera.com) is a great resource for questions and answers on Spark, Data Analytics/Science, and many more Big Data topics.\n3. [Apache Spark Documentation](https://spark.apache.org/documentation.html) - official Spark documentation.\n4. [Apache Zeppelin Project Home Page](https://zeppelin.apache.org) - official Zeppelin web site.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 10.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eWe hope you\u0027ve enjoyed this lab. Below are additional resources that you should find useful:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href\u003d\"http://cloudera.com/tutorials.html\"\u003eCloudera Tutorials\u003c/a\u003e are your natural next step where you can explore Spark in more depth.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://community.cloudera.com\"\u003eCloudera Community\u003c/a\u003e is a great resource for questions and answers on Spark, Data Analytics/Science, and many more Big Data topics.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://spark.apache.org/documentation.html\"\u003eApache Spark Documentation\u003c/a\u003e - official Spark documentation.\u003c/li\u003e\n\u003cli\u003e\u003ca href\u003d\"https://zeppelin.apache.org\"\u003eApache Zeppelin Project Home Page\u003c/a\u003e - official Zeppelin web site.\u003c/li\u003e\n\u003c/ol\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1572276545",
+      "id": "20181116-135131_93712280",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%angular\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003ccenter\u003e\n\u003ca href\u003d\"https://www.cloudera.com/about/training/courses.html\"\u003e\n  \u003cimg src\u003d\"https://www.cloudera.com/content/dam/www/marketing/media-kit/logo-assets/cloudera_logo_darkorange.png\" alt\u003d\"Cloudera University\" style\u003d\"width:280px;height:40px;border:0;\" align\u003d\"middle\"\u003e\n\u003c/a\u003e\n\u003c/center\u003e\n\u003c/br\u003e\n\u003c/br\u003e",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 2.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003c/br\u003e\n\u003ccenter\u003e\n\u003ca href\u003d\"https://www.cloudera.com/about/training/courses.html\"\u003e\n  \u003cimg src\u003d\"https://www.cloudera.com/content/dam/www/marketing/media-kit/logo-assets/cloudera_logo_darkorange.png\" alt\u003d\"Cloudera University\" style\u003d\"width:280px;height:40px;border:0;\" align\u003d\"middle\"\u003e\n\u003c/a\u003e\n\u003c/center\u003e\n\u003c/br\u003e\n\u003c/br\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_893696705",
+      "id": "20200110-154537_1406191376",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    },
+    {
+      "text": "%angular\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 06:33:55.437",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612420435437_1919516226",
+      "id": "20200110-162013_302547143",
+      "dateCreated": "2021-02-04 06:33:55.437",
+      "status": "READY"
+    }
+  ],
+  "name": "2-WorkingWithDataframes",
+  "id": "2FWB7W818",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
