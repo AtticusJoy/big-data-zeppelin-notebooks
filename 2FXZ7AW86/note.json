@@ -83,7 +83,7 @@
       "title": "Delete existing HDFS files to prevent file exists errors",
       "text": "%sh\nhdfs dfs -rm -skipTrash /mine/accounts.csv\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:03:00.944",
+      "dateUpdated": "2021-02-04 04:47:06.594",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -105,15 +105,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-03 07:03:04,366 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/accounts.csv\u0027: No such file or directory\n"
-          },
-          {
-            "type": "TEXT",
-            "data": "ExitValue: 1"
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 04:47:07,671 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nDeleted /mine/accounts.csv\n"
           }
         ]
       },
@@ -121,16 +117,16 @@
       "jobName": "paragraph_1612302876490_2064716412",
       "id": "20210122-182625_537679893",
       "dateCreated": "2021-02-02 21:54:36.490",
-      "dateStarted": "2021-02-03 07:03:01.712",
-      "dateFinished": "2021-02-03 07:03:06.119",
-      "status": "ERROR",
+      "dateStarted": "2021-02-04 04:47:06.710",
+      "dateFinished": "2021-02-04 04:47:08.685",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Environment variable required to use SetJobGroup",
       "text": "%sh\n\nPYSPARK_PIN_THREAD\u003dtrue",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:03:08.853",
+      "dateUpdated": "2021-02-04 04:44:12.172",
       "config": {
         "editorSetting": {
           "language": "sh",
@@ -158,8 +154,8 @@
       "jobName": "paragraph_1612302876490_1570100110",
       "id": "20200830-073644_1484939052",
       "dateCreated": "2021-02-02 21:54:36.490",
-      "dateStarted": "2021-02-03 07:03:09.226",
-      "dateFinished": "2021-02-03 07:03:09.262",
+      "dateStarted": "2021-02-04 04:44:12.303",
+      "dateFinished": "2021-02-04 04:44:12.327",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -167,7 +163,7 @@
       "title": "Retrieve the Spark Context",
       "text": "%livy.pyspark\n\nsc \u003d spark.sparkContext",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:03:12.773",
+      "dateUpdated": "2021-02-04 04:44:19.264",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -192,7 +188,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0003/\"\u003ehttp://master:8088/proxy/application_1612378464455_0003/\u003c/a\u003e"
           }
         ]
       },
@@ -200,8 +196,8 @@
       "jobName": "paragraph_1612302876490_-1152112532",
       "id": "20200830-074054_2080534068",
       "dateCreated": "2021-02-02 21:54:36.490",
-      "dateStarted": "2021-02-03 07:03:13.062",
-      "dateFinished": "2021-02-03 07:04:02.339",
+      "dateStarted": "2021-02-04 04:44:19.367",
+      "dateFinished": "2021-02-04 04:44:19.405",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -249,7 +245,7 @@
     {
       "text": "%livy.sql\nSHOW DATABASES\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:04:08.378",
+      "dateUpdated": "2021-02-04 04:47:45.932",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -300,11 +296,11 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "databaseName\ndefault"
+            "data": "databaseName\ndefault\nmine"
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0003/\"\u003ehttp://master:8088/proxy/application_1612378464455_0003/\u003c/a\u003e"
           }
         ]
       },
@@ -312,15 +308,15 @@
       "jobName": "paragraph_1612327799040_555893568",
       "id": "20210203-044959_1432408824",
       "dateCreated": "2021-02-03 04:49:59.041",
-      "dateStarted": "2021-02-03 07:04:08.614",
-      "dateFinished": "2021-02-03 07:04:12.728",
+      "dateStarted": "2021-02-04 04:47:46.051",
+      "dateFinished": "2021-02-04 04:47:47.091",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%livy.sql\n\nCREATE DATABASE mine\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:04:17.158",
+      "dateUpdated": "2021-02-04 04:45:26.261",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -373,7 +369,7 @@
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0003/\"\u003ehttp://master:8088/proxy/application_1612378464455_0003/\u003c/a\u003e"
           }
         ]
       },
@@ -381,15 +377,15 @@
       "jobName": "paragraph_1612312435688_-696581006",
       "id": "20210203-003355_1603829657",
       "dateCreated": "2021-02-03 00:33:55.688",
-      "dateStarted": "2021-02-03 07:04:17.368",
-      "dateFinished": "2021-02-03 07:04:18.413",
+      "dateStarted": "2021-02-04 04:45:26.383",
+      "dateFinished": "2021-02-04 04:45:27.415",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%livy.sql\nDROP TABLE IF EXISTS mine.account_info ",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:04:19.616",
+      "dateUpdated": "2021-02-04 04:52:34.601",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -443,7 +439,7 @@
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0003/\"\u003ehttp://master:8088/proxy/application_1612378464455_0003/\u003c/a\u003e"
           }
         ]
       },
@@ -451,15 +447,88 @@
       "jobName": "paragraph_1612312482500_1587499413",
       "id": "20210203-003442_238637556",
       "dateCreated": "2021-02-03 00:34:42.500",
-      "dateStarted": "2021-02-03 07:04:19.828",
-      "dateFinished": "2021-02-03 07:04:20.881",
+      "dateStarted": "2021-02-04 04:52:34.692",
+      "dateFinished": "2021-02-04 04:52:35.732",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%sh\n#### If a new run of bigdata-docker-compose, add the base directory to HDFS\nhdfs dfs -mkdir /mine\n",
+      "text": "%livy.sql\nSHOW TABLES in mine",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:07:58.911",
+      "dateUpdated": "2021-02-04 04:49:21.396",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "database": "string",
+                      "tableName": "string",
+                      "isTemporary": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "database\ttableName\tisTemporary"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0003/\"\u003ehttp://master:8088/proxy/application_1612378464455_0003/\u003c/a\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612414074190_577185430",
+      "id": "20210204-044754_745551977",
+      "dateCreated": "2021-02-04 04:47:54.190",
+      "dateStarted": "2021-02-04 04:49:19.634",
+      "dateFinished": "2021-02-04 04:49:20.703",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n#### If a new run of bigdata-docker-compose, add the base directory to HDFS\nhdfs dfs -mkdir /mine\nhdfs dfs -ls /",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 04:46:10.730",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -482,7 +551,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-03 07:08:00,533 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n"
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 04:45:56,633 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 5 items\ndrwxr-xr-x   - root supergroup          0 2021-02-03 18:54 /log\ndrwxr-xr-x   - root supergroup          0 2021-02-03 18:57 /mine\ndrwxr-xr-x   - root supergroup          0 2021-02-03 18:55 /spark-jars\ndrwxrwx---   - root supergroup          0 2021-02-03 18:54 /tmp\ndrwxr-xr-x   - root supergroup          0 2021-02-03 18:55 /user\n"
           }
         ]
       },
@@ -490,15 +559,15 @@
       "jobName": "paragraph_1612330063210_477010945",
       "id": "20210203-052743_1228000808",
       "dateCreated": "2021-02-03 05:27:43.210",
-      "dateStarted": "2021-02-03 07:07:59.140",
-      "dateFinished": "2021-02-03 07:08:01.606",
+      "dateStarted": "2021-02-04 04:45:55.635",
+      "dateFinished": "2021-02-04 04:45:57.698",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\nhdfs dfs -rm -r -skipTrash /mine/accounts.csv\n\nhdfs dfs -put /data/custom/accounts.csv /mine/accounts.csv\n\nhdfs dfs -head /mine/accounts.csv\n\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:08:04.416",
+      "dateUpdated": "2021-02-04 04:46:10.855",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -521,7 +590,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-03 07:08:06,036 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nrm: `/mine/accounts.csv\u0027: No such file or directory\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-03 07:08:08,459 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-03 07:08:10,706 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n\"first_name\",\"last_name\",\"company_name\",\"address\",\"city\",\"county\",\"state\",\"zip\",\"phone1\",\"phone2\",\"email\",\"web\"\r\n\"James\",\"Butt\",\"Benton, John B Jr\",\"6649 N Blue Gum St\",\"New Orleans\",\"Orleans\",\"LA\",70116,\"504-621-8927\",\"504-845-1427\",\"jbutt@gmail.com\",\"http://www.bentonjohnbjr.com\"\r\n\"Josephine\",\"Darakjy\",\"Chanay, Jeffrey A Esq\",\"4 B Blue Ridge Blvd\",\"Brighton\",\"Livingston\",\"MI\",48116,\"810-292-9388\",\"810-374-9840\",\"josephine_darakjy@darakjy.org\",\"http://www.chanayjeffreyaesq.com\"\r\n\"Art\",\"Venere\",\"Chemel, James L Cpa\",\"8 W Cerritos Ave #54\",\"Bridgeport\",\"Gloucester\",\"NJ\",\"08014\",\"856-636-8749\",\"856-264-4130\",\"art@venere.org\",\"http://www.chemeljameslcpa.com\"\r\n\"Lenna\",\"Paprocki\",\"Feltz Printing Service\",\"639 Main St\",\"Anchorage\",\"Anchorage\",\"AK\",99501,\"907-385-4412\",\"907-921-2010\",\"lpaprocki@hotmail.com\",\"http://www.feltzprintingservice.com\"\r\n\"Donette\",\"Foller\",\"Printing Dimensions\",\"34 Center St\",\"Hamilton\",\"Butler\",\"OH\",45011,\"513-570-1893\",\"513-549-4561\",\"donette.foller@cox.net\",\"http://www.printingdimensions."
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 04:46:11,955 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nDeleted /mine/accounts.csv\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 04:46:14,299 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n2021-02-04 04:46:15,588 WARN hdfs.DataStreamer: Caught exception\njava.lang.InterruptedException\n\tat java.lang.Object.wait(Native Method)\n\tat java.lang.Thread.join(Thread.java:1252)\n\tat java.lang.Thread.join(Thread.java:1326)\n\tat org.apache.hadoop.hdfs.DataStreamer.closeResponder(DataStreamer.java:986)\n\tat org.apache.hadoop.hdfs.DataStreamer.endBlock(DataStreamer.java:640)\n\tat org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:810)\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2021-02-04 04:46:16,905 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n\"first_name\",\"last_name\",\"company_name\",\"address\",\"city\",\"county\",\"state\",\"zip\",\"phone1\",\"phone2\",\"email\",\"web\"\r\n\"James\",\"Butt\",\"Benton, John B Jr\",\"6649 N Blue Gum St\",\"New Orleans\",\"Orleans\",\"LA\",70116,\"504-621-8927\",\"504-845-1427\",\"jbutt@gmail.com\",\"http://www.bentonjohnbjr.com\"\r\n\"Josephine\",\"Darakjy\",\"Chanay, Jeffrey A Esq\",\"4 B Blue Ridge Blvd\",\"Brighton\",\"Livingston\",\"MI\",48116,\"810-292-9388\",\"810-374-9840\",\"josephine_darakjy@darakjy.org\",\"http://www.chanayjeffreyaesq.com\"\r\n\"Art\",\"Venere\",\"Chemel, James L Cpa\",\"8 W Cerritos Ave #54\",\"Bridgeport\",\"Gloucester\",\"NJ\",\"08014\",\"856-636-8749\",\"856-264-4130\",\"art@venere.org\",\"http://www.chemeljameslcpa.com\"\r\n\"Lenna\",\"Paprocki\",\"Feltz Printing Service\",\"639 Main St\",\"Anchorage\",\"Anchorage\",\"AK\",99501,\"907-385-4412\",\"907-921-2010\",\"lpaprocki@hotmail.com\",\"http://www.feltzprintingservice.com\"\r\n\"Donette\",\"Foller\",\"Printing Dimensions\",\"34 Center St\",\"Hamilton\",\"Butler\",\"OH\",45011,\"513-570-1893\",\"513-549-4561\",\"donette.foller@cox.net\",\"http://www.printingdimensions."
           }
         ]
       },
@@ -529,15 +598,15 @@
       "jobName": "paragraph_1612312209494_-173796452",
       "id": "20210203-003009_512335839",
       "dateCreated": "2021-02-03 00:30:09.494",
-      "dateStarted": "2021-02-03 07:08:04.614",
-      "dateFinished": "2021-02-03 07:08:11.903",
+      "dateStarted": "2021-02-04 04:46:10.958",
+      "dateFinished": "2021-02-04 04:46:18.039",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%livy.pyspark\n\naccountsDF \u003d spark.read.option(\"header\", \"true\").csv(\"/mine/accounts.csv\")\naccountsDF.printSchema()\naccountsDF.show(5)",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:13:29.965",
+      "dateUpdated": "2021-02-04 04:46:27.261",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -564,7 +633,7 @@
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0003\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0003/\"\u003ehttp://master:8088/proxy/application_1612378464455_0003/\u003c/a\u003e"
           }
         ]
       },
@@ -572,15 +641,54 @@
       "jobName": "paragraph_1612314691092_-1474821695",
       "id": "20210203-011131_465550119",
       "dateCreated": "2021-02-03 01:11:31.092",
-      "dateStarted": "2021-02-03 07:13:30.131",
-      "dateFinished": "2021-02-03 07:13:35.246",
+      "dateStarted": "2021-02-04 04:46:27.362",
+      "dateFinished": "2021-02-04 04:46:34.503",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%livy.pyspark\n#Save df to hive metastore\naccountsDF.write.saveAsTable(\"mine.accounts_info\")",
+      "text": "%sh\nls /",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:13:39.451",
+      "dateUpdated": "2021-02-04 04:58:14.631",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "bin\ndata\ndev\nentrypoint.sh\netc\nhome\nlib\nmedia\nmnt\nopt\nproc\nroot\nrun\nsbin\nscripts\nsrv\nsys\ntmp\nusr\nvar\nzeppelin_notebooks\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1612414368645_782940300",
+      "id": "20210204-045248_937128501",
+      "dateCreated": "2021-02-04 04:52:48.645",
+      "dateStarted": "2021-02-04 04:58:14.723",
+      "dateFinished": "2021-02-04 04:58:14.745",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%livy.pyspark\n#Save df to hive metastore\naccountsDF.write.mode(\"overwrite\").saveAsTable(\"mine.accounts_info\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04 04:52:43.247",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -599,11 +707,11 @@
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
-            "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "type": "TEXT",
+            "data": "\"Can not create the managed table(\u0027`mine`.`accounts_info`\u0027). The associated location(\u0027file:/spark-warehouse/mine.db/accounts_info\u0027) already exists.;\"\nTraceback (most recent call last):\n  File \"/usr/spark/python/lib/pyspark.zip/pyspark/sql/readwriter.py\", line 778, in saveAsTable\n    self._jwrite.saveAsTable(name)\n  File \"/usr/spark/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py\", line 1257, in __call__\n    answer, self.gateway_client, self.target_id, self.name)\n  File \"/usr/spark/python/lib/pyspark.zip/pyspark/sql/utils.py\", line 69, in deco\n    raise AnalysisException(s.split(\u0027: \u0027, 1)[1], stackTrace)\npyspark.sql.utils.AnalysisException: \"Can not create the managed table(\u0027`mine`.`accounts_info`\u0027). The associated location(\u0027file:/spark-warehouse/mine.db/accounts_info\u0027) already exists.;\"\n"
           }
         ]
       },
@@ -611,9 +719,9 @@
       "jobName": "paragraph_1612327455280_301194152",
       "id": "20210203-044415_364558996",
       "dateCreated": "2021-02-03 04:44:15.280",
-      "dateStarted": "2021-02-03 07:13:39.639",
-      "dateFinished": "2021-02-03 07:13:43.729",
-      "status": "FINISHED",
+      "dateStarted": "2021-02-04 04:52:43.373",
+      "dateFinished": "2021-02-04 04:52:44.430",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -1796,7 +1904,7 @@
       "title": "1 - Review the schema of the mine.accounts_info table",
       "text": "%livy.sql\n\nDESCRIBE mine.accounts_info",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:14:20.261",
+      "dateUpdated": "2021-02-03 18:57:53.482",
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -1855,7 +1963,7 @@
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0002\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0002/\"\u003ehttp://master:8088/proxy/application_1612378464455_0002/\u003c/a\u003e"
           }
         ]
       },
@@ -1863,8 +1971,8 @@
       "jobName": "paragraph_1612302876497_739540838",
       "id": "20200111-173912_1607664098",
       "dateCreated": "2021-02-02 21:54:36.497",
-      "dateStarted": "2021-02-03 07:14:20.419",
-      "dateFinished": "2021-02-03 07:14:21.475",
+      "dateStarted": "2021-02-03 18:57:53.653",
+      "dateFinished": "2021-02-03 18:57:54.713",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1912,7 +2020,7 @@
       "title": "2 - Create a new DataFrame using the Hive devsh.accounts_info table",
       "text": "%livy.pyspark\n\naccountsInfoDF \u003d spark.read.table(\"mine.accounts_info\")",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:18:55.370",
+      "dateUpdated": "2021-02-03 19:03:20.659",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -1938,7 +2046,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0002\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0002/\"\u003ehttp://master:8088/proxy/application_1612378464455_0002/\u003c/a\u003e"
           }
         ]
       },
@@ -1946,8 +2054,8 @@
       "jobName": "paragraph_1612302876497_1131046440",
       "id": "20200111-175424_830219293",
       "dateCreated": "2021-02-02 21:54:36.497",
-      "dateStarted": "2021-02-03 07:18:55.560",
-      "dateFinished": "2021-02-03 07:18:56.636",
+      "dateStarted": "2021-02-03 19:03:20.823",
+      "dateFinished": "2021-02-03 19:03:21.874",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1995,7 +2103,7 @@
       "title": "3 - View the dataframe and confirm alignment with the Hive table",
       "text": "%livy.pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Show the accounts data\")\naccountsDF.printSchema()\naccountsDF.show(10)",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:19:10.425",
+      "dateUpdated": "2021-02-03 19:03:25.353",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -2063,7 +2171,7 @@
           },
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003chr/\u003eSpark Application Id: application_1612378464455_0002\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612378464455_0002/\"\u003ehttp://master:8088/proxy/application_1612378464455_0002/\u003c/a\u003e"
           }
         ]
       },
@@ -2071,8 +2179,8 @@
       "jobName": "paragraph_1612302876497_891158518",
       "id": "20200111-175849_1440047182",
       "dateCreated": "2021-02-02 21:54:36.497",
-      "dateStarted": "2021-02-03 07:19:10.576",
-      "dateFinished": "2021-02-03 07:19:11.666",
+      "dateStarted": "2021-02-03 19:03:25.515",
+      "dateFinished": "2021-02-03 19:03:26.577",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -2118,9 +2226,9 @@
     },
     {
       "title": "4 - Create a new dataframe and save it to HDFS",
-      "text": "%livy.pyspark\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Write the filtered accounts data\")\naccountsDF.where(\"state \u003d \u0027CA\u0027\").write.option(\"header\",\"true\").csv(\"/mine/accounts_stateCA\")",
+      "text": "%livy.pyspark\n#from pyspark.sql.functions import col\n\nsc.setJobGroup(\"Working with DataFrames and schemas\",\"Write the filtered accounts data\")\naccountsDF.select(\"first_name\", \"last_name\", \"address\", \"city\", \"county\", \"state\", (\"web\", \"alias \u003d website\")).where(\"state \u003d \u0027CA\u0027\").show()\n#.write.option(\"header\",\"true\").csv(\"/mine/accounts_stateCA\")",
       "user": "anonymous",
-      "dateUpdated": "2021-02-03 07:27:10.341",
+      "dateUpdated": "2021-02-04 04:38:10.100",
       "config": {
         "editorSetting": {
           "language": "python",
@@ -2141,11 +2249,15 @@
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003chr/\u003eSpark Application Id: application_1612335427626_0001\u003cbr/\u003eSpark WebUI: \u003ca href\u003d\"http://master:8088/proxy/application_1612335427626_0001/\"\u003ehttp://master:8088/proxy/application_1612335427626_0001/\u003c/a\u003e"
+            "data": "\u003cfont color\u003d\"red\"\u003ePrevious livy session is expired, new livy session is created. Paragraphs that depend on this paragraph need to be re-executed!\u003c/font\u003e"
+          },
+          {
+            "type": "TEXT",
+            "data": "name \u0027accountsDF\u0027 is not defined\nTraceback (most recent call last):\nNameError: name \u0027accountsDF\u0027 is not defined\n"
           }
         ]
       },
@@ -2153,9 +2265,9 @@
       "jobName": "paragraph_1612302876497_-1718666927",
       "id": "20200111-180302_674401673",
       "dateCreated": "2021-02-02 21:54:36.497",
-      "dateStarted": "2021-02-03 07:27:10.571",
-      "dateFinished": "2021-02-03 07:27:11.625",
-      "status": "FINISHED",
+      "dateStarted": "2021-02-04 04:38:10.206",
+      "dateFinished": "2021-02-04 04:38:41.477",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -3382,7 +3494,6 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
-    "md:shared_process": [],
     "sh:shared_process": [],
     "spark:shared_process": [],
     "livy:shared_process": []
